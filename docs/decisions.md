@@ -31,7 +31,7 @@ Each decision has five fields: Question, Decision, Date, Consequences, and Affec
   |---|---|---|---|
   | **MongoDB** | Editable drawing data, as Konva JSON: one versioned scene per panel | Logged-in users | On manual save and auto-save (D10) |
   | **Cloudinary** | Rendered images of published panels | Logged-in users who publish | When an episode is published |
-  | **Device download** | An image file (PNG) of the user's artwork, saved to their own computer or phone | Any user who chooses to download | Only when the user clicks download |
+  | **Device download** | An image file (PNG) of the user's artwork, saved to their own computer or phone | Logged-in users, through Preview & Export | Only when the user clicks download |
   | **IndexedDB** (in the browser) | Local recovery drafts of unsaved changes | Logged-in users only | Automatically, until the change is saved (D10) |
 
 - **Date:** 2026-10-12 (device download and the four-place split added 2026-10-26)
