@@ -238,10 +238,76 @@ Each decision has five fields: Question, Decision, Date, Consequences, and Affec
 - **Affected tasks:** 7.19–7.22, 10.1
 
 ## Supporting libraries
-- **Confirmed:** React with Vite, Node.js + Express, MongoDB with Mongoose, Konva / React-Konva, Cloudinary + Multer, OpenAI, JazzCash sandbox, jsPDF, Google Fonts, JWT + bcrypt.
-- **Pending team approval (task 0.5):** React Router, cors, helmet, express-rate-limit, express-validator, cookie-parser, Vitest, Supertest, React Testing Library, Playwright, ESLint, Prettier.
-  - Being on this list is **not** approval.
-  - Each library is reviewed and justified in task 0.5 before installation.
+- **Confirmed core technologies:** React with Vite, Tailwind CSS, Node.js + Express, MongoDB with Mongoose, Konva / React-Konva, Cloudinary + Multer, OpenAI, JazzCash sandbox, jsPDF, Google Fonts, JWT + bcrypt.
+  - Tailwind CSS was already part of the architecture ("Tailwind CSS / CSS" in `docs/architecture.html`). It was added to this list in Task 005.
+- **Task 005 team decisions.** Khadija Gulzar, Nabila Azam and Shumail Mirzaa agreed to them (see "Task 005 confirmations").
+  - Nothing is installed in Task 005. Each library is installed only in its own task, under that task's approval.
+  - Compatibility was checked against the npm registry on 2026-10-27, and is checked again at install time.
+  - **Toonverse stays JavaScript.** No TypeScript and no `@types/*` packages.
+
+**Libraries approved for their designated tasks**
+
+| Library | Purpose | First task |
+|---|---|---|
+| React Router (`react-router`) | Page navigation; warning before leaving unsaved work (task 8.12) | 027 (1.16) |
+| cors | Lets the frontend call the API from a different address; allow only `CLIENT_URL`, with credentials | 028 (1.17) |
+| cookie-parser | Reads the login cookie (`tv_token`, D4) | 028 (1.17) |
+| ESLint, **version 9 line** | Finds code mistakes; enforces the `react/no-danger` security rule | 029 (1.18) |
+| Prettier | One automatic code format for the team | 029 (1.18) |
+| Vitest | Test runner for both server and client | 030 (1.19) |
+| Supertest | Sends test requests to the Express app | 030 (1.19) |
+| React Testing Library (`@testing-library/react`) | Tests screens the way a user sees them | 030 (1.19) |
+| express-validator | Server-side validation of request data | 054 (3.6) |
+
+**ESLint 9, not ESLint 10:** `eslint-plugin-react` 7.37.5, which provides the required `react/no-danger` rule, supports ESLint only up to 9.7+. ESLint 9 is still maintained (npm tag `maintenance`).
+
+**Required companion packages** (approved together with the library that needs them)
+
+| Package | Needed by | Why |
+|---|---|---|
+| `@testing-library/dom` | React Testing Library | A required peer dependency of `@testing-library/react` v16 |
+| `jsdom` | Vitest | A browser-like environment so screens can be tested; the plan's choice (task 1.19) |
+| `@eslint/js` (9 line) | ESLint | ESLint's standard recommended rules |
+| `globals` | ESLint | Stops ESLint from wrongly flagging browser and Node names (`window`, `process`) |
+| `eslint-plugin-react` | ESLint | Provides the `react/no-danger` rule required by tasks 1.18 and 13.7 |
+
+**Part of setting up approved tools** (no separate decision): `@vitejs/plugin-react` (Vite + React; its optional extras are not installed) and `@tailwindcss/vite` (Tailwind CSS v4 on Vite).
+
+**Optional ESLint packages: both included by team decision.** This is a team decision, not a personal choice by Shumail Mirzaa (owner of task 029).
+
+| Package | Purpose | Team decision |
+|---|---|---|
+| `eslint-plugin-react-hooks` | Catches incorrect use of React hooks | Include |
+| `eslint-config-prettier` | Stops ESLint and Prettier disagreeing about formatting | Include |
+
+Both support the ESLint 9 line and Prettier 3 (npm registry, 2026-10-27). The team decision was reported to Claude on 2026-10-27.
+
+**Deferred**: decided again before their task
+
+| Library | Revisit before |
+|---|---|
+| express-rate-limit | Task 193 (5.12) |
+| helmet | Task 238 (13.5) |
+| Playwright | Task 245 (14.1) |
+
+**Not used** (built-in features or approved libraries already cover these):
+- `dotenv` and `nodemon`: Node's `--env-file` and `--watch` replace them.
+- `axios`: the built-in `fetch` is used instead.
+- Jest: Vitest is used.
+- Joi: express-validator is used.
+- An in-memory test database: a separate test database is used.
+- `happy-dom`: jsdom is used.
+- Vite starter extras: `oxlint` (ESLint is used instead), and `@types/react` / `@types/react-dom` (TypeScript type packages; Toonverse is JavaScript).
+
+**Task 005 confirmations**
+
+| Member | Technical decisions (Part A) | Recorded |
+|---|---|---|
+| Khadija Gulzar | Agreed | Reported to Claude on 2026-10-27 |
+| Nabila Azam | Agreed | Reported to Claude on 2026-10-27 |
+| Shumail Mirzaa | Agreed | Reported to Claude on 2026-10-27 |
+
+The date each member agreed was not provided; the date shown is when their agreement was reported. Part B: both optional packages are included by team decision (reported to Claude on 2026-10-27).
 
 ## Team and repository workflow (confirmed 2026-10-12)
 - **Q1 – Branches:**
@@ -262,16 +328,17 @@ Each decision has five fields: Question, Decision, Date, Consequences, and Affec
 | D6 – new plan tasks for panel layouts/templates | Before Phase 7 (task 7.5) | Pending team approval |
 | D11 / I2 – exact `aiUsage` schema and the date/reset rule | Task 0.6, reviewed before 2.2 | Approach **approved**; details pending |
 | Plan follow-up – update tasks to D6's new numbers (10 layers, 15 AI) and D7's two plans | Before those tasks start | Pending approval of the plan edits |
-| Supporting libraries (list above) | Task 0.5, each reviewed and justified before installation | Not approved |
+| Deferred libraries: express-rate-limit, helmet, Playwright | Tasks 193, 238 and 245 | Deferred |
+| Node.js version: plan task 1.2 says 20.6+, but current packages need Node 22.22.2+ or 24.15+ (React Router, jsdom, Vitest) | Setup before Task 012 (with plan task 1.2) | Pending. Proposal: Node.js 24 LTS. Install needs separate approval |
 
-Resolved on 2026-10-26: D1 guest drawings (never saved or recovered) and D10 IndexedDB for recovery drafts.
+Resolved on 2026-10-26: D1 guest drawings (never saved or recovered) and D10 IndexedDB for recovery drafts. Resolved on 2026-10-27: Task 005 library decisions (agreed by all three members), including both optional ESLint packages.
 
 ## Review status
 
-| Member | Reviewed the current version? | Notes |
+| Member | Reviewed the Task 002 version? | Notes |
 |---|---|---|
 | Khadija Gulzar | **Yes**, approved | Feedback given 2026-10-26 and applied; confirmed the updated text matches it |
 | Nabila Azam | **Yes**, approved as is | No changes requested |
 | Shumail Mirzaa | **Yes**, approved as is | No changes requested |
 
-**Team review: complete.** All three members reviewed and approved this version. Items listed under "Pending decisions" remain pending; approving the log does not finalise them (for example, the D7 prices are still proposed).
+**Team review: complete for the Task 002 version.** All three members reviewed and approved the Task 002 version, merged on 2026-10-27. The Task 005 changes are documented separately under "Task 005 confirmations" and have not yet been reviewed as updated file text. Items listed under "Pending decisions" remain pending; approving the log does not finalise them (for example, the D7 prices are still proposed).
