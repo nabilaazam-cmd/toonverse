@@ -112,18 +112,19 @@ Each decision has five fields: Question, Decision, Date, Consequences, and Affec
 - **Question:** What does premium cost and how long does it last?
 - **Decision:** There are **only two plans, weekly and monthly. There is no yearly plan.**
 
-  | Plan | Proposed price | Duration |
+  | Plan | Price | Duration |
   |---|---:|---|
   | Weekly | PKR 250 | 7 days |
   | Monthly | PKR 900 | 30 days |
+  | Yearly | Not offered | — |
 
-  - **Both prices are proposed, pending final confirmation.** Nobody may treat them as final, or hard-code either amount into payment code.
+  - **Both prices are confirmed** by the team (Khadija, Nabila and Shumail; reported to Claude on 2026-10-29). They are still set through configuration and never hard-coded into payment code.
   - A successful, server-verified JazzCash sandbox payment grants premium for the duration of the chosen plan: 7 days for weekly, 30 days for monthly.
-- **Date:** 2026-10-12 (two plans and proposed prices added 2026-10-26; prices not final)
+- **Date:** 2026-10-12 (two plans and proposed prices added 2026-10-26; prices confirmed, reported 2026-10-29)
 - **Consequences:**
   - Prices come from configuration (environment values with no default). The server refuses to start payments while a price is missing.
   - **Plan follow-up (needs approval):** these plan tasks were written for a single 30-day plan and must support both plans:
-    - 2.8 Payment model: record which plan was bought. The exact field is confirmed in the data-model review.
+    - 2.8 Payment model: record which plan was bought, in the field `plan` (`docs/data-model.md`). Whether each payment also stores its duration in days is pending (Decision B there).
     - 11.1 premium config: two plans, two prices, two durations.
     - 11.2 `grantPremium`: grant the paid plan's days.
     - 11.3 plan endpoint: list both plans.
@@ -222,7 +223,7 @@ Each decision has five fields: Question, Decision, Date, Consequences, and Affec
 - **Date:** 2026-10-12
 - **Consequences:**
   - The JazzCash return handler verifies the hash, reference and amount, and is idempotent.
-  - With two plans (D7), the payment also records which plan was bought. The field is confirmed in the data-model review.
+  - With two plans (D7), the payment also records which plan was bought, in the field `plan` (`docs/data-model.md`). Whether it also stores the duration in days is pending (Decision B there).
 - **Affected tasks:** 2.8, 11.11–11.16
 
 ## D15 – Cloudinary cleanup
@@ -323,15 +324,15 @@ The date each member agreed was not provided; the date shown is when their agree
 
 | Item | Needed before | Status |
 |---|---|---|
-| D7 – weekly PKR 250 and monthly PKR 900 | Task 11.1 | **Proposed**, pending final confirmation |
+| D14 / D7 – payment plan history: store the plan name only (b1), or the plan name and its duration in days (b2). See Decision B in `docs/data-model.md` | Task 2.8 | Pending team decision |
 | D6 – number and selection of panel layouts/templates (free and premium) | Before the new layout tasks are added to the plan | Pending |
 | D6 – new plan tasks for panel layouts/templates | Before Phase 7 (task 7.5) | Pending team approval |
-| D11 / I2 – exact `aiUsage` schema and the date/reset rule | Task 0.6, reviewed before 2.2 | Approach **approved**; details pending |
+| D11 / I2 – exact `aiUsage` schema and the date/reset rule | Task 2.2 | Approach **approved**. Options documented in Task 0.6 (Decision A in `docs/data-model.md`: Pakistan time or UTC); team choice pending |
 | Plan follow-up – update tasks to D6's new numbers (10 layers, 15 AI) and D7's two plans | Before those tasks start | Pending approval of the plan edits |
 | Deferred libraries: express-rate-limit, helmet, Playwright | Tasks 193, 238 and 245 | Deferred |
 | Node.js version: plan task 1.2 says 20.6+, but current packages need Node 22.22.2+ or 24.15+ (React Router, jsdom, Vitest) | Setup before Task 012 (with plan task 1.2) | Pending. Proposal: Node.js 24 LTS. Install needs separate approval |
 
-Resolved on 2026-10-26: D1 guest drawings (never saved or recovered) and D10 IndexedDB for recovery drafts. Resolved on 2026-10-27: Task 005 library decisions (agreed by all three members), including both optional ESLint packages.
+Resolved on 2026-10-26: D1 guest drawings (never saved or recovered) and D10 IndexedDB for recovery drafts. Resolved on 2026-10-27: Task 005 library decisions (agreed by all three members), including both optional ESLint packages. Resolved (reported 2026-10-29): D7 prices, weekly PKR 250 and monthly PKR 900, agreed by all three members.
 
 ## Review status
 
