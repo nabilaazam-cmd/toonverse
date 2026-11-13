@@ -3,8 +3,8 @@
 One agreed description of the Toonverse REST API, so the frontend and the backend build against the same requests and responses.
 
 - **This file has three parts.** Part 1 (Task 007) covers authentication, users, series, episodes and episode notes. Part 2 (Task 008) adds panels, uploads, drawing save, preview, publishing, the reader and favorites. Part 3 (Task 009) adds AI, premium, payments and admin.
-- **Status:** Part 1 written for Task 007 (plan 0.7), 2026-11-10; review corrections 2026-11-11. Owner: Nabila Azam. Part 2 written for Task 008 (plan 0.8), 2026-11-13. Owner: Shumail Mirzaa.
-- **Sources:** the Execution Plan (Tasks 1.5, 1.6, 1.15, 1.17, 3.3–3.18, 4.1–4.8, 5.1–5.3, 13.3, 13.4), `docs/data-model.md` (field limits), `docs/decisions.md` (D1, D4, D5, D8, D13), and the decisions recorded on GitHub Issue #8. Part 2 adds the Execution Plan (Tasks 6.3, 7.1, 7.2, 7.7, 7.16, 7.18–7.21, 7.23, 8.1–8.4, 8.11, 9.1, 9.2, 10.1–10.8, 10.10–10.13, 10.15), `docs/data-model.md` (Panel, Favorite, Scene), `docs/decisions.md` (D1, D2, D3, D6, D8, D9, D10, D13, D15), and the decisions recorded on GitHub Issue #10.
+- **Status:** Part 1 written for Task 007 (plan 0.7), 2026-11-10; review corrections 2026-11-11. Owner: Nabila Azam. Part 2 written for Task 008 (plan 0.8), 2026-11-13. Owner: Shumail Mirzaa. Part 3 written for Task 009 (plan 0.9), 2026-11-13. Owner: Nabila Azam.
+- **Sources:** the Execution Plan (Tasks 1.5, 1.6, 1.15, 1.17, 3.3–3.18, 4.1–4.8, 5.1–5.3, 13.3, 13.4), `docs/data-model.md` (field limits), `docs/decisions.md` (D1, D4, D5, D8, D13), and the decisions recorded on GitHub Issue #8. Part 2 adds the Execution Plan (Tasks 6.3, 7.1, 7.2, 7.7, 7.16, 7.18–7.21, 7.23, 8.1–8.4, 8.11, 9.1, 9.2, 10.1–10.8, 10.10–10.13, 10.15), `docs/data-model.md` (Panel, Favorite, Scene), `docs/decisions.md` (D1, D2, D3, D6, D8, D9, D10, D13, D15), and the decisions recorded on GitHub Issue #10. Part 3 adds the Execution Plan (Tasks 3.13, 5.6–5.12, 11.1–11.4, 11.6, 11.7, 11.10–11.18, 11.20, 12.2–12.7, and plan issue I4), `docs/data-model.md` (User, Payment, Decisions A and B), `docs/decisions.md` (D5, D6, D7, D8, D11, D13, D14), and the decisions recorded on GitHub Issue #12.
 - **If this file and the decision log disagree,** the decision log wins. Tell the team, then fix this file.
 
 ## How to read this document
@@ -14,6 +14,7 @@ One agreed description of the Toonverse REST API, so the frontend and the backen
 | *(no label)* | From the Execution Plan or the decision log. |
 | **(I8)** | Decided by Nabila on GitHub Issue #8 (comments of 2026-11-06, 2026-11-10 and 2026-11-11). |
 | **(I10)** | Decided by Shumail and Nabila on GitHub Issue #10 (comments of 2026-11-12 and 2026-11-13). Used in Part 2; see [Part 2: overview](#part-2-overview-limits-and-error-codes). |
+| **(I12)** | Decided by Nabila on GitHub Issue #12, with Shumail's and Khadija's approval (comments of 2026-11-13). Used in Part 3; see [Part 3: overview](#part-3-overview-access-and-error-codes). |
 | **(R)** | Recommendation not yet confirmed. Listed again under [Open items](#open-items). |
 
 ## Contents
@@ -37,6 +38,14 @@ One agreed description of the Toonverse REST API, so the frontend and the backen
 18. [Public reading](#public-reading)
 19. [Favorites](#favorites)
 20. [Part 2 follow-ups](#part-2-follow-ups)
+21. [Part 3: overview, access and error codes](#part-3-overview-access-and-error-codes)
+22. [Shared objects in Part 3](#shared-objects-in-part-3)
+23. [AI assistant](#ai-assistant)
+24. [Premium](#premium)
+25. [Payments](#payments)
+26. [Admin](#admin)
+27. [Part 3 open items](#part-3-open-items)
+28. [Part 3 follow-ups](#part-3-follow-ups)
 
 ## Conventions
 
@@ -1156,3 +1165,532 @@ None of these block Part 2. Each needs its own approval.
 - Panel `order` starts at **1** (S4 (I10)). The data model still says "whole number from 0 (R)".
 
 **For the editor** (Task 7.23): before deleting a reference image, remove its image shapes from the drawing and save (S7 (iii) (I10)).
+
+---
+
+## Part 3: overview, access and error codes
+
+Part 3 (Task 009, plan 0.9) adds the AI assistant, premium plans, JazzCash sandbox payments and the admin routes. Owner: Nabila Azam.
+
+| Label | Meaning |
+|---|---|
+| **(I12)** | Decided on GitHub Issue #12 on 2026-11-13: Nabila's answers to Q1–Q10, approved by Shumail and by Khadija. Q1 and Q2 were team decisions; all three agreed. |
+| **(R)** | Recommendation not yet confirmed. Listed again under [Part 3 open items](#part-3-open-items). |
+
+**Everything in Parts 1 and 2 applies here too:** the [Conventions](#conventions), the two-step id check (I8), `404 NOT_FOUND` for someone else's content, and the [Error format](#error-format).
+
+**Limits used in Part 3** (D6, D11; Q3, Q5 (I12)):
+
+| | Free | Premium |
+|---|---|---|
+| Layers per panel | 10 | 20 |
+| AI requests per day | 15 | 50 |
+| Export pixel ratio | 1 | 2 |
+
+- The numbers come from the server's premium configuration (Task 11.1), never from the client.
+- The export pixel ratio is applied in the browser only. It is a known limitation, never server-enforced security (D6).
+
+**A day for the AI counter is a day in Pakistan time** (Q1 (a) (I12), Decision A in `docs/data-model.md`):
+- the counter resets at midnight in Pakistan (UTC+5, no daylight-saving time);
+- the server works out the Pakistan date itself, whatever time zone the host uses;
+- dates in answers are still sent in UTC, as in Part 1. Midnight in Pakistan is `19:00:00.000Z` the day before.
+
+### Who may call a route in Part 3
+
+| Access | Meaning |
+|---|---|
+| **Public** | No login needed. |
+| **Logged in** | Needs a valid `tv_token` cookie for an active account (Task 3.13). |
+| **Owner** | Logged in, and the episode or payment must belong to the user. Someone else's gives `404 NOT_FOUND`. |
+| **Admin** | Logged in, with `role: "admin"` (Task 12.2, D5). |
+| **JazzCash return** | No login. The browser posts it from JazzCash, so the cookie is not sent (I4). The request is trusted only through its verified hash (Task 11.14). |
+
+**Admin routes have their own rule (Q10 (I12)):**
+- Every `/api/admin` path checks the login first, then the role, for the whole router (Task 12.2).
+- Logged out gives `401 UNAUTHENTICATED`. A suspended account gives `403 ACCOUNT_SUSPENDED`, as everywhere.
+- A logged-in user who is not an admin gets **`403 FORBIDDEN`** on every `/api/admin` path (Q6 (ii) (I12)).
+- This is different from Part 1's rule that someone else's content looks missing (`404`). That rule hides whether a record exists. The admin routes themselves are not secret, so a refusal says so.
+- Inside the admin routes, the two-step id check still applies: a valid id that does not exist gives `404 NOT_FOUND`.
+
+### Error codes in Part 3
+
+New codes:
+
+| Status | Code | When |
+|---|---|---|
+| 403 | `FORBIDDEN` | A logged-in user who is not an admin calls any `/api/admin` path (Task 12.2; Q6 (ii) (I12)). |
+| 429 | `AI_QUOTA_EXCEEDED` | The user has used all of today's AI requests (Task 5.10, D11). The answer includes `resetAt`. |
+| 502 | `AI_ERROR` | OpenAI failed for any other reason (Task 5.8). |
+| 503 | `AI_BUSY` | OpenAI answered with its own "too many requests" (Task 5.8). |
+| 504 | `AI_TIMEOUT` | OpenAI did not answer within 30 seconds (Tasks 5.6, 5.8). |
+
+Part 1 codes with extra cases in Part 3:
+- **`400 VALIDATION_ERROR`:**
+  - an AI request with a missing or empty text, or an `episodeId` that is not valid;
+  - a payment `plan` that is not `weekly` or `monthly` (including `yearly`) (D7);
+  - a JazzCash return whose hash does not match (Q7 (a) (I12));
+  - a JazzCash return whose `pp_TxnRefNo` matches no payment (I12);
+  - an admin trying to suspend their own account (Task 12.3; Q6 (iii) (I12));
+  - a `page` or `status` query value on an admin list that is not valid.
+- **`429 RATE_LIMITED`:** also more than **5 AI requests in one minute** by the same user (Task 5.12; Q6 (i) (I12)). This limit is per user, not per IP address.
+- **`404 NOT_FOUND`:** also a payment reference that does not exist or belongs to someone else (Task 11.16), and a user that does not exist on an admin route.
+
+**The `AI_QUOTA_EXCEEDED` error has one extra field:**
+
+```json
+{
+  "error": {
+    "code": "AI_QUOTA_EXCEEDED",
+    "message": "You have used today's AI requests. They reset at midnight, Pakistan time.",
+    "details": null,
+    "resetAt": "2026-11-13T19:00:00.000Z"
+  }
+}
+```
+
+- `resetAt` is the next midnight in Pakistan, sent in UTC (Task 5.10; Q1 (a) (I12)). The field name is **(R)**.
+- `resetAt` appears **only** on `AI_QUOTA_EXCEEDED`. `details` stays `null`, as Part 1 requires.
+
+## Shared objects in Part 3
+
+### Limits
+
+The limits of one plan level (Task 11.1). Used by [GET /api/premium/plan](#get-apipremiumplan) and [GET /api/premium/status](#get-apipremiumstatus).
+
+```json
+{ "maxLayers": 10, "aiPerDay": 15, "exportPixelRatio": 1 }
+```
+
+| Field | Type | Notes |
+|---|---|---|
+| `maxLayers` | number | Layers allowed in one panel (D6). The scene save in Part 2 enforces it (Task 11.4). |
+| `aiPerDay` | number | AI requests allowed per Pakistan day (D11). |
+| `exportPixelRatio` | number | Export resolution, applied in the browser only (D6). |
+
+### Payment
+
+One payment attempt, as the user sees it. The field list is **(R)**.
+
+```json
+{
+  "txnRefNo": "TV20261113170512A1B2",
+  "plan": "weekly",
+  "days": 7,
+  "amount": 250,
+  "currency": "PKR",
+  "status": "paid",
+  "paidAt": "2026-11-13T17:06:40.000Z",
+  "createdAt": "2026-11-13T17:05:12.000Z"
+}
+```
+
+| Field | Type | Notes |
+|---|---|---|
+| `txnRefNo` | string | The unique reference sent to JazzCash (D14). The server makes it (Task 11.13). The example only shows a possible format. |
+| `plan` | string | `weekly` or `monthly` (D7) |
+| `days` | number | 7 or 30, copied from the plan when the payment starts (Q2 (b2) (I12)) |
+| `amount` | number | The price charged, copied from the premium configuration (D7), in **whole Pakistani rupees**: `250` means PKR 250 (I12). Only the JazzCash fields use paisa, where JazzCash requires it (Task 11.12). The data model records this in Task 2.8 (Khadija). |
+| `currency` | string | Always `PKR` |
+| `status` | string | `pending`, `paid` or `failed` (data model) |
+| `paidAt` | date or `null` | Set when a verified payment is marked paid |
+| `createdAt` | date | When the payment was started |
+
+- **Never sent:** the raw JazzCash response (`raw`), `responseCode` and `responseMessage` (D14; `raw` is private in the data model). They stay on the server for checking.
+- `txnRefNo` is not a MongoDB id, so the two-step id check does not apply to it. An unknown reference gives `404 NOT_FOUND`.
+
+## AI assistant
+
+The four AI routes help a creator with their own episode (D11, Task 5.11). They suggest and organise; they never write a complete story or episode, and never generate artwork (D11, Task 5.7).
+
+| Route | What it helps with | Prompt (Task 5.7) |
+|---|---|---|
+| `POST /api/ai/notes` | Improve the episode notes | `notes` |
+| `POST /api/ai/organize` | Organise ideas | `organize` |
+| `POST /api/ai/panel-plan` | Plan the panels | `panelPlan` |
+| `POST /api/ai/dialogue` | Develop dialogue | `dialogue` |
+
+### Rules for all four AI routes
+
+- **Access:** Owner of the episode named in the body (Task 5.11)
+- **Request body** (every route):
+
+  | Field | Type | Required | Rules |
+  |---|---|---|---|
+  | `episodeId` | string | Yes | One of the user's episodes (Task 5.11). Checked in two steps (I8). |
+  | `text` | string | Yes | The creator's text. Not empty after trimming. Only the first **6,000 characters** are sent to OpenAI (Task 5.7). The field name is **(R)**. |
+
+  ```json
+  { "episodeId": "6730f3e6f7a8b9c0d1e2f3a4", "text": "Mina finds a letter under the bakery door at midnight." }
+  ```
+
+- **Order of checks** (Task 5.11): login, the episode, the body rules, then the daily quota. A request that fails an earlier check is not counted.
+- **Limits:**
+  - at most **5 requests a minute** per user, or `429 RATE_LIMITED` (Task 5.12; Q6 (i) (I12));
+  - at most **15 a day** on a free account and **50** on premium, or `429 AI_QUOTA_EXCEEDED` with `resetAt` (D11; Q3 (I12)). The day is a Pakistan day (Q1 (a) (I12)).
+- **The OpenAI key stays on the server** and never appears in an answer (D11).
+- **Output:** at most 600 tokens (Task 5.8).
+- **A request the policy does not allow,** such as "write the whole episode for me", still gets `200 OK`, with guidance in `suggestion` instead of a story (Task 5.9).
+- **Success:** `200 OK` with the suggestion and the requests left today (Task 5.11):
+
+  ```json
+  { "suggestion": "Try opening on the letter in close-up, then cut to Mina's face before she reads it.", "remaining": 12 }
+  ```
+
+  | Field | Type | Notes |
+  |---|---|---|
+  | `suggestion` | string | The assistant's text |
+  | `remaining` | number | AI requests left today, after this one |
+
+- **Errors:** `400 VALIDATION_ERROR`, `400 INVALID_INPUT`, `401 UNAUTHENTICATED`, `403 ACCOUNT_SUSPENDED`, `404 NOT_FOUND` (episode), `413 PAYLOAD_TOO_LARGE`, `429 RATE_LIMITED`, `429 AI_QUOTA_EXCEEDED`, `502 AI_ERROR`, `503 AI_BUSY`, `504 AI_TIMEOUT`, `500 INTERNAL_ERROR`
+
+### POST /api/ai/notes
+
+Suggestions to improve the episode notes (Task 5.11). Follows the [rules for all four AI routes](#rules-for-all-four-ai-routes).
+
+### POST /api/ai/organize
+
+Suggestions to organise the creator's ideas (Task 5.11). Follows the [rules for all four AI routes](#rules-for-all-four-ai-routes).
+
+### POST /api/ai/panel-plan
+
+A suggested panel plan for the episode (Task 5.11). Follows the [rules for all four AI routes](#rules-for-all-four-ai-routes).
+
+### POST /api/ai/dialogue
+
+Dialogue suggestions (Task 5.11). Follows the [rules for all four AI routes](#rules-for-all-four-ai-routes).
+
+## Premium
+
+Premium is a status, not a role (D5). It is active only while `premiumUntil` is in the future; when it ends, the user counts as free again with no scheduled job (Task 11.2).
+
+### GET /api/premium/plan
+
+The two plans and the limits of free and premium, for the Premium page (Tasks 11.3, 11.7).
+
+- **Access:** Public
+- **Success:** `200 OK` (Q4, Q5 (I12)):
+
+  ```json
+  {
+    "plans": [
+      { "plan": "weekly", "price": 250, "currency": "PKR", "days": 7 },
+      { "plan": "monthly", "price": 900, "currency": "PKR", "days": 30 }
+    ],
+    "limits": {
+      "free": { "maxLayers": 10, "aiPerDay": 15, "exportPixelRatio": 1 },
+      "premium": { "maxLayers": 20, "aiPerDay": 50, "exportPixelRatio": 2 }
+    }
+  }
+  ```
+
+  | Field | Type | Notes |
+  |---|---|---|
+  | `plans` | array of `{ plan, price, currency, days }` | Exactly two plans, weekly and monthly. There is no yearly plan (D7). `price` is in whole rupees. |
+  | `limits.free`, `limits.premium` | [Limits](#limits) | |
+
+- **Prices come from the server's configuration** (D7). The client never stores its own prices.
+- **Errors:** `500 INTERNAL_ERROR`
+
+### GET /api/premium/status
+
+The user's own premium state and limits, for the editor and the Premium page (Tasks 11.3, 11.6).
+
+- **Access:** Logged in
+- **Success:** `200 OK` (Task 11.3):
+
+  ```json
+  {
+    "isPremium": false,
+    "premiumUntil": null,
+    "limits": { "maxLayers": 10, "aiPerDay": 15, "exportPixelRatio": 1 },
+    "aiRemaining": 15
+  }
+  ```
+
+  | Field | Type | Notes |
+  |---|---|---|
+  | `isPremium` | boolean | `true` only while `premiumUntil` is in the future (Task 11.2) |
+  | `premiumUntil` | date or `null` | The end of the paid period. It stays set after it ends. |
+  | `limits` | [Limits](#limits) | The user's current limits: free or premium |
+  | `aiRemaining` | number | AI requests left today, counted by Pakistan date (Q1 (a) (I12)). The full daily limit when the user has not used AI today. |
+
+- **Errors:** `401 UNAUTHENTICATED`, `403 ACCOUNT_SUSPENDED`, `500 INTERNAL_ERROR`
+
+## Payments
+
+JazzCash **sandbox** payments buy premium (D7, D14). Payment takes four steps (Tasks 11.13–11.18):
+1. The client starts a payment with [POST /api/payments/jazzcash/initiate](#post-apipaymentsjazzcashinitiate).
+2. The client posts the returned fields to JazzCash as a hidden form, a full page change (Task 11.17).
+3. JazzCash sends the browser back to [POST /api/payments/jazzcash/return](#post-apipaymentsjazzcashreturn). The server checks the result and redirects to the result page.
+4. The result page reads the outcome with [GET /api/payments/:txnRefNo](#get-apipaymentstxnrefno) (Task 11.18).
+
+**Only a server-verified payment grants premium** (D14). A success message in the browser never does.
+
+### POST /api/payments/jazzcash/initiate
+
+Starts a payment for one plan (Task 11.13).
+
+- **Access:** Logged in
+- **Request body** (Q4 (I12)):
+
+  | Field | Type | Required | Rules |
+  |---|---|---|---|
+  | `plan` | string | Yes | `weekly` or `monthly`. Anything else, including `yearly`, gives `400 VALIDATION_ERROR` (D7). |
+
+  ```json
+  { "plan": "weekly" }
+  ```
+
+- **What the server does** (Task 11.13):
+  1. It creates a `pending` Payment with a new unique `txnRefNo`.
+  2. It copies the plan's `amount` from the premium configuration (D7) and the plan's `days` (Q2 (b2) (I12)).
+  3. It builds the JazzCash fields, signed with `pp_SecureHash` (Tasks 11.11, 11.12).
+- **Success:** `201 Created` with `{ postUrl, fields }`, like every route that creates a record:
+
+  ```json
+  {
+    "postUrl": "https://sandbox.jazzcash.example/checkout",
+    "fields": {
+      "pp_TxnRefNo": "TV20261113170512A1B2",
+      "pp_Amount": "25000",
+      "pp_TxnCurrency": "PKR",
+      "pp_ReturnURL": "http://localhost:5000/api/payments/jazzcash/return",
+      "pp_SecureHash": "EXAMPLEHASH0123456789ABCDEF"
+    }
+  }
+  ```
+
+  | Field | Type | Notes |
+  |---|---|---|
+  | `postUrl` | string | The JazzCash sandbox checkout address, from the server's configuration (Task 11.10) |
+  | `fields` | object of strings | Every field JazzCash expects, ready to post unchanged. The example shows only a few. The full list and exact names follow the JazzCash integration guide (Task 11.12). The amount is in paisa there, so PKR 250 is `"25000"` (Task 11.12). |
+
+- **The integrity salt is never sent** (Task 11.10). It is used only to make `pp_SecureHash`.
+- **Errors:** `400 VALIDATION_ERROR`, `400 INVALID_INPUT`, `401 UNAUTHENTICATED`, `403 ACCOUNT_SUSPENDED`, `413 PAYLOAD_TOO_LARGE`, `500 INTERNAL_ERROR`
+
+### POST /api/payments/jazzcash/return
+
+JazzCash sends the browser back here with the payment result (Task 11.14).
+
+- **Access:** JazzCash return: no login (I4)
+- **Request:** `application/x-www-form-urlencoded`, not JSON. The fields are the ones JazzCash sends, including `pp_TxnRefNo`, the result code and `pp_SecureHash` (Task 11.14).
+- **What the server does** (Task 11.14, D14):
+  1. It recomputes the hash and compares it with `pp_SecureHash`. A wrong hash stops here (see below).
+  2. It finds the Payment by `pp_TxnRefNo`. An unknown reference stops here (see below).
+  3. If the Payment is already `paid` or `failed`, it changes nothing and redirects. A repeated return never grants premium twice.
+  4. If the amount does not match the Payment, it marks the Payment `failed`, saves the JazzCash response, and redirects. Premium is not granted (I12).
+  5. On the success code, it marks the Payment `paid`, sets `paidAt`, and grants the Payment's `days` with `grantPremium` (Q2 (b2) (I12)). Premium extends from the later of now and the current `premiumUntil` (Task 11.2).
+  6. On any other code, it marks the Payment `failed`.
+  7. In steps 4–6, it saves the JazzCash response on the Payment.
+- **Success:** `303 See Other`, redirecting to the result page `CLIENT_URL/premium/result?ref=<txnRefNo>` (Task 11.14). Steps 3–6 all end with this redirect.
+- **A wrong hash** gives `400 VALIDATION_ERROR` in the usual JSON error format, with no redirect, and nothing changes (Task 11.15; Q7 (a) (I12)).
+- **A wrong amount on a known payment** is not an error answer: the payment becomes `failed`, the response is saved, and the user is redirected to the result page, which shows the failure (I12). Task 11.15's "amount mismatch rejected" means that premium is never granted.
+- **An unknown `pp_TxnRefNo`** (the hash is valid, but no Payment has this reference) gives `400 VALIDATION_ERROR` in the usual JSON error format, with no redirect. No Payment is created or changed, and premium is not granted (I12).
+- **Errors:** `400 VALIDATION_ERROR`, `500 INTERNAL_ERROR`
+
+### GET /api/payments/:txnRefNo
+
+One of the user's payments, for the result page (Tasks 11.16, 11.18).
+
+- **Access:** Owner of the payment. Another user's reference gives `404 NOT_FOUND` (Task 11.16).
+- **Success:** `200 OK` with `{ "payment": Payment }` ([Payment](#payment)). The result page uses `status`, and [GET /api/premium/status](#get-apipremiumstatus) for the new expiry (Task 11.18).
+- **Errors:** `400 INVALID_INPUT`, `401 UNAUTHENTICATED`, `403 ACCOUNT_SUSPENDED`, `404 NOT_FOUND`, `500 INTERNAL_ERROR`
+
+### GET /api/payments/mine
+
+**P2.** The user's own payments, for the Profile page (Task 11.20; Q9 (a) (I12)).
+
+- **Access:** Logged in
+- **What is listed:** only the user's own payments (Task 11.20), newest first **(R)**.
+- **Success:** `200 OK` with `{ "payments": [Payment, ...] }`. The list is empty (`[]`) when there are none.
+- **Errors:** `400 INVALID_INPUT`, `401 UNAUTHENTICATED`, `403 ACCOUNT_SUSPENDED`, `500 INTERNAL_ERROR`
+
+## Admin
+
+Admins manage users and moderate published episodes (D13). Payment lists and statistics are lower priority (P2, D13). Every route here needs the **Admin** access level; see [Who may call a route in Part 3](#who-may-call-a-route-in-part-3).
+
+**Admin lists** use the same paged shape as Discover (Q8 (a) (I12); G4 (I10)):
+
+| Query | Type | Default | Rules |
+|---|---|---|---|
+| `page` | number | 1 | A whole number from 1 |
+
+- Each page has **20** items (Task 12.3). The answer is `{ items, page, limit, hasMore }`, with `limit` always 20.
+- `hasMore` is `true` when another page exists. `items` is `[]` when nothing matches.
+
+### GET /api/admin/users
+
+Finds users by name or email (Task 12.3, D13).
+
+- **Access:** Admin
+- **Query values:** `page`, and:
+
+  | Name | Type | Required | Rules |
+  |---|---|---|---|
+  | `search` | string | No | Matches part of the name or email, ignoring case **(R)**. Empty or missing lists every user. |
+
+- **Order:** newest account first **(R)**.
+- **Success:** `200 OK` with `{ items, page, limit, hasMore }`. Each item is a [User](#user), the same object as in Part 1:
+
+  ```json
+  {
+    "items": [
+      {
+        "id": "6730f1a2b3c4d5e6f7a8b9c0",
+        "name": "Ayesha Khan",
+        "email": "ayesha@example.com",
+        "role": "user",
+        "isPremium": false,
+        "premiumUntil": null,
+        "bio": "",
+        "status": "active",
+        "createdAt": "2026-11-10T09:00:00.000Z"
+      }
+    ],
+    "page": 1,
+    "limit": 20,
+    "hasMore": false
+  }
+  ```
+
+- **Errors:** `400 VALIDATION_ERROR`, `400 INVALID_INPUT`, `401 UNAUTHENTICATED`, `403 ACCOUNT_SUSPENDED`, `403 FORBIDDEN`, `500 INTERNAL_ERROR`
+
+### PATCH /api/admin/users/:userId/status
+
+Suspends or reactivates a user (Task 12.3, D13).
+
+- **Access:** Admin
+- **Request body:**
+
+  | Field | Type | Required | Rules |
+  |---|---|---|---|
+  | `status` | string | Yes | `active` or `suspended` |
+
+  ```json
+  { "status": "suspended" }
+  ```
+
+- **An admin cannot suspend their own account:** `400 VALIDATION_ERROR`, with `status` in `details` (Task 12.3; Q6 (iii) (I12)).
+- **A suspended user loses access on their next request:** it answers `403 ACCOUNT_SUSPENDED` (Tasks 12.4, 3.13; Part 1).
+- **Success:** `200 OK` with `{ "user": User }`, showing the updated user.
+- **Errors:** `400 VALIDATION_ERROR`, `400 INVALID_INPUT`, `401 UNAUTHENTICATED`, `403 ACCOUNT_SUSPENDED`, `403 FORBIDDEN`, `404 NOT_FOUND`, `413 PAYLOAD_TOO_LARGE`, `500 INTERNAL_ERROR`
+
+### GET /api/admin/episodes
+
+Lists episodes for moderation (Task 12.5, D13).
+
+- **Access:** Admin
+- **Query values:** `page`, and:
+
+  | Name | Type | Required | Rules |
+  |---|---|---|---|
+  | `status` | string | No | `published`, the only value in the plan (Task 12.5). Missing means `published`; any other value gives `400 VALIDATION_ERROR` **(R)**. |
+
+- **Order:** newest `publishedAt` first (data model, Episode index).
+- **Success:** `200 OK` with `{ items, page, limit, hasMore }`. Each item is an [Episode](#episode), the same object as in Part 1 **(R)**.
+- **Errors:** `400 VALIDATION_ERROR`, `400 INVALID_INPUT`, `401 UNAUTHENTICATED`, `403 ACCOUNT_SUSPENDED`, `403 FORBIDDEN`, `500 INTERNAL_ERROR`
+
+### POST /api/admin/episodes/:episodeId/unpublish
+
+Takes any creator's published episode down (Task 12.5; D8, D13).
+
+- **Access:** Admin
+- **Request body:** none
+- **It uses the same unpublish service as the owner's route** (Task 12.5), with the same rules as [POST /api/episodes/:episodeId/unpublish](#post-apiepisodesepisodeidunpublish) (G3 (I10)):
+  - the status becomes `unpublished`, and the episode disappears from Discover and every public route;
+  - its panels, pictures and `publishedAt` are kept;
+  - a draft gives `400 VALIDATION_ERROR`, with `status` in `details`;
+  - an episode that is already unpublished gives `200 OK`, unchanged.
+- **Success:** `200 OK` with `{ "episode": Episode }`
+- **Errors:** `400 VALIDATION_ERROR`, `400 INVALID_INPUT`, `401 UNAUTHENTICATED`, `403 ACCOUNT_SUSPENDED`, `403 FORBIDDEN`, `404 NOT_FOUND`, `500 INTERNAL_ERROR`
+
+### GET /api/admin/payments
+
+**P2.** Lists sandbox payments (Task 12.6, D13; Q9 (a) (I12)).
+
+- **Access:** Admin
+- **Query values:** `page`, and:
+
+  | Name | Type | Required | Rules |
+  |---|---|---|---|
+  | `status` | string | No | `pending`, `paid` or `failed`. Missing lists every payment (Task 12.6). |
+
+- **Order:** newest first **(R)**.
+- **Success:** `200 OK` with `{ items, page, limit, hasMore }`. Each item is a [Payment](#payment) with one extra field, `user: { id, email }` **(R)**. The plan asks for the user's email, the amount, the status and the date (Task 12.6).
+
+  ```json
+  {
+    "items": [
+      {
+        "txnRefNo": "TV20261113170512A1B2",
+        "plan": "weekly",
+        "days": 7,
+        "amount": 250,
+        "currency": "PKR",
+        "status": "paid",
+        "paidAt": "2026-11-13T17:06:40.000Z",
+        "createdAt": "2026-11-13T17:05:12.000Z",
+        "user": { "id": "6730f1a2b3c4d5e6f7a8b9c0", "email": "ayesha@example.com" }
+      }
+    ],
+    "page": 1,
+    "limit": 20,
+    "hasMore": false
+  }
+  ```
+
+- **Errors:** `400 VALIDATION_ERROR`, `400 INVALID_INPUT`, `401 UNAUTHENTICATED`, `403 ACCOUNT_SUSPENDED`, `403 FORBIDDEN`, `500 INTERNAL_ERROR`
+
+### GET /api/admin/stats
+
+**P2.** Basic counts for the admin overview (Task 12.7, D13; Q9 (a) (I12)).
+
+- **Access:** Admin
+- **Success:** `200 OK`. The field names are **(R)**:
+
+  ```json
+  { "users": 42, "series": 18, "publishedEpisodes": 37, "activePremiumUsers": 5 }
+  ```
+
+  | Field | Type | Notes |
+  |---|---|---|
+  | `users` | number | All accounts |
+  | `series` | number | All series |
+  | `publishedEpisodes` | number | Episodes with status `published` |
+  | `activePremiumUsers` | number | Users whose `premiumUntil` is in the future (Task 11.2) |
+
+- **Errors:** `401 UNAUTHENTICATED`, `403 ACCOUNT_SUSPENDED`, `403 FORBIDDEN`, `500 INTERNAL_ERROR`
+
+## Part 3 open items
+
+**None of these is confirmed.** They are details the plan and Issue #12 do not settle. Each needs Nabila's answer, recorded on Issue #12 or in the pull request.
+
+| # | Item | Proposal |
+|---|---|---|
+| 1 | AI request text field | Named `text`; not empty after trimming; only the first 6,000 characters are used **(R)** |
+| 2 | Reset time field on `AI_QUOTA_EXCEEDED` | Named `resetAt` **(R)** |
+| 3 | Payment fields shown to users | `txnRefNo`, `plan`, `days`, `amount`, `currency`, `status`, `paidAt`, `createdAt` **(R)** |
+| 6 | Order of `GET /api/payments/mine` and `GET /api/admin/payments` | Newest first **(R)** |
+| 7 | `search` on `GET /api/admin/users` | Part of the name or email, ignoring case; newest account first **(R)** |
+| 8 | `status` and items on `GET /api/admin/episodes` | Only `published` (the default); items are Part 1 Episode objects **(R)** |
+| 9 | Admin payment item | A Payment plus `user: { id, email }` **(R)** |
+| 10 | Field names on `GET /api/admin/stats` | `users`, `series`, `publishedEpisodes`, `activePremiumUsers` **(R)** |
+
+Items 4 and 5 were decided on 2026-11-13 (I12): `amount` is in whole rupees (see [Payment](#payment)), and the return handling is in [POST /api/payments/jazzcash/return](#post-apipaymentsjazzcashreturn). The other numbers are kept so they match the review discussion.
+
+## Part 3 follow-ups
+
+None of these block Part 3. Each needs its own approval.
+
+**Plan wording that differs from the decisions** (`docs/plan` changes only with the user's approval):
+- **Tasks 5.6, 5.10 and 11.5** say 10 free AI requests a day. D6, D11 and Q3 (I12) say 15.
+- **Tasks 11.1 and 11.3** describe one 30-day price and 5 free layers. D7 and Q4, Q5 (I12) give two plans and 10 / 20 layers.
+- **Task 11.13** has no `plan` in the initiate request. Q4 (I12) adds it.
+
+**Follow-ups in `docs/data-model.md` and `docs/decisions.md`** (Khadija's separate fix):
+- Decision A is settled: Pakistan time (Q1 (a) (I12)). The data model calls this option a1.
+- Decision B is settled: plan and days (Q2 (b2) (I12)). The Payment `days` field becomes required.
+- Both rows can leave the pending list in `docs/decisions.md`.
+- The amount unit is settled: whole rupees in `amount`, paisa only in the JazzCash fields (I12). Task 2.8 (Khadija) records it in the Payment notes and removes the "Amount unit (R)" note.
+
+**Part 1 needs no change:** the User object still leaves out `aiUsage`. Part 3 shows the remaining requests through `remaining` and `aiRemaining` instead.
