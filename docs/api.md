@@ -14,7 +14,7 @@ One agreed description of the Toonverse REST API, so the frontend and the backen
 | *(no label)* | From the Execution Plan or the decision log. |
 | **(I8)** | Decided by Nabila on GitHub Issue #8 (comments of 2026-11-06, 2026-11-10 and 2026-11-11). |
 | **(I10)** | Decided by Shumail and Nabila on GitHub Issue #10 (comments of 2026-11-12 and 2026-11-13). Used in Part 2; see [Part 2: overview](#part-2-overview-limits-and-error-codes). |
-| **(I12)** | Decided by Nabila on GitHub Issue #12, with Shumail's and Khadija's approval (comments of 2026-11-13). Used in Part 3; see [Part 3: overview](#part-3-overview-access-and-error-codes). |
+| **(I12)** | Decided by Nabila on GitHub Issue #12, with Shumail's and Khadija's approval (comments of 2026-11-13 and 2026-11-14). Used in Part 3; see [Part 3: overview](#part-3-overview-access-and-error-codes). |
 | **(R)** | Recommendation not yet confirmed. Listed again under [Open items](#open-items). |
 
 ## Contents
@@ -1174,8 +1174,7 @@ Part 3 (Task 009, plan 0.9) adds the AI assistant, premium plans, JazzCash sandb
 
 | Label | Meaning |
 |---|---|
-| **(I12)** | Decided on GitHub Issue #12 on 2026-11-13: Nabila's answers to Q1–Q10, approved by Shumail and by Khadija. Q1 and Q2 were team decisions; all three agreed. |
-| **(R)** | Recommendation not yet confirmed. Listed again under [Part 3 open items](#part-3-open-items). |
+| **(I12)** | Decided on GitHub Issue #12. On 2026-11-13: Nabila's answers to Q1–Q10, approved by Shumail and by Khadija (Q1 and Q2 were team decisions; all three agreed), and her decisions on open items 4 and 5. On 2026-11-14: her decisions on open items 1–3 and 6–10 (item 8 as Option C), approved by Khadija and Shumail. See [Part 3 open items](#part-3-open-items). |
 
 **Everything in Parts 1 and 2 applies here too:** the [Conventions](#conventions), the two-step id check (I8), `404 NOT_FOUND` for someone else's content, and the [Error format](#error-format).
 
@@ -1248,7 +1247,7 @@ Part 1 codes with extra cases in Part 3:
 }
 ```
 
-- `resetAt` is the next midnight in Pakistan, sent in UTC (Task 5.10; Q1 (a) (I12)). The field name is **(R)**.
+- `resetAt` is the next midnight in Pakistan, sent as an ISO 8601 date in UTC (Task 5.10; Q1 (a), item 2 (I12)).
 - `resetAt` appears **only** on `AI_QUOTA_EXCEEDED`. `details` stays `null`, as Part 1 requires.
 
 ## Shared objects in Part 3
@@ -1269,7 +1268,7 @@ The limits of one plan level (Task 11.1). Used by [GET /api/premium/plan](#get-a
 
 ### Payment
 
-One payment attempt, as the user sees it. The field list is **(R)**.
+One payment attempt, as the user sees it (item 3 (I12)).
 
 ```json
 {
@@ -1317,7 +1316,7 @@ The four AI routes help a creator with their own episode (D11, Task 5.11). They 
   | Field | Type | Required | Rules |
   |---|---|---|---|
   | `episodeId` | string | Yes | One of the user's episodes (Task 5.11). Checked in two steps (I8). |
-  | `text` | string | Yes | The creator's text. Not empty after trimming. Only the first **6,000 characters** are sent to OpenAI (Task 5.7). The field name is **(R)**. |
+  | `text` | string | Yes | The creator's text. Not empty after trimming. Longer text is accepted, and only the first **6,000 characters** are used (Task 5.7; item 1 (I12)). |
 
   ```json
   { "episodeId": "6730f3e6f7a8b9c0d1e2f3a4", "text": "Mina finds a letter under the bakery door at midnight." }
@@ -1501,7 +1500,7 @@ One of the user's payments, for the result page (Tasks 11.16, 11.18).
 **P2.** The user's own payments, for the Profile page (Task 11.20; Q9 (a) (I12)).
 
 - **Access:** Logged in
-- **What is listed:** only the user's own payments (Task 11.20), newest first **(R)**.
+- **What is listed:** only the user's own payments (Task 11.20), newest first, by `createdAt` descending (item 6 (I12)).
 - **Success:** `200 OK` with `{ "payments": [Payment, ...] }`. The list is empty (`[]`) when there are none.
 - **Errors:** `400 INVALID_INPUT`, `401 UNAUTHENTICATED`, `403 ACCOUNT_SUSPENDED`, `500 INTERNAL_ERROR`
 
@@ -1527,9 +1526,9 @@ Finds users by name or email (Task 12.3, D13).
 
   | Name | Type | Required | Rules |
   |---|---|---|---|
-  | `search` | string | No | Matches part of the name or email, ignoring case **(R)**. Empty or missing lists every user. |
+  | `search` | string | No | Matches part of the name or email, ignoring case. The input is treated as plain text: characters with a special meaning in a search pattern are escaped (item 7 (I12)). Empty or missing lists every user. |
 
-- **Order:** newest account first **(R)**.
+- **Order:** newest account first (item 7 (I12)).
 - **Success:** `200 OK` with `{ items, page, limit, hasMore }`. Each item is a [User](#user), the same object as in Part 1:
 
   ```json
@@ -1584,10 +1583,43 @@ Lists episodes for moderation (Task 12.5, D13).
 
   | Name | Type | Required | Rules |
   |---|---|---|---|
-  | `status` | string | No | `published`, the only value in the plan (Task 12.5). Missing means `published`; any other value gives `400 VALIDATION_ERROR` **(R)**. |
+  | `status` | string | No | `published`, the only value (Task 12.5; item 8 (I12)). Missing means `published`; any other value gives `400 VALIDATION_ERROR`, like every query value that is not valid. |
 
+- **Only published episodes are listed** (item 8 (I12)). Drafts are never shown.
 - **Order:** newest `publishedAt` first (data model, Episode index).
-- **Success:** `200 OK` with `{ items, page, limit, hasMore }`. Each item is an [Episode](#episode), the same object as in Part 1 **(R)**.
+- **Success:** `200 OK` with `{ items, page, limit, hasMore }` (item 8, Option C (I12)):
+
+  ```json
+  {
+    "items": [
+      {
+        "episode": {
+          "id": "6730f3e6f7a8b9c0d1e2f3a4",
+          "series": "6730f2c4d5e6f7a8b9c0d1e2",
+          "creator": "6730f1a2b3c4d5e6f7a8b9c0",
+          "number": 1,
+          "title": "The First Night",
+          "status": "published",
+          "publishedAt": "2026-11-13T10:00:00.000Z",
+          "lastSavedAt": "2026-11-13T09:55:00.000Z",
+          "createdAt": "2026-11-10T09:10:00.000Z",
+          "updatedAt": "2026-11-13T10:00:00.000Z"
+        },
+        "series": { "id": "6730f2c4d5e6f7a8b9c0d1e2", "title": "Moonlit Bakery" },
+        "creator": { "id": "6730f1a2b3c4d5e6f7a8b9c0", "name": "Ayesha Khan" }
+      }
+    ],
+    "page": 1,
+    "limit": 20,
+    "hasMore": false
+  }
+  ```
+
+  | Field | Type | Notes |
+  |---|---|---|
+  | `episode` | [Episode](#episode) | The unchanged Part 1 Episode object |
+  | `series` | `{ id, title }` | The episode's series |
+  | `creator` | `{ id, name }` | The episode's creator |
 - **Errors:** `400 VALIDATION_ERROR`, `400 INVALID_INPUT`, `401 UNAUTHENTICATED`, `403 ACCOUNT_SUSPENDED`, `403 FORBIDDEN`, `500 INTERNAL_ERROR`
 
 ### POST /api/admin/episodes/:episodeId/unpublish
@@ -1615,8 +1647,8 @@ Takes any creator's published episode down (Task 12.5; D8, D13).
   |---|---|---|---|
   | `status` | string | No | `pending`, `paid` or `failed`. Missing lists every payment (Task 12.6). |
 
-- **Order:** newest first **(R)**.
-- **Success:** `200 OK` with `{ items, page, limit, hasMore }`. Each item is a [Payment](#payment) with one extra field, `user: { id, email }` **(R)**. The plan asks for the user's email, the amount, the status and the date (Task 12.6).
+- **Order:** newest first, by `createdAt` descending (item 6 (I12)).
+- **Success:** `200 OK` with `{ items, page, limit, hasMore }`. Each item is a [Payment](#payment) with one extra field, `user: { id, email }`, not the full User (item 9 (I12)). The plan asks for the user's email, the amount, the status and the date (Task 12.6).
 
   ```json
   {
@@ -1646,7 +1678,7 @@ Takes any creator's published episode down (Task 12.5; D8, D13).
 **P2.** Basic counts for the admin overview (Task 12.7, D13; Q9 (a) (I12)).
 
 - **Access:** Admin
-- **Success:** `200 OK`. The field names are **(R)**:
+- **Success:** `200 OK`, with four flat numbers (item 10 (I12)):
 
   ```json
   { "users": 42, "series": 18, "publishedEpisodes": 37, "activePremiumUsers": 5 }
@@ -1654,7 +1686,7 @@ Takes any creator's published episode down (Task 12.5; D8, D13).
 
   | Field | Type | Notes |
   |---|---|---|
-  | `users` | number | All accounts |
+  | `users` | number | All registered accounts, including admin and suspended accounts (item 10 (I12)) |
   | `series` | number | All series |
   | `publishedEpisodes` | number | Episodes with status `published` |
   | `activePremiumUsers` | number | Users whose `premiumUntil` is in the future (Task 11.2) |
@@ -1663,24 +1695,24 @@ Takes any creator's published episode down (Task 12.5; D8, D13).
 
 ## Part 3 open items
 
-**None of these is confirmed.** They are details the plan and Issue #12 do not settle. Each needs Nabila's answer, recorded on Issue #12 or in the pull request.
+**All ten open items are decided** (I12). Part 3 has no **(R)** labels left. Nabila decided each item on Issue #12; Khadija and Shumail approved items 1–3 and 6–10.
 
-| # | Item | Proposal |
-|---|---|---|
-| 1 | AI request text field | Named `text`; not empty after trimming; only the first 6,000 characters are used **(R)** |
-| 2 | Reset time field on `AI_QUOTA_EXCEEDED` | Named `resetAt` **(R)** |
-| 3 | Payment fields shown to users | `txnRefNo`, `plan`, `days`, `amount`, `currency`, `status`, `paidAt`, `createdAt` **(R)** |
-| 6 | Order of `GET /api/payments/mine` and `GET /api/admin/payments` | Newest first **(R)** |
-| 7 | `search` on `GET /api/admin/users` | Part of the name or email, ignoring case; newest account first **(R)** |
-| 8 | `status` and items on `GET /api/admin/episodes` | Only `published` (the default); items are Part 1 Episode objects **(R)** |
-| 9 | Admin payment item | A Payment plus `user: { id, email }` **(R)** |
-| 10 | Field names on `GET /api/admin/stats` | `users`, `series`, `publishedEpisodes`, `activePremiumUsers` **(R)** |
-
-Items 4 and 5 were decided on 2026-11-13 (I12): `amount` is in whole rupees (see [Payment](#payment)), and the return handling is in [POST /api/payments/jazzcash/return](#post-apipaymentsjazzcashreturn). The other numbers are kept so they match the review discussion.
+| # | Item | Decision | Decided |
+|---|---|---|---|
+| 1 | AI request text field | Named `text`; not empty after trimming; longer text is accepted and only the first 6,000 characters are used | 2026-11-14 |
+| 2 | Reset time field on `AI_QUOTA_EXCEEDED` | Named `resetAt`, an ISO 8601 date in UTC | 2026-11-14 |
+| 3 | Payment fields shown to users | `txnRefNo`, `plan`, `days`, `amount`, `currency`, `status`, `paidAt`, `createdAt`. Never `raw`, `responseCode` or `responseMessage`. | 2026-11-14 |
+| 4 | Unit of `amount` | Whole Pakistani rupees; paisa only inside the JazzCash fields (see [Payment](#payment)) | 2026-11-13 |
+| 5 | JazzCash return with a wrong amount or an unknown reference | See [POST /api/payments/jazzcash/return](#post-apipaymentsjazzcashreturn) | 2026-11-13 |
+| 6 | Order of `GET /api/payments/mine` and `GET /api/admin/payments` | Newest first, by `createdAt` descending | 2026-11-14 |
+| 7 | `search` on `GET /api/admin/users` | Part of the name or email, ignoring case; the input is treated as plain text and escaped; newest account first | 2026-11-14 |
+| 8 | Items on `GET /api/admin/episodes` | Published episodes only. Each item is `{ episode, series: { id, title }, creator: { id, name } }`, with the unchanged Part 1 Episode (Option C) | 2026-11-14 |
+| 9 | Admin payment item | A Payment plus `user: { id, email }`, not the full User | 2026-11-14 |
+| 10 | Fields on `GET /api/admin/stats` | Four flat numbers: `users`, `series`, `publishedEpisodes`, `activePremiumUsers`. `users` counts all registered accounts, including admin and suspended accounts. | 2026-11-14 |
 
 ## Part 3 follow-ups
 
-None of these block Part 3. Each needs its own approval.
+All ten Part 3 decisions are approved (I12), and nothing below reopens them or blocks Part 3. These are follow-up and implementation notes for other files and later tasks. Edits to `docs/plan`, `docs/data-model.md` and `docs/decisions.md` are still made in their own tasks, with their own approval.
 
 **Plan wording that differs from the decisions** (`docs/plan` changes only with the user's approval):
 - **Tasks 5.6, 5.10 and 11.5** say 10 free AI requests a day. D6, D11 and Q3 (I12) say 15.
@@ -1692,5 +1724,7 @@ None of these block Part 3. Each needs its own approval.
 - Decision B is settled: plan and days (Q2 (b2) (I12)). The Payment `days` field becomes required.
 - Both rows can leave the pending list in `docs/decisions.md`.
 - The amount unit is settled: whole rupees in `amount`, paisa only in the JazzCash fields (I12). Task 2.8 (Khadija) records it in the Payment notes and removes the "Amount unit (R)" note.
+
+**For the AI screens** (Tasks 5.15–5.17): tell the user that only the first 6,000 characters of their text are used (item 1 (I12)). This is frontend guidance; the API answer has no field for it.
 
 **Part 1 needs no change:** the User object still leaves out `aiUsage`. Part 3 shows the remaining requests through `remaining` and `aiRemaining` instead.
