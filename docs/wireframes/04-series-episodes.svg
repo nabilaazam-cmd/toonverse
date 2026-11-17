@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='1800' height='1150' viewBox='0 0 1800 1150'>
+<title>Toonverse wireframe 04: Series &amp; Episodes</title>
+<rect x='0' y='0' width='1800' height='1150' rx='0' fill='#ffffff' stroke='#ffffff' stroke-width='0'/>
+<text x='24' y='44' font-family='Arial, Helvetica, sans-serif' font-size='28' fill='#111111' font-weight='bold' text-anchor='start'>Module 04 - Series &amp; Episodes</text>
+<text x='24' y='68' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#666666' font-weight='normal' text-anchor='start'>Low-fidelity wireframe, not a final UI design  ·  Toonverse Task 011 (0.11)  ·  Desktop-first (Issue #17 D5)</text>
+<text x='1776' y='44' font-family='Arial, Helvetica, sans-serif' font-size='14' fill='#666666' font-weight='normal' text-anchor='end'>Board 04 of 11</text>
+<line x1='20' y1='86' x2='1780' y2='86' stroke='#cccccc' stroke-width='1.5'/>
+<rect x='20' y='110' width='900' height='520' rx='6' fill='#ffffff' stroke='#333333' stroke-width='2'/>
+<rect x='20' y='110' width='900' height='28' rx='6' fill='#e9e9e9' stroke='#333333' stroke-width='2'/>
+<rect x='21' y='130' width='898' height='8' rx='0' fill='#e9e9e9' stroke='#e9e9e9' stroke-width='0'/>
+<text x='32' y='129' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='bold' text-anchor='start'>Series page</text>
+<text x='908' y='129' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#555555' font-weight='normal' text-anchor='end'>/series/:seriesId</text>
+<rect x='20' y='138' width='900' height='34' rx='0' fill='#f7f7f7' stroke='#cccccc' stroke-width='1'/>
+<text x='32' y='160' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='bold' text-anchor='start'>TOONVERSE</text>
+<text x='130' y='160' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#444444' font-weight='normal' text-anchor='start'>Discover</text>
+<text x='195' y='160' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#444444' font-weight='normal' text-anchor='start'>Dashboard</text>
+<text x='270' y='160' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#444444' font-weight='normal' text-anchor='start'>Premium</text>
+<text x='908' y='160' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#444444' font-weight='normal' text-anchor='end'>Profile v</text>
+<text x='40' y='198' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#3b6fd8' font-weight='normal' text-anchor='start'>&lt; Dashboard</text>
+<text x='40' y='220' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='bold' text-anchor='start'>Series title</text>
+<rect x='40' y='226' width='520' height='30' rx='3' fill='#ffffff' stroke='#999999' stroke-width='1.5'/>
+<text x='48' y='246' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#222222' font-weight='normal' text-anchor='start'>Moonlit Bakery</text>
+<text x='40' y='280' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='bold' text-anchor='start'>Description</text>
+<rect x='40' y='286' width='520' height='30' rx='3' fill='#ffffff' stroke='#999999' stroke-width='1.5'/>
+<text x='48' y='306' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#222222' font-weight='normal' text-anchor='start'>A baker who can only open her shop at night.</text>
+<rect x='580' y='286' width='100' height='32' rx='4' fill='#ffffff' stroke='#333333' stroke-width='1.5'/>
+<text x='630' y='307' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='normal' text-anchor='middle'>Save</text>
+<rect x='700' y='286' width='200' height='32' rx='4' fill='#ffffff' stroke='#c0392b' stroke-width='1.5'/>
+<text x='800' y='307' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#c0392b' font-weight='bold' text-anchor='middle'>Delete series</text>
+<text x='40' y='360' font-family='Arial, Helvetica, sans-serif' font-size='16' fill='#222222' font-weight='bold' text-anchor='start'>Episodes</text>
+<rect x='760' y='340' width='140' height='32' rx='4' fill='#333333' stroke='#333333' stroke-width='1.5'/>
+<text x='830' y='361' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#ffffff' font-weight='bold' text-anchor='middle'>+ New episode</text>
+<rect x='40' y='375' width='860' height='28' rx='0' fill='#f2f2f2' stroke='#cccccc' stroke-width='1'/>
+<text x='50' y='394' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='bold' text-anchor='start'>#</text>
+<text x='85' y='394' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='bold' text-anchor='start'>Title</text>
+<text x='330' y='394' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='bold' text-anchor='start'>Status</text>
+<text x='500' y='394' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='bold' text-anchor='start'>Last saved</text>
+<text x='660' y='394' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='bold' text-anchor='start'>Actions</text>
+<rect x='40' y='403' width='860' height='42' rx='0' fill='#ffffff' stroke='#cccccc' stroke-width='1'/>
+<text x='50' y='429' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#222222' font-weight='normal' text-anchor='start'>1</text>
+<text x='85' y='429' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#222222' font-weight='normal' text-anchor='start'>The First Night</text>
+<rect x='330' y='414' width='75' height='20' rx='10' fill='#e6f4ea' stroke='#2e7d32' stroke-width='1'/>
+<text x='367.5' y='428' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#2e7d32' font-weight='bold' text-anchor='middle'>published</text>
+<text x='500' y='429' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#555555' font-weight='normal' text-anchor='start'>13 Nov, 09:55</text>
+<text x='660' y='429' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#3b6fd8' font-weight='normal' text-anchor='start'>Open   Unpublish   Up Down   Delete</text>
+<rect x='40' y='445' width='860' height='42' rx='0' fill='#ffffff' stroke='#cccccc' stroke-width='1'/>
+<text x='50' y='471' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#222222' font-weight='normal' text-anchor='start'>2</text>
+<text x='85' y='471' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#222222' font-weight='normal' text-anchor='start'>Flour and Moonlight</text>
+<rect x='330' y='456' width='89' height='20' rx='10' fill='#fff3e0' stroke='#d17b00' stroke-width='1'/>
+<text x='374.5' y='470' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#d17b00' font-weight='bold' text-anchor='middle'>unpublished</text>
+<text x='500' y='471' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#555555' font-weight='normal' text-anchor='start'>12 Nov, 18:20</text>
+<text x='660' y='471' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#3b6fd8' font-weight='normal' text-anchor='start'>Open   Publish...   Up Down   Delete</text>
+<rect x='40' y='487' width='860' height='42' rx='0' fill='#ffffff' stroke='#cccccc' stroke-width='1'/>
+<text x='50' y='513' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#222222' font-weight='normal' text-anchor='start'>3</text>
+<text x='85' y='513' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#222222' font-weight='normal' text-anchor='start'>(untitled)</text>
+<rect x='330' y='498' width='49' height='20' rx='10' fill='#eeeeee' stroke='#777777' stroke-width='1'/>
+<text x='354.5' y='512' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#777777' font-weight='bold' text-anchor='middle'>draft</text>
+<text x='500' y='513' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#555555' font-weight='normal' text-anchor='start'>1 minute ago</text>
+<text x='660' y='513' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#3b6fd8' font-weight='normal' text-anchor='start'>Open   Publish...   Up Down   Delete</text>
+<text x='40' y='555' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#555555' font-weight='normal' text-anchor='start'>Click a title to rename it inline. Up and Down reorder: episodes are renumbered 1, 2, 3 ... (Task 4.14).</text>
+<text x='40' y='570' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#555555' font-weight='normal' text-anchor='start'>&quot;Publish...&quot; opens the Publish step in the episode workspace (Module 08). A draft cannot be unpublished.</text>
+<rect x='940' y='110' width='440' height='520' rx='6' fill='#ffffff' stroke='#333333' stroke-width='2'/>
+<rect x='940' y='110' width='440' height='28' rx='6' fill='#e9e9e9' stroke='#333333' stroke-width='2'/>
+<rect x='941' y='130' width='438' height='8' rx='0' fill='#e9e9e9' stroke='#e9e9e9' stroke-width='0'/>
+<text x='952' y='129' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='bold' text-anchor='start'>Publication status and actions</text>
+<text x='1368' y='129' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#555555' font-weight='normal' text-anchor='end'>/series/:seriesId</text>
+<rect x='960' y='160' width='49' height='20' rx='10' fill='#eeeeee' stroke='#777777' stroke-width='1'/>
+<text x='984.5' y='174' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#777777' font-weight='bold' text-anchor='middle'>draft</text>
+<text x='960' y='200' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Never published. Only the owner sees it.</text>
+<text x='960' y='217' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Action: Publish... (opens Module 08)</text>
+<rect x='960' y='265' width='75' height='20' rx='10' fill='#e6f4ea' stroke='#2e7d32' stroke-width='1'/>
+<text x='997.5' y='279' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#2e7d32' font-weight='bold' text-anchor='middle'>published</text>
+<text x='960' y='305' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Visible on Discover and in the Reader.</text>
+<text x='960' y='322' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Action: Unpublish (with confirmation)</text>
+<rect x='960' y='370' width='89' height='20' rx='10' fill='#fff3e0' stroke='#d17b00' stroke-width='1'/>
+<text x='1004.5' y='384' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#d17b00' font-weight='bold' text-anchor='middle'>unpublished</text>
+<text x='960' y='410' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Hidden from public pages. Panels, pictures</text>
+<text x='960' y='427' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>and the publish date are kept. Action: Publish...</text>
+<text x='960' y='480' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#555555' font-weight='normal' text-anchor='start'>Statuses: draft, published, unpublished (D8).</text>
+<text x='960' y='495' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#555555' font-weight='normal' text-anchor='start'>Publishing again after edits is allowed (S10).</text>
+<text x='960' y='510' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#555555' font-weight='normal' text-anchor='start'>An untitled draft shows &quot;(untitled)&quot;; publishing</text>
+<text x='960' y='525' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#555555' font-weight='normal' text-anchor='start'>needs a title (Issue #8, decision 1b).</text>
+<rect x='20' y='650' width='440' height='470' rx='6' fill='#ffffff' stroke='#333333' stroke-width='2'/>
+<rect x='20' y='650' width='440' height='28' rx='6' fill='#e9e9e9' stroke='#333333' stroke-width='2'/>
+<rect x='21' y='670' width='438' height='8' rx='0' fill='#e9e9e9' stroke='#e9e9e9' stroke-width='0'/>
+<text x='32' y='669' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='bold' text-anchor='start'>Delete episode confirmation</text>
+<text x='448' y='669' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#555555' font-weight='normal' text-anchor='end'>/series/:seriesId</text>
+<rect x='50' y='700' width='380' height='230' rx='8' fill='#ffffff' stroke='#333333' stroke-width='2'/>
+<text x='70' y='735' font-family='Arial, Helvetica, sans-serif' font-size='16' fill='#222222' font-weight='bold' text-anchor='start'>Delete episode 3?</text>
+<text x='70' y='765' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>This deletes the episode, its notes and its panels.</text>
+<text x='70' y='782' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Other episodes keep their numbers.</text>
+<rect x='140' y='870' width='130' height='32' rx='4' fill='#ffffff' stroke='#333333' stroke-width='1.5'/>
+<text x='205' y='891' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='normal' text-anchor='middle'>Cancel</text>
+<rect x='285' y='870' width='130' height='32' rx='4' fill='#ffffff' stroke='#c0392b' stroke-width='1.5'/>
+<text x='350' y='891' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#c0392b' font-weight='bold' text-anchor='middle'>Delete</text>
+<text x='50' y='965' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#777777' font-weight='normal' text-anchor='start'>Uses the shared ConfirmDialog (Task 4.14).</text>
+<text x='50' y='980' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#777777' font-weight='normal' text-anchor='start'>Numbers keep their gaps after a delete (Issue #8).</text>
+<rect x='480' y='650' width='440' height='470' rx='6' fill='#ffffff' stroke='#333333' stroke-width='2'/>
+<rect x='480' y='650' width='440' height='28' rx='6' fill='#e9e9e9' stroke='#333333' stroke-width='2'/>
+<rect x='481' y='670' width='438' height='8' rx='0' fill='#e9e9e9' stroke='#e9e9e9' stroke-width='0'/>
+<text x='492' y='669' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='bold' text-anchor='start'>Delete series confirmation</text>
+<text x='908' y='669' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#555555' font-weight='normal' text-anchor='end'>/series/:seriesId</text>
+<rect x='510' y='700' width='380' height='230' rx='8' fill='#ffffff' stroke='#333333' stroke-width='2'/>
+<text x='530' y='735' font-family='Arial, Helvetica, sans-serif' font-size='16' fill='#222222' font-weight='bold' text-anchor='start'>Delete &quot;Moonlit Bakery&quot;?</text>
+<text x='530' y='765' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>This also deletes its 3 episodes.</text>
+<text x='530' y='782' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>This cannot be undone.</text>
+<rect x='600' y='870' width='130' height='32' rx='4' fill='#ffffff' stroke='#333333' stroke-width='1.5'/>
+<text x='665' y='891' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='normal' text-anchor='middle'>Cancel</text>
+<rect x='745' y='870' width='130' height='32' rx='4' fill='#ffffff' stroke='#c0392b' stroke-width='1.5'/>
+<text x='810' y='891' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#c0392b' font-weight='bold' text-anchor='middle'>Delete series</text>
+<text x='510' y='965' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#777777' font-weight='normal' text-anchor='start'>The dialog states how many episodes are deleted.</text>
+<text x='510' y='980' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#777777' font-weight='normal' text-anchor='start'>On success: go to /dashboard with a toast (Task 4.15).</text>
+<rect x='940' y='650' width='440' height='470' rx='6' fill='#ffffff' stroke='#333333' stroke-width='2'/>
+<rect x='940' y='650' width='440' height='28' rx='6' fill='#e9e9e9' stroke='#333333' stroke-width='2'/>
+<rect x='941' y='670' width='438' height='8' rx='0' fill='#e9e9e9' stroke='#e9e9e9' stroke-width='0'/>
+<text x='952' y='669' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='bold' text-anchor='start'>Unpublish confirmation</text>
+<text x='1368' y='669' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#555555' font-weight='normal' text-anchor='end'>/series/:seriesId</text>
+<rect x='970' y='700' width='380' height='230' rx='8' fill='#ffffff' stroke='#333333' stroke-width='2'/>
+<text x='990' y='735' font-family='Arial, Helvetica, sans-serif' font-size='16' fill='#222222' font-weight='bold' text-anchor='start'>Unpublish episode 1?</text>
+<text x='990' y='765' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>It disappears from Discover and the Reader.</text>
+<text x='990' y='782' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Its panels, pictures and publish date are kept.</text>
+<rect x='1060' y='870' width='130' height='32' rx='4' fill='#ffffff' stroke='#333333' stroke-width='1.5'/>
+<text x='1125' y='891' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='normal' text-anchor='middle'>Cancel</text>
+<rect x='1205' y='870' width='130' height='32' rx='4' fill='#ffffff' stroke='#c0392b' stroke-width='1.5'/>
+<text x='1270' y='891' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#c0392b' font-weight='bold' text-anchor='middle'>Unpublish</text>
+<rect x='970' y='960' width='380' height='31' rx='4' fill='#e6f4ea' stroke='#2e7d32' stroke-width='1.5'/>
+<text x='980' y='979' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#222222' font-weight='normal' text-anchor='start'>Episode unpublished.</text>
+<rect x='1430' y='110' width='350' height='119' rx='4' fill='#fff7c2' stroke='#d4b000' stroke-width='1.5'/>
+<text x='1442' y='131' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='bold' text-anchor='start'>Phone width (D5)</text>
+<text x='1442' y='151' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>The episode table becomes a list: number and title</text>
+<text x='1442' y='168' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>on top, status tag and last saved below.</text>
+<text x='1442' y='185' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Row actions move into a &quot;More&quot; menu.</text>
+<text x='1442' y='202' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Series title and description fields stack;</text>
+<text x='1442' y='219' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Save and Delete series sit below them.</text>
+<rect x='1430' y='245' width='350' height='153' rx='4' fill='#eef3fb' stroke='#3b6fd8' stroke-width='1.5'/>
+<text x='1442' y='266' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='bold' text-anchor='start'>Decisions and sources</text>
+<text x='1442' y='286' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Issue #17 D2: status and publish/unpublish</text>
+<text x='1442' y='303' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>actions are shown here; the Publish step</text>
+<text x='1442' y='320' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>itself is in Module 08.</text>
+<text x='1442' y='337' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Episode fields: number, title, status, last</text>
+<text x='1442' y='354' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>saved (Task 4.13; docs/api.md Part 1).</text>
+<text x='1442' y='371' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Unpublish rules: Part 2 (G3): a draft cannot</text>
+<text x='1442' y='388' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>be unpublished.</text>
+<rect x='1430' y='980' width='350' height='150' rx='4' fill='#fafafa' stroke='#cccccc' stroke-width='1'/>
+<text x='1442' y='1001' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='bold' text-anchor='start'>Legend</text>
+<rect x='1442' y='1012' width='60' height='20' rx='4' fill='#333333' stroke='#333333' stroke-width='1'/>
+<text x='1512' y='1027' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Primary action</text>
+<rect x='1622' y='1012' width='60' height='20' rx='4' fill='#ffffff' stroke='#333333' stroke-width='1'/>
+<text x='1692' y='1027' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Action</text>
+<rect x='1442' y='1040' width='60' height='20' rx='4' fill='#fde8e8' stroke='#c0392b' stroke-width='1'/>
+<text x='1512' y='1055' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Error</text>
+<rect x='1622' y='1040' width='60' height='20' rx='4' fill='#e6f4ea' stroke='#2e7d32' stroke-width='1'/>
+<text x='1692' y='1055' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Success</text>
+<rect x='1442' y='1068' width='60' height='20' rx='4' fill='#fff3e0' stroke='#d17b00' stroke-width='1'/>
+<text x='1512' y='1083' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Warning / limit</text>
+<rect x='1622' y='1068' width='60' height='20' rx='4' fill='#e8f0fe' stroke='#3b6fd8' stroke-width='1'/>
+<text x='1692' y='1083' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Information</text>
+<rect x='1442' y='1096' width='60' height='20' rx='3' fill='#f2f2f2' stroke='#bbbbbb' stroke-width='1' stroke-dasharray='5,4'/>
+<text x='1512' y='1111' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Placeholder content</text>
+</svg>

@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='1800' height='1150' viewBox='0 0 1800 1150'>
+<title>Toonverse wireframe 07: Panels &amp; Dialogue</title>
+<rect x='0' y='0' width='1800' height='1150' rx='0' fill='#ffffff' stroke='#ffffff' stroke-width='0'/>
+<text x='24' y='44' font-family='Arial, Helvetica, sans-serif' font-size='28' fill='#111111' font-weight='bold' text-anchor='start'>Module 07 - Panels &amp; Dialogue</text>
+<text x='24' y='68' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#666666' font-weight='normal' text-anchor='start'>Low-fidelity wireframe, not a final UI design  ·  Toonverse Task 011 (0.11)  ·  Desktop-first (Issue #17 D5)</text>
+<text x='1776' y='44' font-family='Arial, Helvetica, sans-serif' font-size='14' fill='#666666' font-weight='normal' text-anchor='end'>Board 07 of 11</text>
+<line x1='20' y1='86' x2='1780' y2='86' stroke='#cccccc' stroke-width='1.5'/>
+<rect x='20' y='110' width='960' height='620' rx='6' fill='#ffffff' stroke='#333333' stroke-width='2'/>
+<rect x='20' y='110' width='960' height='28' rx='6' fill='#e9e9e9' stroke='#333333' stroke-width='2'/>
+<rect x='21' y='130' width='958' height='8' rx='0' fill='#e9e9e9' stroke='#e9e9e9' stroke-width='0'/>
+<text x='32' y='129' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='bold' text-anchor='start'>Panels step (episode workspace)</text>
+<text x='968' y='129' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#555555' font-weight='normal' text-anchor='end'>/episodes/:episodeId/panels</text>
+<rect x='20' y='138' width='960' height='40' rx='0' fill='#f7f7f7' stroke='#cccccc' stroke-width='1'/>
+<text x='32' y='163' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='bold' text-anchor='start'>&lt; Moonlit Bakery  ·  Episode 3</text>
+<text x='870' y='163' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#555555' font-weight='normal' text-anchor='end'>Saved at 14:05</text>
+<rect x='884' y='144' width='84' height='28' rx='4' fill='#333333' stroke='#333333' stroke-width='1'/>
+<text x='926' y='163' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#ffffff' font-weight='bold' text-anchor='middle'>Save</text>
+<rect x='30' y='188' width='180' height='26' rx='13' fill='#ffffff' stroke='#999999' stroke-width='1'/>
+<text x='120' y='205' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#555555' font-weight='normal' text-anchor='middle'>1. Notes</text>
+<rect x='218' y='188' width='180' height='26' rx='13' fill='#ffffff' stroke='#999999' stroke-width='1'/>
+<text x='308' y='205' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#555555' font-weight='normal' text-anchor='middle'>2. Draw</text>
+<rect x='406' y='188' width='180' height='26' rx='13' fill='#333333' stroke='#333333' stroke-width='1'/>
+<text x='496' y='205' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#ffffff' font-weight='bold' text-anchor='middle'>3. Panels</text>
+<rect x='594' y='188' width='180' height='26' rx='13' fill='#ffffff' stroke='#999999' stroke-width='1'/>
+<text x='684' y='205' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#555555' font-weight='normal' text-anchor='middle'>4. Preview</text>
+<rect x='782' y='188' width='180' height='26' rx='13' fill='#ffffff' stroke='#999999' stroke-width='1'/>
+<text x='872' y='205' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#555555' font-weight='normal' text-anchor='middle'>5. Publish</text>
+<rect x='40' y='228' width='170' height='480' rx='4' fill='#fafafa' stroke='#cccccc' stroke-width='1'/>
+<text x='52' y='250' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='bold' text-anchor='start'>Panels</text>
+<rect x='50' y='262' width='150' height='100' rx='3' fill='#f2f2f2' stroke='#bbbbbb' stroke-width='1'/>
+<text x='125' y='307' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#555555' font-weight='normal' text-anchor='middle'>Panel 1</text>
+<text x='125' y='350' font-family='Arial, Helvetica, sans-serif' font-size='10' fill='#3b6fd8' font-weight='normal' text-anchor='middle'>Up  Down  Delete</text>
+<rect x='50' y='372' width='150' height='100' rx='3' fill='#e8f0fe' stroke='#3b6fd8' stroke-width='2'/>
+<text x='125' y='417' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#555555' font-weight='normal' text-anchor='middle'>Panel 2 (editing)</text>
+<text x='125' y='460' font-family='Arial, Helvetica, sans-serif' font-size='10' fill='#3b6fd8' font-weight='normal' text-anchor='middle'>Up  Down  Delete</text>
+<rect x='50' y='482' width='150' height='100' rx='3' fill='#f2f2f2' stroke='#bbbbbb' stroke-width='1'/>
+<text x='125' y='527' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#555555' font-weight='normal' text-anchor='middle'>Panel 3</text>
+<text x='125' y='570' font-family='Arial, Helvetica, sans-serif' font-size='10' fill='#3b6fd8' font-weight='normal' text-anchor='middle'>Up  Down  Delete</text>
+<rect x='50' y='600' width='150' height='32' rx='4' fill='#ffffff' stroke='#333333' stroke-width='1.5'/>
+<text x='125' y='621' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='normal' text-anchor='middle'>+ Add panel</text>
+<text x='50' y='650' font-family='Arial, Helvetica, sans-serif' font-size='10' fill='#777777' font-weight='normal' text-anchor='start'>Add at the end or</text>
+<text x='50' y='663' font-family='Arial, Helvetica, sans-serif' font-size='10' fill='#777777' font-weight='normal' text-anchor='start'>below the selected one.</text>
+<rect x='225' y='228' width='500' height='40' rx='4' fill='#fafafa' stroke='#cccccc' stroke-width='1'/>
+<text x='235' y='253' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Bubble: [Oval] [Box] [Thought]     Text     Font v   Size   Align   Colour</text>
+<rect x='225' y='280' width='500' height='380' rx='3' fill='#f2f2f2' stroke='#bbbbbb' stroke-width='1' stroke-dasharray='5,4'/>
+<ellipse cx='420' cy='380' rx='120' ry='60' fill='#ffffff' stroke='#333333' stroke-width='2'/>
+<polygon points='380,436 350,500 420,438' fill='#ffffff' stroke='#333333' stroke-width='2'/>
+<text x='420' y='385' font-family='Arial, Helvetica, sans-serif' font-size='15' fill='#222222' font-weight='bold' text-anchor='middle'>Who&apos;s there?</text>
+<text x='475' y='620' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#777777' font-weight='middle' text-anchor='start'>Selected panel: full editor. Others render read-only.</text>
+<rect x='225' y='668' width='500' height='40' rx='4' fill='#fafafa' stroke='#cccccc' stroke-width='1'/>
+<text x='235' y='693' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Height: 1200 px  [drag handle]   (200-2400 px)</text>
+<rect x='740' y='228' width='220' height='480' rx='4' fill='#fafafa' stroke='#cccccc' stroke-width='1'/>
+<text x='752' y='250' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='bold' text-anchor='start'>Reference images</text>
+<rect x='752' y='262' width='196' height='32' rx='4' fill='#ffffff' stroke='#333333' stroke-width='1.5'/>
+<text x='850' y='283' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='normal' text-anchor='middle'>Add reference</text>
+<rect x='752' y='302' width='90' height='60' rx='3' fill='#f2f2f2' stroke='#bbbbbb' stroke-width='1' stroke-dasharray='5,4'/>
+<text x='797' y='336' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#888888' font-weight='normal' text-anchor='middle'>sketch.png</text>
+<text x='850' y='322' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#3b6fd8' font-weight='normal' text-anchor='start'>Opacity [---o]</text>
+<text x='850' y='339' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#3b6fd8' font-weight='normal' text-anchor='start'>Remove</text>
+<text x='752' y='385' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='bold' text-anchor='start'>Dialogue helper</text>
+<text x='752' y='405' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='bold' text-anchor='start'>Describe the moment</text>
+<rect x='752' y='411' width='196' height='30' rx='3' fill='#ffffff' stroke='#999999' stroke-width='1.5'/>
+<text x='760' y='431' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#9a9a9a' font-weight='normal' text-anchor='start'>Mina opens the door</text>
+<text x='752' y='460' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='bold' text-anchor='start'>Characters</text>
+<rect x='752' y='466' width='196' height='30' rx='3' fill='#ffffff' stroke='#999999' stroke-width='1.5'/>
+<text x='760' y='486' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#9a9a9a' font-weight='normal' text-anchor='start'>Mina, the stranger</text>
+<rect x='752' y='505' width='196' height='32' rx='4' fill='#333333' stroke='#333333' stroke-width='1.5'/>
+<text x='850' y='526' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#ffffff' font-weight='bold' text-anchor='middle'>Suggest dialogue</text>
+<rect x='752' y='545' width='196' height='150' rx='4' fill='#ffffff' stroke='#3b6fd8' stroke-width='1.5'/>
+<text x='760' y='566' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#3b6fd8' font-weight='bold' text-anchor='start'>AI suggestion: edit before using</text>
+<text x='760' y='590' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#333333' font-weight='normal' text-anchor='start'>Version 1:  &quot;Who&apos;s there?&quot;</text>
+<text x='760' y='606' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#333333' font-weight='normal' text-anchor='start'>Version 2:  &quot;We&apos;re closed...&quot;</text>
+<text x='760' y='622' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#333333' font-weight='normal' text-anchor='start'>Version 3:  &quot;Come in, quickly.&quot;</text>
+<rect x='760' y='650' width='80' height='32' rx='4' fill='#ffffff' stroke='#333333' stroke-width='1.5'/>
+<text x='800' y='671' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='normal' text-anchor='middle'>Copy</text>
+<text x='850' y='670' font-family='Arial, Helvetica, sans-serif' font-size='10' fill='#777777' font-weight='normal' text-anchor='start'>Copy into a bubble</text>
+<text x='850' y='683' font-family='Arial, Helvetica, sans-serif' font-size='10' fill='#777777' font-weight='normal' text-anchor='start'>by hand (Task 5.17).</text>
+<rect x='1000' y='110' width='380' height='620' rx='6' fill='#ffffff' stroke='#333333' stroke-width='2'/>
+<rect x='1000' y='110' width='380' height='28' rx='6' fill='#e9e9e9' stroke='#333333' stroke-width='2'/>
+<rect x='1001' y='130' width='378' height='8' rx='0' fill='#e9e9e9' stroke='#e9e9e9' stroke-width='0'/>
+<text x='1012' y='129' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='bold' text-anchor='start'>Dialogue text editing</text>
+<text x='1368' y='129' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#555555' font-weight='normal' text-anchor='end'>Panels step</text>
+<ellipse cx='1190' cy='260' rx='130' ry='70' fill='#ffffff' stroke='#333333' stroke-width='2'/>
+<rect x='1090' y='235' width='200' height='50' rx='3' fill='#ffffff' stroke='#3b6fd8' stroke-width='2'/>
+<text x='1098' y='265' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#222222' font-weight='normal' text-anchor='start'>Who&apos;s there? Is it you, An|</text>
+<text x='1015' y='360' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Double-click a bubble or caption to edit its text.</text>
+<text x='1015' y='378' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Commit: click outside or Ctrl+Enter.</text>
+<text x='1015' y='396' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Cancel: Esc.  At most 500 characters.</text>
+<text x='1015' y='414' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>The Text tool places a free caption (Task 7.11).</text>
+<rect x='1015' y='460' width='350' height='160' rx='4' fill='#fafafa' stroke='#cccccc' stroke-width='1'/>
+<text x='1027' y='482' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#222222' font-weight='bold' text-anchor='start'>Font controls (selected bubble or text)</text>
+<text x='1027' y='505' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Font  [Comic font v]</text>
+<text x='1027' y='527' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Size  [18]     Align  [L] [C] [R]</text>
+<text x='1027' y='549' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Colour  [#]</text>
+<text x='1015' y='650' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#777777' font-weight='normal' text-anchor='start'>Fonts come from the approved Google Fonts list</text>
+<text x='1015' y='665' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#777777' font-weight='normal' text-anchor='start'>(Task 1.13).</text>
+<rect x='20' y='750' width='440' height='370' rx='6' fill='#ffffff' stroke='#333333' stroke-width='2'/>
+<rect x='20' y='750' width='440' height='28' rx='6' fill='#e9e9e9' stroke='#333333' stroke-width='2'/>
+<rect x='21' y='770' width='438' height='8' rx='0' fill='#e9e9e9' stroke='#e9e9e9' stroke-width='0'/>
+<text x='32' y='769' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='bold' text-anchor='start'>Upload error states</text>
+<text x='448' y='769' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#555555' font-weight='normal' text-anchor='end'>Reference images</text>
+<rect x='35' y='795' width='410' height='31' rx='4' fill='#e8f0fe' stroke='#3b6fd8' stroke-width='1.5'/>
+<text x='45' y='814' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#222222' font-weight='normal' text-anchor='start'>Uploading sketch.png ...  45%</text>
+<rect x='35' y='845' width='410' height='31' rx='4' fill='#fde8e8' stroke='#c0392b' stroke-width='1.5'/>
+<text x='45' y='864' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#222222' font-weight='normal' text-anchor='start'>That file type isn&apos;t supported. Use PNG, JPEG or WebP.</text>
+<rect x='35' y='895' width='410' height='31' rx='4' fill='#fde8e8' stroke='#c0392b' stroke-width='1.5'/>
+<text x='45' y='914' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#222222' font-weight='normal' text-anchor='start'>The image is larger than 5 MB.</text>
+<rect x='35' y='945' width='410' height='31' rx='4' fill='#fde8e8' stroke='#c0392b' stroke-width='1.5'/>
+<text x='45' y='964' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#222222' font-weight='normal' text-anchor='start'>Couldn&apos;t upload the image. Try again.</text>
+<text x='35' y='1010' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#777777' font-weight='normal' text-anchor='start'>400 INVALID_FILE_TYPE (checked by the file&apos;s first bytes),</text>
+<text x='35' y='1025' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#777777' font-weight='normal' text-anchor='start'>413 FILE_TOO_LARGE, 500 INTERNAL_ERROR.</text>
+<text x='35' y='1040' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#777777' font-weight='normal' text-anchor='start'>One file per upload (docs/api.md Part 2).</text>
+<rect x='480' y='750' width='440' height='370' rx='6' fill='#ffffff' stroke='#333333' stroke-width='2'/>
+<rect x='480' y='750' width='440' height='28' rx='6' fill='#e9e9e9' stroke='#333333' stroke-width='2'/>
+<rect x='481' y='770' width='438' height='8' rx='0' fill='#e9e9e9' stroke='#e9e9e9' stroke-width='0'/>
+<text x='492' y='769' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='bold' text-anchor='start'>Panel actions</text>
+<text x='908' y='769' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#555555' font-weight='normal' text-anchor='end'>Panels step</text>
+<rect x='500' y='795' width='400' height='170' rx='8' fill='#ffffff' stroke='#333333' stroke-width='2'/>
+<text x='520' y='828' font-family='Arial, Helvetica, sans-serif' font-size='15' fill='#222222' font-weight='bold' text-anchor='start'>Delete panel 2?</text>
+<text x='520' y='855' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Its drawing and pictures are removed.</text>
+<text x='520' y='872' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Other panels keep their numbers.</text>
+<rect x='640' y='915' width='120' height='32' rx='4' fill='#ffffff' stroke='#333333' stroke-width='1.5'/>
+<text x='700' y='936' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='normal' text-anchor='middle'>Cancel</text>
+<rect x='770' y='915' width='120' height='32' rx='4' fill='#ffffff' stroke='#c0392b' stroke-width='1.5'/>
+<text x='830' y='936' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#c0392b' font-weight='bold' text-anchor='middle'>Delete</text>
+<text x='500' y='1000' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#777777' font-weight='normal' text-anchor='start'>Up and Down reorder panels: renumbered 1, 2, 3 ...</text>
+<text x='500' y='1015' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#777777' font-weight='normal' text-anchor='start'>Each change calls the API (Task 7.5).</text>
+<text x='500' y='1030' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#777777' font-weight='normal' text-anchor='start'>Deleting a reference first removes its image shapes</text>
+<text x='500' y='1045' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#777777' font-weight='normal' text-anchor='start'>from the drawing, then saves (Issue #10, S7 (iii)).</text>
+<rect x='940' y='750' width='440' height='370' rx='6' fill='#ffffff' stroke='#333333' stroke-width='2'/>
+<rect x='940' y='750' width='440' height='28' rx='6' fill='#e9e9e9' stroke='#333333' stroke-width='2'/>
+<rect x='941' y='770' width='438' height='8' rx='0' fill='#e9e9e9' stroke='#e9e9e9' stroke-width='0'/>
+<text x='952' y='769' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='bold' text-anchor='start'>AI dialogue states</text>
+<text x='1368' y='769' font-family='Arial, Helvetica, sans-serif' font-size='11' fill='#555555' font-weight='normal' text-anchor='end'>Dialogue helper</text>
+<text x='955' y='795' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Same states as Module 05:</text>
+<text x='955' y='813' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>  loading, timeout (504), busy (503),</text>
+<text x='955' y='831' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>  too many requests (429), quota used up (429),</text>
+<text x='955' y='849' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>  refused request (200 with guidance).</text>
+<text x='955' y='867' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'></text>
+<text x='955' y='885' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>One panel or moment at a time; up to 3 versions</text>
+<text x='955' y='903' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>of the dialogue for that moment, not 3 lines</text>
+<text x='955' y='921' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>(docs/ai-policy.md).</text>
+<text x='955' y='939' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'></text>
+<text x='955' y='957' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>The remaining daily count is shown after each</text>
+<text x='955' y='975' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>request.</text>
+<rect x='1430' y='110' width='350' height='119' rx='4' fill='#fff7c2' stroke='#d4b000' stroke-width='1.5'/>
+<text x='1442' y='131' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='bold' text-anchor='start'>Phone width (D5)</text>
+<text x='1442' y='151' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>The panel strip becomes a horizontal row of</text>
+<text x='1442' y='168' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>thumbnails above the editor.</text>
+<text x='1442' y='185' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Reference images and the dialogue helper open as</text>
+<text x='1442' y='202' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>bottom sheets.</text>
+<text x='1442' y='219' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>The bubble toolbar wraps onto two rows.</text>
+<rect x='1430' y='245' width='350' height='153' rx='4' fill='#eef3fb' stroke='#3b6fd8' stroke-width='1.5'/>
+<text x='1442' y='266' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='bold' text-anchor='start'>Decisions and sources</text>
+<text x='1442' y='286' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Issue #17 D4: no panel layout or template picker;</text>
+<text x='1442' y='303' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>layouts are pending (decision log D6).</text>
+<text x='1442' y='320' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Uploads: one file, PNG, JPEG or WebP, at most</text>
+<text x='1442' y='337' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>5 MB (docs/api.md Part 2).</text>
+<text x='1442' y='354' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Dialogue: one panel or moment, up to 3 versions</text>
+<text x='1442' y='371' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>(docs/ai-policy.md, Issue #15).</text>
+<text x='1442' y='388' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Bubble text at most 500 characters (Task 7.11).</text>
+<rect x='1430' y='980' width='350' height='150' rx='4' fill='#fafafa' stroke='#cccccc' stroke-width='1'/>
+<text x='1442' y='1001' font-family='Arial, Helvetica, sans-serif' font-size='13' fill='#222222' font-weight='bold' text-anchor='start'>Legend</text>
+<rect x='1442' y='1012' width='60' height='20' rx='4' fill='#333333' stroke='#333333' stroke-width='1'/>
+<text x='1512' y='1027' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Primary action</text>
+<rect x='1622' y='1012' width='60' height='20' rx='4' fill='#ffffff' stroke='#333333' stroke-width='1'/>
+<text x='1692' y='1027' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Action</text>
+<rect x='1442' y='1040' width='60' height='20' rx='4' fill='#fde8e8' stroke='#c0392b' stroke-width='1'/>
+<text x='1512' y='1055' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Error</text>
+<rect x='1622' y='1040' width='60' height='20' rx='4' fill='#e6f4ea' stroke='#2e7d32' stroke-width='1'/>
+<text x='1692' y='1055' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Success</text>
+<rect x='1442' y='1068' width='60' height='20' rx='4' fill='#fff3e0' stroke='#d17b00' stroke-width='1'/>
+<text x='1512' y='1083' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Warning / limit</text>
+<rect x='1622' y='1068' width='60' height='20' rx='4' fill='#e8f0fe' stroke='#3b6fd8' stroke-width='1'/>
+<text x='1692' y='1083' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Information</text>
+<rect x='1442' y='1096' width='60' height='20' rx='3' fill='#f2f2f2' stroke='#bbbbbb' stroke-width='1' stroke-dasharray='5,4'/>
+<text x='1512' y='1111' font-family='Arial, Helvetica, sans-serif' font-size='12' fill='#333333' font-weight='normal' text-anchor='start'>Placeholder content</text>
+</svg>
