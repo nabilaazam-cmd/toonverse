@@ -330,7 +330,7 @@ The date each member agreed was not provided; the date shown is when their agree
 | D11 / I2 – exact `aiUsage` schema and the date/reset rule | Task 2.2 | Approach **approved**. Options documented in Task 0.6 (Decision A in `docs/data-model.md`: Pakistan time or UTC); team choice pending |
 | Plan follow-up – update tasks to D6's new numbers (10 layers, 15 AI) and D7's two plans | Before those tasks start | Pending approval of the plan edits |
 | Deferred libraries: express-rate-limit, helmet, Playwright | Tasks 193, 238 and 245 | Deferred |
-| Node.js version: plan task 1.2 says 20.6+, but current packages need Node 22.22.2+ or 24.15+ (React Router, jsdom, Vitest) | Setup before Task 012 (with plan task 1.2) | Pending. Proposal: Node.js 24 LTS. Install needs separate approval |
+| Node.js version: plan task 1.2 says 20.6+, but current packages need Node 22.22.2+ or 24.15+ (React Router, jsdom, Vitest) | Setup before Task 012 (with plan task 1.2) | **Decided 2026-11-18: Node.js 24 LTS, exact version v24.22.3.** Unanimously approved by Khadija, Nabila and Shumail on Issue #19 (D2). The pre-implementation compatibility check found that v24.22.3 satisfies the approved package requirements (the strictest is jsdom, `^24.15.0`). Node.js v24.22.3 and npm 11.19.1 were verified on the development laptop. |
 
 Resolved on 2026-10-26: D1 guest drawings (never saved or recovered) and D10 IndexedDB for recovery drafts. Resolved on 2026-10-27: Task 005 library decisions (agreed by all three members), including both optional ESLint packages. Resolved (reported 2026-10-29): D7 prices, weekly PKR 250 and monthly PKR 900, agreed by all three members.
 
