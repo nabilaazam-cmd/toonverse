@@ -5,7 +5,7 @@
 - Every task has **exactly one primary owner**. The totals count each task once, including the three shared tasks.
 - A planned owner is **not** permission to push. The GitHub account is still confirmed at the start of every task and again right before every push.
 - An owner changes only with the team's agreement. A task in progress is never reassigned without checking its status and discussing it.
-- **State** moves through: planned → in progress → review → completed. The live state is also kept in the tracker (`status/tNNN`).
+- **State** moves through: planned → in progress → review → completed. The live state is also kept in the tracker (`status/tNNN`). Two more states come from team decisions (Issue #19 D1, Issue #21): `deferred (FYP 2)` means postponed to FYP 2; `deferred (later in FYP 1)` means skipped in normal task selection and done only when a task that depends on it is next (Task 030, immediately before Task 076).
 - **Contributors** records who actually did what. For shared or paired work, each person's part is listed.
 
 ## Primary areas
@@ -69,60 +69,60 @@ Members may contribute outside their area. These areas guide the allocation; the
 | 010 | 0.10 | Write the AI assistant policy | Shumail Mirzaa | AI policy and wireframes for the screens she builds | planned |  |
 | 011 | 0.11 | Draw wireframes for the 11 frontend modules | Shumail Mirzaa | AI policy and wireframes for the screens she builds | planned |  |
 | 012 | 1.1 | Create the monorepo layout | Nabila Azam | Server scaffold, config, errors, health route | planned |  |
-| 013 | 1.2 | Create the server package | Nabila Azam | Server scaffold, config, errors, health route | planned |  |
-| 014 | 1.3 | Create the server folder structure | Nabila Azam | Server scaffold, config, errors, health route | planned |  |
-| 015 | 1.4 | Create the environment config module | Nabila Azam | Server scaffold, config, errors, health route | planned |  |
-| 016 | 1.5 | Create the error utilities | Nabila Azam | Server scaffold, config, errors, health route | planned |  |
-| 017 | 1.6 | Create the Express app and server entry | Nabila Azam | Server scaffold, config, errors, health route | planned |  |
-| 018 | 1.7 | Add the health endpoint | Nabila Azam | Server scaffold, config, errors, health route | planned |  |
-| 019 | 1.8 | Set up MongoDB databases for development and testing | Khadija Gulzar | MongoDB setup and connection (Issue #3) | planned |  |
-| 020 | 1.9 | Create the database connection module | Khadija Gulzar | MongoDB setup and connection (Issue #3) | planned |  |
-| 021 | 1.10 | Verify and debug the server foundation | Nabila Azam | Server foundation check | planned |  |
+| 013 | 1.2 | Create the server package | Nabila Azam | Server scaffold, config, errors, health route | deferred (FYP 2) |  |
+| 014 | 1.3 | Create the server folder structure | Nabila Azam | Server scaffold, config, errors, health route | deferred (FYP 2) |  |
+| 015 | 1.4 | Create the environment config module | Nabila Azam | Server scaffold, config, errors, health route | deferred (FYP 2) |  |
+| 016 | 1.5 | Create the error utilities | Nabila Azam | Server scaffold, config, errors, health route | deferred (FYP 2) |  |
+| 017 | 1.6 | Create the Express app and server entry | Nabila Azam | Server scaffold, config, errors, health route | deferred (FYP 2) |  |
+| 018 | 1.7 | Add the health endpoint | Nabila Azam | Server scaffold, config, errors, health route | deferred (FYP 2) |  |
+| 019 | 1.8 | Set up MongoDB databases for development and testing | Khadija Gulzar | MongoDB setup and connection (Issue #3) | deferred (FYP 2) |  |
+| 020 | 1.9 | Create the database connection module | Khadija Gulzar | MongoDB setup and connection (Issue #3) | deferred (FYP 2) |  |
+| 021 | 1.10 | Verify and debug the server foundation | Nabila Azam | Server foundation check | deferred (FYP 2) |  |
 | 022 | 1.11 | Scaffold the React app | Shumail Mirzaa | React app, Tailwind, fonts, router, home placeholder | planned |  |
 | 023 | 1.12 | Configure Tailwind CSS | Shumail Mirzaa | React app, Tailwind, fonts, router, home placeholder | planned |  |
 | 024 | 1.13 | Add Google Fonts | Shumail Mirzaa | React app, Tailwind, fonts, router, home placeholder | planned |  |
 | 025 | 1.14 | Configure the development proxy | Shumail Mirzaa | React app, Tailwind, fonts, router, home placeholder | planned |  |
 | 026 | 1.15 | Create the API client | Shumail Mirzaa | React app, Tailwind, fonts, router, home placeholder | planned |  |
 | 027 | 1.16 | Add routing and a health check page | Shumail Mirzaa | React app, Tailwind, fonts, router, home placeholder | planned |  |
-| 028 | 1.17 | Add CORS and cookie parsing to the server | Nabila Azam | CORS and cookies: server security | planned |  |
+| 028 | 1.17 | Add CORS and cookie parsing to the server | Nabila Azam | CORS and cookies: server security | deferred (FYP 2) |  |
 | 029 | 1.18 | Configure ESLint and Prettier | Shumail Mirzaa | Linting setup | planned |  |
-| 030 | 1.19 | Set up the test runners | Khadija Gulzar | Test runners and test database | planned |  |
-| 031 | 1.20 | Create the third-party accounts | Nabila Azam | Third-party accounts and GitHub settings (repository owner) | planned |  |
+| 030 | 1.19 | Set up the test runners | Khadija Gulzar | Test runners and test database | deferred (later in FYP 1) |  |
+| 031 | 1.20 | Create the third-party accounts | Nabila Azam | Third-party accounts and GitHub settings (repository owner) | deferred (FYP 2) |  |
 | 032 | 1.21 | Configure GitHub | Nabila Azam | Third-party accounts and GitHub settings (repository owner) | planned |  |
 | 033 | 1.22 | Write the README setup guide | Khadija Gulzar | README setup guide | planned |  |
 | 034 | 6.1 | Build the React-Konva spike | Shumail Mirzaa | Canvas spike | planned |  |
 | 035 | 6.2 | Run the stroke stress test | Shumail Mirzaa | Canvas spike | planned |  |
 | 036 | 6.3 | Define the scene JSON format | Shumail Mirzaa | Canvas spike | planned |  |
-| 037 | 2.1 | Create the model JSON plugin | Khadija Gulzar | Data models, indexes, seed (Issue #3; database owner) | planned |  |
-| 038 | 2.2 | Create the User model | Khadija Gulzar | Data models, indexes, seed (Issue #3; database owner) | planned |  |
-| 039 | 2.3 | Create the Series model | Khadija Gulzar | Data models, indexes, seed (Issue #3; database owner) | planned |  |
-| 040 | 2.4 | Create the Episode model | Khadija Gulzar | Data models, indexes, seed (Issue #3; database owner) | planned |  |
-| 041 | 2.5 | Create the Note model | Khadija Gulzar | Data models, indexes, seed (Issue #3; database owner) | planned |  |
-| 042 | 2.6 | Create the Panel model | Khadija Gulzar | Data models, indexes, seed (Issue #3; database owner) | planned |  |
-| 043 | 2.7 | Create the Favorite model | Khadija Gulzar | Data models, indexes, seed (Issue #3; database owner) | planned |  |
-| 044 | 2.8 | Create the Payment model | Khadija Gulzar | Data models, indexes, seed (Issue #3; database owner) | planned |  |
-| 045 | 2.9 | Create the index sync script | Khadija Gulzar | Data models, indexes, seed (Issue #3; database owner) | planned |  |
-| 046 | 2.10 | Write model tests | Khadija Gulzar | Data models, indexes, seed (Issue #3; database owner) | planned |  |
-| 047 | 2.11 | Fix model test failures | Khadija Gulzar | Data models, indexes, seed (Issue #3; database owner) | planned |  |
-| 048 | 2.12 | Create the seed and reset scripts | Khadija Gulzar | Data models, indexes, seed (Issue #3; database owner) | planned |  |
-| 049 | 3.1 | Create the password utility | Nabila Azam | Authentication API, sessions, roles, profile API | planned |  |
-| 050 | 3.2 | Create the token utility | Nabila Azam | Authentication API, sessions, roles, profile API | planned |  |
-| 051 | 3.3 | Create the auth cookie helper | Nabila Azam | Authentication API, sessions, roles, profile API | planned |  |
-| 052 | 3.4 | Create the registration service | Nabila Azam | Authentication API, sessions, roles, profile API | planned |  |
-| 053 | 3.5 | Create the registration controller | Nabila Azam | Authentication API, sessions, roles, profile API | planned |  |
-| 054 | 3.6 | Create the validation middleware and register rules | Nabila Azam | Authentication API, sessions, roles, profile API | planned |  |
-| 055 | 3.7 | Create the registration route | Nabila Azam | Authentication API, sessions, roles, profile API | planned |  |
-| 056 | 3.8 | Test the registration API | Nabila Azam | Authentication API, sessions, roles, profile API | planned |  |
-| 057 | 3.9 | Fix registration issues | Nabila Azam | Authentication API, sessions, roles, profile API | planned |  |
-| 058 | 3.10 | Create the login service | Nabila Azam | Authentication API, sessions, roles, profile API | planned |  |
-| 059 | 3.11 | Create the login controller, rules and route | Nabila Azam | Authentication API, sessions, roles, profile API | planned |  |
-| 060 | 3.12 | Test the login API | Nabila Azam | Authentication API, sessions, roles, profile API | planned |  |
-| 061 | 3.13 | Create the requireAuth middleware | Nabila Azam | Authentication API, sessions, roles, profile API | planned |  |
-| 062 | 3.14 | Create the me and logout endpoints | Nabila Azam | Authentication API, sessions, roles, profile API | planned |  |
-| 063 | 3.15 | Create the role and premium middleware | Nabila Azam | Authentication API, sessions, roles, profile API | planned |  |
-| 064 | 3.16 | Test sessions and middleware | Nabila Azam | Authentication API, sessions, roles, profile API | planned |  |
-| 065 | 3.17 | Create the profile service, controller and routes | Nabila Azam | Authentication API, sessions, roles, profile API | planned |  |
-| 066 | 3.18 | Test the profile API | Nabila Azam | Authentication API, sessions, roles, profile API | planned |  |
+| 037 | 2.1 | Create the model JSON plugin | Khadija Gulzar | Data models, indexes, seed (Issue #3; database owner) | deferred (FYP 2) |  |
+| 038 | 2.2 | Create the User model | Khadija Gulzar | Data models, indexes, seed (Issue #3; database owner) | deferred (FYP 2) |  |
+| 039 | 2.3 | Create the Series model | Khadija Gulzar | Data models, indexes, seed (Issue #3; database owner) | deferred (FYP 2) |  |
+| 040 | 2.4 | Create the Episode model | Khadija Gulzar | Data models, indexes, seed (Issue #3; database owner) | deferred (FYP 2) |  |
+| 041 | 2.5 | Create the Note model | Khadija Gulzar | Data models, indexes, seed (Issue #3; database owner) | deferred (FYP 2) |  |
+| 042 | 2.6 | Create the Panel model | Khadija Gulzar | Data models, indexes, seed (Issue #3; database owner) | deferred (FYP 2) |  |
+| 043 | 2.7 | Create the Favorite model | Khadija Gulzar | Data models, indexes, seed (Issue #3; database owner) | deferred (FYP 2) |  |
+| 044 | 2.8 | Create the Payment model | Khadija Gulzar | Data models, indexes, seed (Issue #3; database owner) | deferred (FYP 2) |  |
+| 045 | 2.9 | Create the index sync script | Khadija Gulzar | Data models, indexes, seed (Issue #3; database owner) | deferred (FYP 2) |  |
+| 046 | 2.10 | Write model tests | Khadija Gulzar | Data models, indexes, seed (Issue #3; database owner) | deferred (FYP 2) |  |
+| 047 | 2.11 | Fix model test failures | Khadija Gulzar | Data models, indexes, seed (Issue #3; database owner) | deferred (FYP 2) |  |
+| 048 | 2.12 | Create the seed and reset scripts | Khadija Gulzar | Data models, indexes, seed (Issue #3; database owner) | deferred (FYP 2) |  |
+| 049 | 3.1 | Create the password utility | Nabila Azam | Authentication API, sessions, roles, profile API | deferred (FYP 2) |  |
+| 050 | 3.2 | Create the token utility | Nabila Azam | Authentication API, sessions, roles, profile API | deferred (FYP 2) |  |
+| 051 | 3.3 | Create the auth cookie helper | Nabila Azam | Authentication API, sessions, roles, profile API | deferred (FYP 2) |  |
+| 052 | 3.4 | Create the registration service | Nabila Azam | Authentication API, sessions, roles, profile API | deferred (FYP 2) |  |
+| 053 | 3.5 | Create the registration controller | Nabila Azam | Authentication API, sessions, roles, profile API | deferred (FYP 2) |  |
+| 054 | 3.6 | Create the validation middleware and register rules | Nabila Azam | Authentication API, sessions, roles, profile API | deferred (FYP 2) |  |
+| 055 | 3.7 | Create the registration route | Nabila Azam | Authentication API, sessions, roles, profile API | deferred (FYP 2) |  |
+| 056 | 3.8 | Test the registration API | Nabila Azam | Authentication API, sessions, roles, profile API | deferred (FYP 2) |  |
+| 057 | 3.9 | Fix registration issues | Nabila Azam | Authentication API, sessions, roles, profile API | deferred (FYP 2) |  |
+| 058 | 3.10 | Create the login service | Nabila Azam | Authentication API, sessions, roles, profile API | deferred (FYP 2) |  |
+| 059 | 3.11 | Create the login controller, rules and route | Nabila Azam | Authentication API, sessions, roles, profile API | deferred (FYP 2) |  |
+| 060 | 3.12 | Test the login API | Nabila Azam | Authentication API, sessions, roles, profile API | deferred (FYP 2) |  |
+| 061 | 3.13 | Create the requireAuth middleware | Nabila Azam | Authentication API, sessions, roles, profile API | deferred (FYP 2) |  |
+| 062 | 3.14 | Create the me and logout endpoints | Nabila Azam | Authentication API, sessions, roles, profile API | deferred (FYP 2) |  |
+| 063 | 3.15 | Create the role and premium middleware | Nabila Azam | Authentication API, sessions, roles, profile API | deferred (FYP 2) |  |
+| 064 | 3.16 | Test sessions and middleware | Nabila Azam | Authentication API, sessions, roles, profile API | deferred (FYP 2) |  |
+| 065 | 3.17 | Create the profile service, controller and routes | Nabila Azam | Authentication API, sessions, roles, profile API | deferred (FYP 2) |  |
+| 066 | 3.18 | Test the profile API | Nabila Azam | Authentication API, sessions, roles, profile API | deferred (FYP 2) |  |
 | 067 | 3.19 | Create the auth and user API modules | Shumail Mirzaa | Frontend auth modules, AuthContext, UI components, layout | planned |  |
 | 068 | 3.20 | Create the AuthContext | Shumail Mirzaa | Frontend auth modules, AuthContext, UI components, layout | planned |  |
 | 069 | 3.21 | Create the shared form components | Shumail Mirzaa | Frontend auth modules, AuthContext, UI components, layout | planned |  |
@@ -134,14 +134,14 @@ Members may contribute outside their area. These areas guide the allocation; the
 | 075 | 3.27 | Add Guest Mode | Shumail Mirzaa | Guest mode and auth component tests | planned |  |
 | 076 | 3.28 | Write the auth component tests | Shumail Mirzaa | Guest mode and auth component tests | planned |  |
 | 077 | 3.29 | Test the complete authentication flow by hand | Nabila Azam | Authentication flow test | planned |  |
-| 078 | 4.1 | Create the ownership and id helpers | Nabila Azam | Ownership and ID-validation middleware: access security | planned |  |
-| 079 | 4.2 | Create the series service | Khadija Gulzar | Series and episode services and APIs | planned |  |
-| 080 | 4.3 | Create the series controller, rules and routes | Khadija Gulzar | Series and episode services and APIs | planned |  |
-| 081 | 4.4 | Test the series API | Khadija Gulzar | Series and episode services and APIs | planned |  |
-| 082 | 4.5 | Create the episode service | Khadija Gulzar | Series and episode services and APIs | planned |  |
-| 083 | 4.6 | Create the episode controller, rules and routes | Khadija Gulzar | Series and episode services and APIs | planned |  |
-| 084 | 4.7 | Test the episode API | Khadija Gulzar | Series and episode services and APIs | planned |  |
-| 085 | 4.8 | Fix episode numbering conflicts | Khadija Gulzar | Series and episode services and APIs | planned |  |
+| 078 | 4.1 | Create the ownership and id helpers | Nabila Azam | Ownership and ID-validation middleware: access security | deferred (FYP 2) |  |
+| 079 | 4.2 | Create the series service | Khadija Gulzar | Series and episode services and APIs | deferred (FYP 2) |  |
+| 080 | 4.3 | Create the series controller, rules and routes | Khadija Gulzar | Series and episode services and APIs | deferred (FYP 2) |  |
+| 081 | 4.4 | Test the series API | Khadija Gulzar | Series and episode services and APIs | deferred (FYP 2) |  |
+| 082 | 4.5 | Create the episode service | Khadija Gulzar | Series and episode services and APIs | deferred (FYP 2) |  |
+| 083 | 4.6 | Create the episode controller, rules and routes | Khadija Gulzar | Series and episode services and APIs | deferred (FYP 2) |  |
+| 084 | 4.7 | Test the episode API | Khadija Gulzar | Series and episode services and APIs | deferred (FYP 2) |  |
+| 085 | 4.8 | Fix episode numbering conflicts | Khadija Gulzar | Series and episode services and APIs | deferred (FYP 2) |  |
 | 086 | 4.9 | Create the remaining shared UI components | Shumail Mirzaa | UI kit, dashboard, create-series modal | planned |  |
 | 087 | 4.10 | Create the series and episode API modules | Shumail Mirzaa | UI kit, dashboard, create-series modal | planned |  |
 | 088 | 4.11 | Build the Dashboard page | Shumail Mirzaa | UI kit, dashboard, create-series modal | planned |  |
@@ -151,9 +151,9 @@ Members may contribute outside their area. These areas guide the allocation; the
 | 092 | 4.15 | Add the delete series flow | Khadija Gulzar | Series page, episode actions, workspace shell | planned |  |
 | 093 | 4.16 | Build the episode workspace shell | Khadija Gulzar | Series page, episode actions, workspace shell | planned |  |
 | 094 | 4.17 | Test the dashboard flow | Khadija Gulzar | Series page, episode actions, workspace shell | planned |  |
-| 095 | 5.1 | Create the note service | Khadija Gulzar | Notes API | planned |  |
-| 096 | 5.2 | Create the notes controller, rules and routes | Khadija Gulzar | Notes API | planned |  |
-| 097 | 5.3 | Test the notes API | Khadija Gulzar | Notes API | planned |  |
+| 095 | 5.1 | Create the note service | Khadija Gulzar | Notes API | deferred (FYP 2) |  |
+| 096 | 5.2 | Create the notes controller, rules and routes | Khadija Gulzar | Notes API | deferred (FYP 2) |  |
+| 097 | 5.3 | Test the notes API | Khadija Gulzar | Notes API | deferred (FYP 2) |  |
 | 098 | 5.4 | Build the Notes step | Shumail Mirzaa | Notes page | planned |  |
 | 099 | 5.5 | Test the notes flow by hand | Shumail Mirzaa | Notes page | planned |  |
 | 100 | 6.4 | Create the canvas module structure | Shumail Mirzaa | Canvas engine: tools, layers, undo/redo | planned |  |
@@ -176,9 +176,9 @@ Members may contribute outside their area. These areas guide the allocation; the
 | 117 | 6.21 | Put the editor in the Draw step | Nabila Azam | Zoom, pan, serialization, performance, sandbox | planned |  |
 | 118 | 6.22 | Add the guest canvas sandbox | Nabila Azam | Zoom, pan, serialization, performance, sandbox | planned |  |
 | 119 | 6.23 | Run the canvas test checklist | Nabila Azam | Zoom, pan, serialization, performance, sandbox | planned |  |
-| 120 | 7.1 | Create the panel service | Khadija Gulzar | Panels API | planned |  |
-| 121 | 7.2 | Create the panel controller, rules and routes | Khadija Gulzar | Panels API | planned |  |
-| 122 | 7.3 | Test the panels API | Khadija Gulzar | Panels API | planned |  |
+| 120 | 7.1 | Create the panel service | Khadija Gulzar | Panels API | deferred (FYP 2) |  |
+| 121 | 7.2 | Create the panel controller, rules and routes | Khadija Gulzar | Panels API | deferred (FYP 2) |  |
+| 122 | 7.3 | Test the panels API | Khadija Gulzar | Panels API | deferred (FYP 2) |  |
 | 123 | 7.4 | Build the panel strip | Shumail Mirzaa | Panel strip and speech bubble rendering | planned |  |
 | 124 | 7.5 | Add panel management | Shumail Mirzaa | Panel strip and speech bubble rendering | planned |  |
 | 125 | 7.6 | Keep editor state per panel | Shumail Mirzaa | Panel strip and speech bubble rendering | planned |  |
@@ -190,21 +190,21 @@ Members may contribute outside their area. These areas guide the allocation; the
 | 131 | 7.12 | Add font controls | Nabila Azam | Bubble tool, text editing, fonts | planned |  |
 | 132 | 7.13 | Wait for fonts before drawing text | Nabila Azam | Bubble tool, text editing, fonts | planned |  |
 | 133 | 7.14 | Test bubbles and text by hand | Nabila Azam | Bubble tool, text editing, fonts | planned |  |
-| 134 | 7.15 | Configure Cloudinary | Khadija Gulzar | Cloudinary storage and safe cleanup (D15) | planned |  |
-| 135 | 7.16 | Create the storage service | Khadija Gulzar | Cloudinary storage and safe cleanup (D15) | planned |  |
-| 136 | 7.17 | Test Cloudinary on its own | Khadija Gulzar | Cloudinary storage and safe cleanup (D15) | planned |  |
-| 137 | 7.18 | Create the upload middleware | Khadija Gulzar | Cloudinary storage and safe cleanup (D15) | planned |  |
-| 138 | 7.19 | Create the reference upload endpoint | Khadija Gulzar | Cloudinary storage and safe cleanup (D15) | planned |  |
-| 139 | 7.20 | Create the reference delete endpoint | Khadija Gulzar | Cloudinary storage and safe cleanup (D15) | planned |  |
-| 140 | 7.21 | Add safe image cleanup to deletes | Khadija Gulzar | Cloudinary storage and safe cleanup (D15) | planned |  |
-| 141 | 7.22 | Test the upload API | Khadija Gulzar | Cloudinary storage and safe cleanup (D15) | planned |  |
+| 134 | 7.15 | Configure Cloudinary | Khadija Gulzar | Cloudinary storage and safe cleanup (D15) | deferred (FYP 2) |  |
+| 135 | 7.16 | Create the storage service | Khadija Gulzar | Cloudinary storage and safe cleanup (D15) | deferred (FYP 2) |  |
+| 136 | 7.17 | Test Cloudinary on its own | Khadija Gulzar | Cloudinary storage and safe cleanup (D15) | deferred (FYP 2) |  |
+| 137 | 7.18 | Create the upload middleware | Khadija Gulzar | Cloudinary storage and safe cleanup (D15) | deferred (FYP 2) |  |
+| 138 | 7.19 | Create the reference upload endpoint | Khadija Gulzar | Cloudinary storage and safe cleanup (D15) | deferred (FYP 2) |  |
+| 139 | 7.20 | Create the reference delete endpoint | Khadija Gulzar | Cloudinary storage and safe cleanup (D15) | deferred (FYP 2) |  |
+| 140 | 7.21 | Add safe image cleanup to deletes | Khadija Gulzar | Cloudinary storage and safe cleanup (D15) | deferred (FYP 2) |  |
+| 141 | 7.22 | Test the upload API | Khadija Gulzar | Cloudinary storage and safe cleanup (D15) | deferred (FYP 2) |  |
 | 142 | 7.23 | Build the reference image UI | Shumail Mirzaa | Reference image UI and cross-origin loading | planned |  |
 | 143 | 7.24 | Load images with cross-origin access | Shumail Mirzaa | Reference image UI and cross-origin loading | planned |  |
 | 144 | 7.25 | Test the complete panels flow | Shumail Mirzaa | Reference image UI and cross-origin loading | planned |  |
-| 145 | 8.1 | Create the scene save service | Khadija Gulzar | Versioned save API | planned |  |
-| 146 | 8.2 | Create the scene validation rules | Khadija Gulzar | Versioned save API | planned |  |
-| 147 | 8.3 | Create the scene save route | Khadija Gulzar | Versioned save API | planned |  |
-| 148 | 8.4 | Test the save API | Khadija Gulzar | Versioned save API | planned |  |
+| 145 | 8.1 | Create the scene save service | Khadija Gulzar | Versioned save API | deferred (FYP 2) |  |
+| 146 | 8.2 | Create the scene validation rules | Khadija Gulzar | Versioned save API | deferred (FYP 2) |  |
+| 147 | 8.3 | Create the scene save route | Khadija Gulzar | Versioned save API | deferred (FYP 2) |  |
+| 148 | 8.4 | Test the save API | Khadija Gulzar | Versioned save API | deferred (FYP 2) |  |
 | 149 | 8.5 | Load saved scenes into the workspace | Shumail Mirzaa | Save manager, manual save, auto-save, status | planned |  |
 | 150 | 8.6 | Create the save manager | Shumail Mirzaa | Save manager, manual save, auto-save, status | planned |  |
 | 151 | 8.7 | Add manual save | Shumail Mirzaa | Save manager, manual save, auto-save, status | planned |  |
@@ -218,8 +218,8 @@ Members may contribute outside their area. These areas guide the allocation; the
 | 159 | 8.13 | Auto-save notes | Shumail Mirzaa | Notes auto-save | planned |  |
 | 160 | 8.14 | Test saving and recovery | Nabila Azam | Save tests and fixes | planned |  |
 | 161 | 8.15 | Fix save bugs | Nabila Azam | Save tests and fixes | planned |  |
-| 162 | 9.1 | Create the preview endpoint | Khadija Gulzar | Preview API | planned |  |
-| 163 | 9.2 | Test the preview endpoint | Khadija Gulzar | Preview API | planned |  |
+| 162 | 9.1 | Create the preview endpoint | Khadija Gulzar | Preview API | deferred (FYP 2) |  |
+| 163 | 9.2 | Test the preview endpoint | Khadija Gulzar | Preview API | deferred (FYP 2) |  |
 | 164 | 9.3 | Create the read-only panel renderer | Shumail Mirzaa | Panel renderer and preview step | planned |  |
 | 165 | 9.4 | Build the Preview step | Shumail Mirzaa | Panel renderer and preview step | planned |  |
 | 166 | 9.5 | Create the offscreen render utility | Khadija Gulzar | Render, PNG and PDF device download (D2) | planned |  |
@@ -228,77 +228,77 @@ Members may contribute outside their area. These areas guide the allocation; the
 | 169 | 9.8 | Add export file names | Khadija Gulzar | Render, PNG and PDF device download (D2) | planned |  |
 | 170 | 9.9 | Build the export menu | Shumail Mirzaa | Export menu and browser tests | planned |  |
 | 171 | 9.10 | Test exports in three browsers | Shumail Mirzaa | Export menu and browser tests | planned |  |
-| 172 | 10.1 | Create the rendered image upload endpoint | Nabila Azam | Publishing (render upload, publish, unpublish) | planned |  |
-| 173 | 10.2 | Create the publish service | Nabila Azam | Publishing (render upload, publish, unpublish) | planned |  |
-| 174 | 10.3 | Create the unpublish service | Nabila Azam | Publishing (render upload, publish, unpublish) | planned |  |
-| 175 | 10.4 | Create the publish routes and tests | Nabila Azam | Publishing (render upload, publish, unpublish) | planned |  |
+| 172 | 10.1 | Create the rendered image upload endpoint | Nabila Azam | Publishing (render upload, publish, unpublish) | deferred (FYP 2) |  |
+| 173 | 10.2 | Create the publish service | Nabila Azam | Publishing (render upload, publish, unpublish) | deferred (FYP 2) |  |
+| 174 | 10.3 | Create the unpublish service | Nabila Azam | Publishing (render upload, publish, unpublish) | deferred (FYP 2) |  |
+| 175 | 10.4 | Create the publish routes and tests | Nabila Azam | Publishing (render upload, publish, unpublish) | deferred (FYP 2) |  |
 | 176 | 10.5 | Build the Publish step | Nabila Azam | Publishing (render upload, publish, unpublish) | planned |  |
-| 177 | 10.6 | Create the Discover endpoint | Khadija Gulzar | Discover and public read queries | planned |  |
-| 178 | 10.7 | Create the public read endpoints | Khadija Gulzar | Discover and public read queries | planned |  |
-| 179 | 10.8 | Test Discover and read APIs | Khadija Gulzar | Discover and public read queries | planned |  |
+| 177 | 10.6 | Create the Discover endpoint | Khadija Gulzar | Discover and public read queries | deferred (FYP 2) |  |
+| 178 | 10.7 | Create the public read endpoints | Khadija Gulzar | Discover and public read queries | deferred (FYP 2) |  |
+| 179 | 10.8 | Test Discover and read APIs | Khadija Gulzar | Discover and public read queries | deferred (FYP 2) |  |
 | 180 | 10.9 | Build the Discover page | Shumail Mirzaa | Discover (home), series reader, Reader view (Issue #2) | planned |  |
 | 181 | 10.10 | Build the series reader page | Shumail Mirzaa | Discover (home), series reader, Reader view (Issue #2) | planned |  |
 | 182 | 10.11 | Build the Reader view | Shumail Mirzaa | Discover (home), series reader, Reader view (Issue #2) | planned |  |
-| 183 | 10.12 | Create the favorites service and routes | Khadija Gulzar | Favorites API | planned |  |
-| 184 | 10.13 | Test the favorites API | Khadija Gulzar | Favorites API | planned |  |
+| 183 | 10.12 | Create the favorites service and routes | Khadija Gulzar | Favorites API | deferred (FYP 2) |  |
+| 184 | 10.13 | Test the favorites API | Khadija Gulzar | Favorites API | deferred (FYP 2) |  |
 | 185 | 10.14 | Build the favorite button and Favorites page | Shumail Mirzaa | Favorites UI | planned |  |
 | 186 | 10.15 | Test the creator-to-reader flow | Nabila Azam | Creator-to-reader flow test | planned |  |
-| 187 | 5.6 | Configure OpenAI | Nabila Azam | OpenAI configuration, prompts, service: external API and secret key | planned |  |
-| 188 | 5.7 | Create the prompt builder | Nabila Azam | OpenAI configuration, prompts, service: external API and secret key | planned |  |
-| 189 | 5.8 | Create the AI service | Nabila Azam | OpenAI configuration, prompts, service: external API and secret key | planned |  |
-| 190 | 5.9 | Test OpenAI on its own | Nabila Azam | OpenAI configuration, prompts, service: external API and secret key | planned |  |
-| 191 | 5.10 | Create the daily AI quota | Khadija Gulzar | AI usage quota (aiUsage), AI routes, rate limit, tests | planned |  |
-| 192 | 5.11 | Create the AI controller and routes | Khadija Gulzar | AI usage quota (aiUsage), AI routes, rate limit, tests | planned |  |
-| 193 | 5.12 | Add a burst rate limit for AI | Khadija Gulzar | AI usage quota (aiUsage), AI routes, rate limit, tests | planned |  |
-| 194 | 5.13 | Test the AI API | Khadija Gulzar | AI usage quota (aiUsage), AI routes, rate limit, tests | planned |  |
+| 187 | 5.6 | Configure OpenAI | Nabila Azam | OpenAI configuration, prompts, service: external API and secret key | deferred (FYP 2) |  |
+| 188 | 5.7 | Create the prompt builder | Nabila Azam | OpenAI configuration, prompts, service: external API and secret key | deferred (FYP 2) |  |
+| 189 | 5.8 | Create the AI service | Nabila Azam | OpenAI configuration, prompts, service: external API and secret key | deferred (FYP 2) |  |
+| 190 | 5.9 | Test OpenAI on its own | Nabila Azam | OpenAI configuration, prompts, service: external API and secret key | deferred (FYP 2) |  |
+| 191 | 5.10 | Create the daily AI quota | Khadija Gulzar | AI usage quota (aiUsage), AI routes, rate limit, tests | deferred (FYP 2) |  |
+| 192 | 5.11 | Create the AI controller and routes | Khadija Gulzar | AI usage quota (aiUsage), AI routes, rate limit, tests | deferred (FYP 2) |  |
+| 193 | 5.12 | Add a burst rate limit for AI | Khadija Gulzar | AI usage quota (aiUsage), AI routes, rate limit, tests | deferred (FYP 2) |  |
+| 194 | 5.13 | Test the AI API | Khadija Gulzar | AI usage quota (aiUsage), AI routes, rate limit, tests | deferred (FYP 2) |  |
 | 195 | 5.14 | Create the AI API module | Shumail Mirzaa | AI suggestion screens | planned |  |
 | 196 | 5.15 | Build the suggestion panel | Shumail Mirzaa | AI suggestion screens | planned |  |
 | 197 | 5.16 | Add AI to the Notes step | Shumail Mirzaa | AI suggestion screens | planned |  |
 | 198 | 5.17 | Add dialogue suggestions to the Panels step | Shumail Mirzaa | AI suggestion screens | planned |  |
 | 199 | 5.18 | Test the AI flows with the real key | Shumail Mirzaa | AI suggestion screens | planned |  |
-| 200 | 11.1 | Create the premium plan config | Khadija Gulzar | Premium plans, limits and server-side enforcement | planned |  |
-| 201 | 11.2 | Create the premium service | Khadija Gulzar | Premium plans, limits and server-side enforcement | planned |  |
-| 202 | 11.3 | Create the premium endpoints | Khadija Gulzar | Premium plans, limits and server-side enforcement | planned |  |
-| 203 | 11.4 | Use premium limits on the server | Khadija Gulzar | Premium plans, limits and server-side enforcement | planned |  |
-| 204 | 11.5 | Test premium logic | Khadija Gulzar | Premium plans, limits and server-side enforcement | planned |  |
+| 200 | 11.1 | Create the premium plan config | Khadija Gulzar | Premium plans, limits and server-side enforcement | deferred (FYP 2) |  |
+| 201 | 11.2 | Create the premium service | Khadija Gulzar | Premium plans, limits and server-side enforcement | deferred (FYP 2) |  |
+| 202 | 11.3 | Create the premium endpoints | Khadija Gulzar | Premium plans, limits and server-side enforcement | deferred (FYP 2) |  |
+| 203 | 11.4 | Use premium limits on the server | Khadija Gulzar | Premium plans, limits and server-side enforcement | deferred (FYP 2) |  |
+| 204 | 11.5 | Test premium logic | Khadija Gulzar | Premium plans, limits and server-side enforcement | deferred (FYP 2) |  |
 | 205 | 11.6 | Use premium state in the client | Shumail Mirzaa | Premium page, client limits, upgrade prompts | planned |  |
 | 206 | 11.7 | Build the Premium page | Shumail Mirzaa | Premium page, client limits, upgrade prompts | planned |  |
 | 207 | 11.8 | Add upgrade prompts at limits | Shumail Mirzaa | Premium page, client limits, upgrade prompts | planned |  |
-| 208 | 11.9 | Test premium gating without payments | Shumail Mirzaa | Premium page, client limits, upgrade prompts | planned |  |
-| 209 | 11.10 | Configure the JazzCash sandbox | Nabila Azam | JazzCash sandbox integration (security-sensitive) | planned |  |
-| 210 | 11.11 | Create the secure hash utility | Nabila Azam | JazzCash sandbox integration (security-sensitive) | planned |  |
-| 211 | 11.12 | Create the payment request builder | Nabila Azam | JazzCash sandbox integration (security-sensitive) | planned |  |
-| 212 | 11.13 | Create the initiate endpoint | Nabila Azam | JazzCash sandbox integration (security-sensitive) | planned |  |
-| 213 | 11.14 | Create the return handler | Nabila Azam | JazzCash sandbox integration (security-sensitive) | planned |  |
-| 214 | 11.15 | Test the payment service on its own | Nabila Azam | JazzCash sandbox integration (security-sensitive) | planned |  |
-| 215 | 11.16 | Create the payment status endpoint | Nabila Azam | JazzCash sandbox integration (security-sensitive) | planned |  |
+| 208 | 11.9 | Test premium gating without payments | Shumail Mirzaa | Premium page, client limits, upgrade prompts | deferred (FYP 2) |  |
+| 209 | 11.10 | Configure the JazzCash sandbox | Nabila Azam | JazzCash sandbox integration (security-sensitive) | deferred (FYP 2) |  |
+| 210 | 11.11 | Create the secure hash utility | Nabila Azam | JazzCash sandbox integration (security-sensitive) | deferred (FYP 2) |  |
+| 211 | 11.12 | Create the payment request builder | Nabila Azam | JazzCash sandbox integration (security-sensitive) | deferred (FYP 2) |  |
+| 212 | 11.13 | Create the initiate endpoint | Nabila Azam | JazzCash sandbox integration (security-sensitive) | deferred (FYP 2) |  |
+| 213 | 11.14 | Create the return handler | Nabila Azam | JazzCash sandbox integration (security-sensitive) | deferred (FYP 2) |  |
+| 214 | 11.15 | Test the payment service on its own | Nabila Azam | JazzCash sandbox integration (security-sensitive) | deferred (FYP 2) |  |
+| 215 | 11.16 | Create the payment status endpoint | Nabila Azam | JazzCash sandbox integration (security-sensitive) | deferred (FYP 2) |  |
 | 216 | 11.17 | Connect the Upgrade button to JazzCash | Shumail Mirzaa | Checkout redirect and result page | planned |  |
 | 217 | 11.18 | Build the payment result page | Shumail Mirzaa | Checkout redirect and result page | planned |  |
 | 218 | 11.19 | Run real sandbox payments | Nabila Azam | Sandbox payment runs | planned |  |
 | 219 | 11.20 | Add payment history | Khadija Gulzar | Payment history | planned |  |
 | 220 | 11.21 | Test the complete premium purchase | Nabila Azam | Premium purchase end-to-end test | planned |  |
-| 221 | 12.1 | Create the create-admin script | Shumail Mirzaa | Admin APIs | planned |  |
-| 222 | 12.2 | Create the admin router | Shumail Mirzaa | Admin APIs | planned |  |
-| 223 | 12.3 | Create the admin user endpoints | Shumail Mirzaa | Admin APIs | planned |  |
-| 224 | 12.4 | Check that suspension ends sessions | Shumail Mirzaa | Admin APIs | planned |  |
-| 225 | 12.5 | Create the admin episode endpoints | Shumail Mirzaa | Admin APIs | planned |  |
-| 226 | 12.6 | Create the admin payments endpoint | Shumail Mirzaa | Admin APIs | planned |  |
-| 227 | 12.7 | Create the admin stats endpoint | Shumail Mirzaa | Admin APIs | planned |  |
-| 228 | 12.8 | Test the admin API | Shumail Mirzaa | Admin APIs | planned |  |
+| 221 | 12.1 | Create the create-admin script | Shumail Mirzaa | Admin APIs | deferred (FYP 2) |  |
+| 222 | 12.2 | Create the admin router | Shumail Mirzaa | Admin APIs | deferred (FYP 2) |  |
+| 223 | 12.3 | Create the admin user endpoints | Shumail Mirzaa | Admin APIs | deferred (FYP 2) |  |
+| 224 | 12.4 | Check that suspension ends sessions | Shumail Mirzaa | Admin APIs | deferred (FYP 2) |  |
+| 225 | 12.5 | Create the admin episode endpoints | Shumail Mirzaa | Admin APIs | deferred (FYP 2) |  |
+| 226 | 12.6 | Create the admin payments endpoint | Shumail Mirzaa | Admin APIs | deferred (FYP 2) |  |
+| 227 | 12.7 | Create the admin stats endpoint | Shumail Mirzaa | Admin APIs | deferred (FYP 2) |  |
+| 228 | 12.8 | Test the admin API | Shumail Mirzaa | Admin APIs | deferred (FYP 2) |  |
 | 229 | 12.9 | Build the admin layout | Nabila Azam | Admin screens | planned |  |
 | 230 | 12.10 | Build the admin Users page | Nabila Azam | Admin screens | planned |  |
 | 231 | 12.11 | Build the admin Episodes page | Nabila Azam | Admin screens | planned |  |
 | 232 | 12.12 | Build the admin Payments and Overview pages | Nabila Azam | Admin screens | planned |  |
 | 233 | 12.13 | Test the admin flow by hand | Nabila Azam | Admin screens | planned |  |
 | 234 | 13.1 | Audit request validation | Khadija Gulzar | Validation audit, ownership audit, database injection guard | planned |  |
-| 235 | 13.2 | Audit ownership on every route | Khadija Gulzar | Validation audit, ownership audit, database injection guard | planned |  |
-| 236 | 13.3 | Add the injection guard | Khadija Gulzar | Validation audit, ownership audit, database injection guard | planned |  |
-| 237 | 13.4 | Add the remaining rate limits | Nabila Azam | Rate limits, security headers, CORS | planned |  |
+| 235 | 13.2 | Audit ownership on every route | Khadija Gulzar | Validation audit, ownership audit, database injection guard | deferred (FYP 2) |  |
+| 236 | 13.3 | Add the injection guard | Khadija Gulzar | Validation audit, ownership audit, database injection guard | deferred (FYP 2) |  |
+| 237 | 13.4 | Add the remaining rate limits | Nabila Azam | Rate limits, security headers, CORS | deferred (FYP 2) |  |
 | 238 | 13.5 | Add security headers and CSP | Nabila Azam | Rate limits, security headers, CORS | planned |  |
-| 239 | 13.6 | Verify CORS | Nabila Azam | Rate limits, security headers, CORS | planned |  |
+| 239 | 13.6 | Verify CORS | Nabila Azam | Rate limits, security headers, CORS | deferred (FYP 2) |  |
 | 240 | 13.7 | Review XSS exposure | Shumail Mirzaa | XSS review | planned |  |
 | 241 | 13.8 | Audit secrets | Khadija Gulzar | Secrets, error mode, CSRF, dependency audit | planned |  |
-| 242 | 13.9 | Check production error mode | Khadija Gulzar | Secrets, error mode, CSRF, dependency audit | planned |  |
+| 242 | 13.9 | Check production error mode | Khadija Gulzar | Secrets, error mode, CSRF, dependency audit | deferred (FYP 2) |  |
 | 243 | 13.10 | Check CSRF protection | Khadija Gulzar | Secrets, error mode, CSRF, dependency audit | planned |  |
 | 244 | 13.11 | Run the dependency audit | Khadija Gulzar | Secrets, error mode, CSRF, dependency audit | planned |  |
 | 245 | 14.1 | Set up Playwright | Nabila Azam | Playwright setup and authentication E2E | planned |  |
