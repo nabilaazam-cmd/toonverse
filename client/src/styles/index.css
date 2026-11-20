@@ -1,0 +1,18 @@
+/* Tailwind CSS v4: loads Tailwind's base styles and utility classes. */
+@import "tailwindcss";
+
+/*
+  Toonverse theme tokens. Each colour token creates utility classes such as
+  bg-accent and text-paper; each font token creates font-ui and font-lettering.
+  The fonts are fallbacks for now: Task 024 adds the chosen Google Fonts in front of them.
+*/
+@theme {
+  --color-ink: #1b2230;
+  --color-paper: #ffffff;
+  --color-accent: #2b59c3;
+  --color-muted: #5a6373;
+  --color-danger: #b3261e;
+
+  --font-ui: system-ui, sans-serif;
+  --font-lettering: "Comic Sans MS", cursive;
+}
