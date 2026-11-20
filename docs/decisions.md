@@ -320,6 +320,26 @@ The date each member agreed was not provided; the date shown is when their agree
 - **Q4 – Default branch:** `develop` is the default branch. Nabila Azam created it and set it as default herself on 2026-10-14; this was verified on 2026-10-16. `main` stays the production branch.
 - **Team:** see `docs/git-workflow/team.md`. Every commit is authored with the member's own noreply email.
 
+## FYP 1 / FYP 2 scope split (confirmed 2026-11-19)
+FYP 1 focuses on UI and frontend development. Backend implementation, server configuration, database integration and backend-dependent functionality are deferred to FYP 2. Approved unanimously by Khadija, Nabila and Shumail on GitHub Issue #19 (D1) and Issue #21 (D1–D10), with follow-up clarifications approved by the team. The plan (`docs/plan`), the task files and `docs/tasks/ALLOCATION.md` were updated to match. Global task numbering and order are unchanged.
+
+- **Issue #19 D1 – Frontend-first order:**
+  - Task 012 (1.1) is shared setup; `server/` stays an empty placeholder until FYP 2.
+  - Task 022 (1.11) now depends on Task 012, and the frontend chain starts there.
+  - Backend foundation tasks 013–021 (1.2–1.10) and the 101 backend-only tasks after Phase 1 are `deferred (FYP 2)`.
+- **Issue #21 D1 – Development proxy (Task 025):** the client-side proxy is configured in FYP 1, without the backend prerequisite.
+- **Issue #21 D2 – Routing (Task 027):** frontend routing stays in FYP 1. The live backend health check is removed; backend health-check integration is implemented in FYP 2.
+- **Issue #21 D3 – CORS and cookies (Task 028):** deferred to FYP 2. Task 029 now depends on Task 027.
+- **Issue #21 D4 – Linting (Task 029):** ESLint and Prettier for the root workspace and the client in FYP 1; server configuration in FYP 2.
+- **Issue #21 D5 – Test runners (Task 030):** `deferred (later in FYP 1)`. The client half is done immediately before Task 076 (3.28), which now depends on it. The server half is deferred to FYP 2.
+- **Issue #21 D6 – Third-party accounts (Task 031):** deferred to FYP 2.
+- **Issue #21 D7 – Phase 1 checkpoint:** root `npm install` succeeds, the client starts with one command, client lint passes, and `feature/01-setup` is merged into `develop`. Automated tests are not required at this checkpoint.
+- **Issue #21 D8 – Frontend data:** frontend tasks that depend on backend APIs use simple local mock data/modules in `client/src/mocks/`, without an extra library. The 15 frontend-only tasks that waited on backend-only tasks now depend on the frontend task each one builds on (Tasks 067, 086, 098, 123, 142, 149, 164, 176, 180, 185, 195, 205, 216, 229 and 240). Tasks 098, 149, 180, 185, 205 and 216 have mock-based checks for FYP 1; their original backend checks are kept as FYP 2 checks.
+- **Issue #21 D9 – API client (Task 026):** checked by hand in FYP 1 with a mocked `fetch` response; an automated test follows Task 030.
+- **Issue #21 D10 – README (Task 033):** covers the frontend setup, Node.js v24.22.3, installation and running instructions; it now depends on Task 029. Backend and database instructions are added in FYP 2.
+- **Task selection:** skip tasks marked `deferred (FYP 2)` or `deferred (later in FYP 1)`. A `deferred (later in FYP 1)` task is done only when the next task needs it. If the next task depends on a `deferred (FYP 2)` task, stop and ask the team. The rule is in `docs/tasks/README.md` and the task-runner skill.
+- **Mixed and other tasks (F2):** the 57 mixed, manual-test, audit, E2E, deployment and release tasks are not deferred as a block. Each is checked when it is reached: frontend work that can use mocks stays in FYP 1, backend-dependent work goes to FYP 2, and mixed tasks are split where feasible. New scope decisions are made by the team.
+
 ## Pending decisions
 
 | Item | Needed before | Status |

@@ -84,7 +84,7 @@ T("0.11","Draw wireframes for the 11 frontend modules","P1",
 
 CP("Scope locked", ["Every decision D1–D15 has an answer or a scheduled task", "docs/data-model.md and docs/api.md cover the whole architecture", "The library list is approved", "Planning branch merged into develop through a PR"]);
 
-PH(1, "Repository & Development Environment", "");
+PH(1, "Repository & Development Environment", "FYP 1 (Issue #19 D1, Issue #21): task 1.1 is shared setup and the frontend chain continues at 1.11. Tasks 1.2–1.10, 1.17 and 1.20 are deferred to FYP 2. The client half of 1.19 is done later in FYP 1, immediately before 3.28; its server half is in FYP 2. `server/` stays an empty placeholder until FYP 2.");
 
 T("1.1","Create the monorepo layout","P0",
  "Separate the frontend, backend and docs in one repository.",
@@ -94,63 +94,63 @@ T("1.1","Create the monorepo layout","P0",
  ["`npm install` at the root works", "`git status` shows no ignored files"]);
 
 T("1.2","Create the server package","P0",
- "Start the Node.js + Express backend.",
+ "Deferred to FYP 2 (Issue #19 D1). Start the Node.js + Express backend.",
  ["1.1"], ["server/package.json"],
  "Initialise with `\"type\": \"module\"`. Install `express`. Scripts: `dev` = `node --watch --env-file=.env src/server.js`, `start` = `node src/server.js`, `test` = `vitest run`. Require Node 20.6 or newer in `engines` (needed for `--env-file` and `--watch`, so no extra env or reload libraries).",
  "A server package with scripts.",
  ["`node -v` is 20.6 or newer", "Express is in dependencies"]);
 
 T("1.3","Create the server folder structure","P0",
- "Fix where every kind of backend code lives.",
+ "Deferred to FYP 2 (Issue #19 D1). Fix where every kind of backend code lives.",
  ["1.2"], ["server/src/{config,models,routes,controllers,services,middleware,validators,utils}/", "server/scripts/", "server/tests/"],
  "Create the folders from the roadmap repository structure. Add a short comment file or `.gitkeep` where a folder is still empty.",
  "The backend skeleton every later task fills.",
  ["All folders exist and are committed"]);
 
 T("1.4","Create the environment config module","P0",
- "Load settings in one place and refuse to start without them.",
+ "Deferred to FYP 2 (Issue #19 D1). Load settings in one place and refuse to start without them.",
  ["1.3"], ["server/src/config/env.js", "server/.env.example", "server/.env"],
  "Read `NODE_ENV`, `PORT`, `CLIENT_URL`, `MONGODB_URI`, `MONGODB_URI_TEST`, `JWT_SECRET`, `JWT_EXPIRES_IN`, `BCRYPT_ROUNDS`. Throw one error listing every missing required variable. Export a frozen config object. Put names only in `.env.example`.",
  "A typed config the rest of the server imports.",
  ["Removing a required variable stops startup with its name in the message", "`.env` is not tracked by git"]);
 
 T("1.5","Create the error utilities","P0",
- "One error format for the whole API.",
+ "Deferred to FYP 2 (Issue #19 D1). One error format for the whole API.",
  ["1.4"], ["server/src/utils/ApiError.js", "server/src/middleware/errorHandler.js", "server/src/middleware/notFound.js"],
  "`ApiError(status, code, message, details)`. `errorHandler` turns any error into `{ error: { code, message, details } }`, hides stack traces when `NODE_ENV=production` and logs server errors. `notFound` returns 404 `NOT_FOUND`.",
  "Error handling every route will use.",
  ["An unknown route returns the 404 JSON format", "A thrown ApiError returns its own status and code"]);
 
 T("1.6","Create the Express app and server entry","P0",
- "Separate the app from the listener so tests can import it.",
+ "Deferred to FYP 2 (Issue #19 D1). Separate the app from the listener so tests can import it.",
  ["1.5"], ["server/src/app.js", "server/src/server.js", "server/src/routes/index.js"],
  "`app.js` builds the app: `express.json({ limit: '1mb' })`, mounts `routes/index.js` on `/api`, then `notFound` and `errorHandler`, and exports the app. `server.js` imports the app and listens on `PORT`.",
  "A running Express server.",
  ["`npm run dev -w server` starts without errors", "Any request returns JSON"]);
 
 T("1.7","Add the health endpoint","P0",
- "A simple check that the server and database are alive.",
+ "Deferred to FYP 2 (Issue #19 D1). A simple check that the server and database are alive.",
  ["1.6"], ["server/src/routes/health.routes.js"],
  "`GET /api/health` returns `{ status: 'ok', db: 'connected' | 'disconnected', uptime }`. Database state comes from task 1.9; return `disconnected` until then.",
  "A health route.",
  ["`GET /api/health` returns 200 with the three fields"]);
 
 T("1.8","Set up MongoDB databases for development and testing","P0",
- "Have somewhere to store data.",
+ "Deferred to FYP 2 (Issue #19 D1). Have somewhere to store data.",
  ["1.4"], ["server/.env"],
  "Install MongoDB Community Server locally (or create a cloud MongoDB development database). Use two databases: `toonverse_dev` and `toonverse_test`. Put both connection strings in `.env`.",
  "Two reachable databases.",
  ["You can connect to both with MongoDB Compass or `mongosh`"]);
 
 T("1.9","Create the database connection module","P0",
- "Connect Express to MongoDB.",
+ "Deferred to FYP 2 (Issue #19 D1). Connect Express to MongoDB.",
  ["1.7", "1.8"], ["server/src/config/db.js", "server/src/server.js", "server/src/routes/health.routes.js"],
  "Install `mongoose`. `connectDB(uri)` connects and logs success or failure; `disconnectDB()` closes. `server.js` connects before listening. The health route reads `mongoose.connection.readyState`.",
  "The server is connected to MongoDB.",
  ["Health shows `db: connected`", "With MongoDB stopped, startup logs a clear error"]);
 
 T("1.10","Verify and debug the server foundation","P0",
- "Make sure the base works before building on it.",
+ "Deferred to FYP 2 (Issue #19 D1). Make sure the base works before building on it.",
  ["1.9"], ["server/"],
  "Run three checks: normal start, missing `JWT_SECRET`, MongoDB stopped. Fix anything that crashes without a clear message.",
  "A server that fails loudly and clearly.",
@@ -159,7 +159,7 @@ T("1.10","Verify and debug the server foundation","P0",
 
 T("1.11","Scaffold the React app","P0",
  "Start the frontend.",
- ["1.10"], ["client/"],
+ ["1.1"], ["client/"],
  "Create a Vite React (JavaScript) app in `client/`. Remove the demo content. Keep port 5173.",
  "An empty React app.",
  ["`npm run dev -w client` shows a blank page with the Toonverse title"]);
@@ -180,28 +180,28 @@ T("1.13","Add Google Fonts","P1",
 
 T("1.14","Configure the development proxy","P0",
  "Let the client call `/api` without CORS problems during development.",
- ["1.11", "1.10"], ["client/vite.config.js", "client/.env.example"],
+ ["1.11"], ["client/vite.config.js", "client/.env.example"],
  "Proxy `/api` to `http://localhost:5000`. Add `VITE_API_URL=` to `.env.example` (empty in development, set in production).",
- "Client requests to `/api` reach Express.",
- ["Opening `http://localhost:5173/api/health` returns the server JSON"]);
+ "`/api` requests will reach Express once the backend exists (FYP 2, Issue #21 D1).",
+ ["`client/vite.config.js` forwards `/api` to `http://localhost:5000`", "The client dev server starts without errors", "FYP 2 check: opening `http://localhost:5173/api/health` returns the server JSON"]);
 
 T("1.15","Create the API client","P0",
  "One function every frontend API module uses.",
  ["1.14"], ["client/src/api/client.js"],
  "A `request(method, path, body)` wrapper around `fetch`: prefixes `VITE_API_URL`, sends `credentials: 'include'`, sends and parses JSON, and throws an `ApiRequestError` holding `status`, `code`, `message` and `details` from the shared error format.",
  "A consistent way to call the API.",
- ["A failed call throws an error with the server’s `code`"]);
+ ["A failed call, using a mocked `fetch` response, throws an error with the server’s `code` (checked by hand in FYP 1; an automated test follows Task 030, Issue #21 D9)"]);
 
 T("1.16","Add routing and a health check page","P0",
- "Prove the client-to-server path.",
+ "Set up client routing.",
  ["1.15"], ["client/src/routes/AppRouter.jsx", "client/src/main.jsx", "client/src/features/discover/HomePlaceholder.jsx"],
- "Install React Router. `AppRouter` defines `/` with a placeholder page that calls `/api/health` and shows ‘API connected’ or the error.",
- "A routed app that talks to the server.",
- ["The page shows ‘API connected’ with both servers running", "Stopping the server shows a readable error"],
+ "Install React Router. `AppRouter` defines `/` with a placeholder page. Backend health-check integration (`/api/health`, ‘API connected’) is added in FYP 2 (Issue #21 D2).",
+ "A routed client app.",
+ ["`/` shows the placeholder page", "FYP 2 check: the page shows ‘API connected’ with both servers running", "FYP 2 check: stopping the server shows a readable error"],
  "chore(client): scaffold react app with tailwind, google fonts, router and api client");
 
 T("1.17","Add CORS and cookie parsing to the server","P0",
- "Prepare for cookie auth and a separate production frontend.",
+ "Deferred to FYP 2 (Issue #21 D3). Prepare for cookie auth and a separate production frontend.",
  ["1.16"], ["server/src/app.js"],
  "Install `cors` and `cookie-parser`. Allow only `CLIENT_URL`, with `credentials: true`.",
  "The server accepts credentialed requests from the client origin only.",
@@ -209,20 +209,20 @@ T("1.17","Add CORS and cookie parsing to the server","P0",
 
 T("1.18","Configure ESLint and Prettier","P1",
  "One code style for the team.",
- ["1.17"], ["client/eslint.config.js", "server/eslint.config.js", ".prettierrc", "package.json"],
- "Set up ESLint for React (client) and Node (server), plus Prettier. Add the rule `react/no-danger: error` now (used by security task 13.7). Root script `npm run lint` runs both.",
- "Linting on both packages.",
+ ["1.16"], ["client/eslint.config.js", ".prettierrc", "package.json"],
+ "Set up ESLint for React (client), plus Prettier. Add the rule `react/no-danger: error` now (used by security task 13.7). Root script `npm run lint` runs the client. Server lint configuration (`server/eslint.config.js`) is added in FYP 2 (Issue #21 D4).",
+ "Linting on the client.",
  ["`npm run lint` passes"]);
 
 T("1.19","Set up the test runners","P0",
- "Make testing possible from the first feature.",
- ["1.18"], ["server/vitest.config.js", "server/tests/setup.js", "server/tests/health.test.js", "client/vitest.config.js", "client/src/test/setup.js"],
- "Server: Vitest + Supertest. `setup.js` connects to `MONGODB_URI_TEST` and drops the test database after each file. First test: `GET /api/health` returns 200. Client: Vitest + React Testing Library + jsdom with one smoke test.",
- "Working test commands in both packages.",
- ["`npm test -w server` and `npm test -w client` pass", "Tests never touch `toonverse_dev`"]);
+ "Client half done later in FYP 1, immediately before 3.28; server half deferred to FYP 2 (Issue #21 D5). Make testing possible from the first feature.",
+ ["1.18"], ["client/vitest.config.js", "client/src/test/setup.js"],
+ "Client: Vitest + React Testing Library + jsdom with one smoke test. FYP 2 (server half): Vitest + Supertest in `server/vitest.config.js`; `server/tests/setup.js` connects to `MONGODB_URI_TEST` and drops the test database after each file; first test `server/tests/health.test.js`: `GET /api/health` returns 200.",
+ "A working client test command.",
+ ["`npm test -w client` passes", "FYP 2 check: `npm test -w server` passes", "FYP 2 check: tests never touch `toonverse_dev`"]);
 
 T("1.20","Create the third-party accounts","P1",
- "Have the keys ready before the phases that need them.",
+ "Deferred to FYP 2 (Issue #21 D6). Have the keys ready before the phases that need them.",
  ["1.4"], ["server/.env", "server/.env.example"],
  "Create a Cloudinary account, an OpenAI API key with a low monthly spending limit, and a JazzCash sandbox merchant account. Put real values only in `.env` and names in `.env.example`. They are first used in tasks 7.15, 5.6 and 11.10.",
  "Credentials stored safely.",
@@ -237,13 +237,13 @@ T("1.21","Configure GitHub","P1",
 
 T("1.22","Write the README setup guide","P1",
  "Anyone can run Toonverse from a fresh clone.",
- ["1.19"], ["README.md"],
- "Prerequisites (Node 20.6+, MongoDB), install, env setup, the two dev commands, test and lint commands.",
+ ["1.18"], ["README.md"],
+ "Prerequisites (Node.js v24.22.3), install, the client dev command and the lint command. MongoDB, `.env` setup, the server dev command and the test commands are added in FYP 2 (Issue #21 D10).",
  "Setup documentation.",
  ["A teammate sets up a fresh clone in under 15 minutes using only the README"],
- "chore(repo): add cors, linting, test runners, github templates and readme");
+ "chore(repo): add linting, github templates and readme");
 
-CP("Foundation running", ["Server and client start with one command each", "The client shows ‘API connected’", "Tests and lint pass", "Secrets live only in .env", "Merge `feature/01-setup` into develop"]);
+CP("Foundation running", ["Root `npm install` succeeds", "The client starts with one command", "Client lint passes", "Merge `feature/01-setup` into develop"]);
 
 PH(6, "Drawing Canvas Engine", "Part 1 of 2 — spike. Done now because the canvas is the biggest risk and its format decides the Panel model.");
 
@@ -337,7 +337,7 @@ T("2.9","Create the index sync script","P0",
  ["MongoDB Compass shows every index from docs/data-model.md"]);
 
 T("2.10","Write model tests","P1",
- "Lock model rules with tests.",
+ "Needs the server half of 1.19 (FYP 2, Issue #21 D5). Lock model rules with tests.",
  ["2.9", "1.19"], ["server/tests/models/*.test.js"],
  "Test required fields, enums, length limits and every unique index (duplicate error code 11000) against the test database.",
  "Model test suite.",
@@ -495,7 +495,7 @@ T("3.18","Test the profile API","P1",
 
 T("3.19","Create the auth and user API modules","P0",
  "Frontend functions for every auth endpoint.",
- ["3.18", "1.15"], ["client/src/api/auth.js", "client/src/api/users.js"],
+ ["1.15"], ["client/src/api/auth.js", "client/src/api/users.js"],
  "`register`, `login`, `logout`, `me`, `getProfile`, `updateProfile`, `changePassword`, all using `request()` from task 1.15.",
  "Typed-feeling API calls for the UI.",
  ["Each function matches docs/api.md"]);
@@ -558,7 +558,7 @@ T("3.27","Add Guest Mode","P1",
 
 T("3.28","Write the auth component tests","P1",
  "Protect the auth screens from regressions.",
- ["3.27"], ["client/src/features/auth/LoginPage.test.jsx", "client/src/features/auth/RegisterPage.test.jsx"],
+ ["3.27", "1.19"], ["client/src/features/auth/LoginPage.test.jsx", "client/src/features/auth/RegisterPage.test.jsx"],
  "With the API module mocked: validation messages appear, the submit button shows loading, server errors are displayed.",
  "Frontend auth tests.",
  ["`npm test -w client` passes"]);

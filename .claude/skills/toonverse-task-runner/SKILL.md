@@ -11,7 +11,14 @@ Every plan task has its own instruction file: `docs/tasks/<NNN>-<phase.task>-<sl
 
 ## How the right task file is found
 1. **The user names a task.** Use `docs/tasks/<NNN>-*.md` for a global number, or `docs/tasks/*-<phase.task>-*.md` for a phase ID.
-2. **The user says "next" or "continue".** Read the tracker (ArtifactData `list`, collection `status`, page https://claude.ai/artifact/XHrCTjLsH7cwvZGdThPFL1). Take the lowest-numbered task that is not `done` and whose prerequisites are all `done`. Never start a later task because a GitHub Issue is assigned to it; issue links are listed in `docs/tasks/README.md`.
+2. **The user says "next" or "continue".** Read the tracker (ArtifactData `list`, collection `status`, page https://claude.ai/artifact/XHrCTjLsH7cwvZGdThPFL1). Select it with these rules (Issue #19 D1, Issue #21):
+   1. Ignore every task marked `deferred (FYP 2)` or `deferred (later in FYP 1)` in `docs/tasks/ALLOCATION.md`.
+   2. Take the lowest-numbered remaining task that is not `done`.
+   3. If one of its prerequisites is `deferred (later in FYP 1)` and not `done`, do that prerequisite first (its own prerequisites must be `done`), then this task. Example: Task 030 immediately before Task 076.
+   4. If one of its prerequisites is `deferred (FYP 2)`, do not skip it silently: stop and ask the team (Issue #21 F2).
+   5. If the task is an Issue #21 F2 task (mixed, manual-test, audit, E2E, deployment or release work), ask the team to confirm its FYP 1/FYP 2 scope before starting.
+
+   Never start a later task because a GitHub Issue is assigned to it; issue links are listed in `docs/tasks/README.md`.
 3. **The task file is missing.** Run the generator, which never overwrites existing files:
    ```
    powershell -ExecutionPolicy Bypass -File .claude/skills/toonverse-task-runner/scripts/generate-task-files.ps1

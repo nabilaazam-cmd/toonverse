@@ -61,7 +61,7 @@ T("12.8","Test the admin API","P1",
 
 T("12.9","Build the admin layout","P1",
  "The admin area frame.",
- ["12.8"], ["client/src/api/admin.js", "client/src/features/admin/AdminLayout.jsx"],
+ ["3.25"], ["client/src/api/admin.js", "client/src/features/admin/AdminLayout.jsx"],
  "Route `/admin` behind AdminRoute with tabs: Overview, Users, Episodes, Payments.",
  "Admin shell.",
  ["Non-admins see the 403 page"]);
@@ -143,7 +143,7 @@ T("13.6","Verify CORS","P1",
 
 T("13.7","Review XSS exposure","P1",
  "No user text can run as code.",
- ["13.6"], ["client/src/"],
+ ["12.12"], ["client/src/"],
  "Confirm `react/no-danger` passes; AI output and bubble text are rendered as text; the text editor overlay uses `value`. Create content with `<script>alert(1)</script>` in titles, bios, notes and bubbles and check it shows as plain text.",
  "XSS reviewed.",
  ["No script runs anywhere"]);

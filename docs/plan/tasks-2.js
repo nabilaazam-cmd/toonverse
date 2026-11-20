@@ -62,7 +62,7 @@ T("4.8","Fix episode numbering conflicts","P0",
 
 T("4.9","Create the remaining shared UI components","P1",
  "Components the dashboard and workspace need.",
- ["4.8"], ["client/src/components/ui/Modal.jsx", "client/src/components/ui/Toast.jsx", "client/src/components/ui/EmptyState.jsx", "client/src/components/ui/ConfirmDialog.jsx"],
+ ["3.22"], ["client/src/components/ui/Modal.jsx", "client/src/components/ui/Toast.jsx", "client/src/components/ui/EmptyState.jsx", "client/src/components/ui/ConfirmDialog.jsx"],
  "Accessible Modal (focus trap, Escape closes), Toast provider and `useToast()`, EmptyState (message and action), ConfirmDialog (built on Modal).",
  "UI kit complete for content screens.",
  ["Modal closes with Escape", "A toast appears and disappears"]);
@@ -151,10 +151,10 @@ T("5.3","Test the notes API","P0",
 
 T("5.4","Build the Notes step","P0",
  "Let creators write episode notes.",
- ["5.3"], ["client/src/api/notes.js", "client/src/features/notes/NotesStep.jsx"],
+ ["4.16"], ["client/src/api/notes.js", "client/src/features/notes/NotesStep.jsx"],
  "Large textarea with a short guide placeholder (premise, characters in this episode, scene list). Save button, saving state, ‘Unsaved changes’ indicator, error toast. Auto-save is added in task 8.13.",
  "The Notes step.",
- ["Notes survive a refresh after saving"]);
+ ["Saving sends the notes to the mock notes module in `client/src/mocks/` and shows the saving state, then saved; a mock save failure shows the error toast", "FYP 2 check: notes survive a refresh after saving"]);
 
 T("5.5","Test the notes flow by hand","P0",
  "Verify notes end to end.",
@@ -340,7 +340,7 @@ T("7.3","Test the panels API","P0",
 
 T("7.4","Build the panel strip","P0",
  "Show the episode as a vertical strip.",
- ["7.3"], ["client/src/api/panels.js", "client/src/features/panels/PanelStrip.jsx", "client/src/features/panels/PanelsStep.jsx"],
+ ["6.23"], ["client/src/api/panels.js", "client/src/features/panels/PanelStrip.jsx", "client/src/features/panels/PanelsStep.jsx"],
  "Load panels. Only the selected panel runs the full editor; the others render read-only (CanvasStage with `listening(false)`). Click a panel to edit it.",
  "A multi-panel workspace.",
  ["Switching panels keeps each panel’s drawing"]);
@@ -475,7 +475,7 @@ T("7.22","Test the upload API","P1",
 
 T("7.23","Build the reference image UI","P1",
  "Use reference images while drawing.",
- ["7.22"], ["client/src/api/uploads.js", "client/src/features/panels/ReferenceImageControls.jsx"],
+ ["7.13"], ["client/src/api/uploads.js", "client/src/features/panels/ReferenceImageControls.jsx"],
  "‘Add reference’ uploads with FormData and shows progress and errors. The image is added as an `image` shape on a locked ‘Reference’ layer, with an opacity slider and a remove button.",
  "Reference images in the editor.",
  ["Errors from 413 and 400 show clear messages"]);

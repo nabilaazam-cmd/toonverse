@@ -33,10 +33,10 @@ T("8.4","Test the save API","P0",
 
 T("8.5","Load saved scenes into the workspace","P0",
  "Open an episode exactly as it was saved.",
- ["8.4"], ["client/src/features/panels/usePanelsState.js"],
+ ["7.24"], ["client/src/features/panels/usePanelsState.js"],
  "On load, build each panel’s state from `fromJSON(panel.scene)` and keep its `version`.",
  "Saved work loads back.",
- ["A scene saved through the API appears in the editor"]);
+ ["A scene from the mock panel data in `client/src/mocks/` appears in the editor, and each panel keeps its `version`", "FYP 2 check: a scene saved through the API appears in the editor"]);
 
 T("8.6","Create the save manager","P0",
  "One place that decides when and what to save.",
@@ -143,7 +143,7 @@ T("9.2","Test the preview endpoint","P0",
 
 T("9.3","Create the read-only panel renderer","P0",
  "One component that draws a finished panel.",
- ["9.2"], ["client/src/features/preview/PanelRenderer.jsx"],
+ ["7.24"], ["client/src/features/preview/PanelRenderer.jsx"],
  "Wraps CanvasStage with no interaction, waits for fonts (task 7.13) and images (task 7.24) before drawing.",
  "Renderer used by Preview and publishing.",
  ["A saved panel looks the same as in the editor"]);
@@ -233,7 +233,7 @@ T("10.4","Create the publish routes and tests","P0",
 
 T("10.5","Build the Publish step","P0",
  "Publish from the workspace.",
- ["10.4"], ["client/src/api/publish.js", "client/src/features/publish/PublishStep.jsx"],
+ ["9.5"], ["client/src/api/publish.js", "client/src/features/publish/PublishStep.jsx"],
  "Checklist (title set, at least one panel, everything saved, no pending recovery draft). ‘Publish’ saves, renders each panel from the saved server data (task 9.5, never from a recovery draft), uploads each with progress, then calls publish. Success shows a link to the Reader view. Unpublish button when published.",
  "One-click publishing.",
  ["A failed upload stops before calling publish"]);
@@ -262,10 +262,10 @@ T("10.8","Test Discover and read APIs","P0",
 
 T("10.9","Build the Discover page","P0",
  "The public home page.",
- ["10.8"], ["client/src/api/read.js", "client/src/features/discover/DiscoverPage.jsx", "client/src/routes/AppRouter.jsx"],
- "Route `/` replaces the health placeholder. Text cards (title, creator, latest episode, episode count) per issue I9, ‘Load more’, and loading, empty and error states.",
+ ["3.22"], ["client/src/api/read.js", "client/src/features/discover/DiscoverPage.jsx", "client/src/routes/AppRouter.jsx"],
+ "Route `/` replaces the home placeholder. Text cards (title, creator, latest episode, episode count) per issue I9, ‘Load more’, and loading, empty and error states.",
  "Discover page.",
- ["Seed data’s published series appears"]);
+ ["The published series in the mock data in `client/src/mocks/` appear as text cards, and ‘Load more’ adds the next mock page", "FYP 2 check: seed data’s published series appears"]);
 
 T("10.10","Build the series reader page","P0",
  "Let readers pick an episode.",
@@ -297,10 +297,10 @@ T("10.13","Test the favorites API","P1",
 
 T("10.14","Build the favorite button and Favorites page","P1",
  "Favorites in the UI.",
- ["10.13"], ["client/src/features/reader/FavoriteButton.jsx", "client/src/features/favorites/FavoritesPage.jsx"],
+ ["10.11"], ["client/src/features/reader/FavoriteButton.jsx", "client/src/features/favorites/FavoritesPage.jsx"],
  "Toggle button on series and Reader pages (guests get a sign-in prompt). Route `/favorites` lists saved series.",
  "Favorites UI.",
- ["The button state survives a refresh"]);
+ ["Toggling the button updates the mock favorites in `client/src/mocks/`, `/favorites` lists the series marked as favorites, and guests get the sign-in prompt", "FYP 2 check: the button state survives a refresh"]);
 
 T("10.15","Test the creator-to-reader flow","P0",
  "Verify the MVP end to end.",
@@ -373,7 +373,7 @@ T("5.13","Test the AI API","P1",
 
 T("5.14","Create the AI API module","P1",
  "Frontend calls for AI.",
- ["5.13"], ["client/src/api/ai.js"],
+ ["1.15"], ["client/src/api/ai.js"],
  "One function per endpoint.",
  "AI API module.",
  ["Functions match docs/api.md"]);
@@ -449,10 +449,10 @@ T("11.5","Test premium logic","P1",
 
 T("11.6","Use premium state in the client","P1",
  "Apply the user’s real limits in the UI.",
- ["11.5"], ["client/src/api/premium.js", "client/src/features/premium/usePremium.js", "client/src/features/premium/limits.js"],
+ ["5.17"], ["client/src/api/premium.js", "client/src/features/premium/usePremium.js", "client/src/features/premium/limits.js"],
  "`usePremium()` loads `/api/premium/status` for logged-in users (free limits for guests). The layer limit (6.14), export pixel ratio (9.6) and AI remaining count use it.",
  "Limits from the server.",
- ["Changing premium in the database changes the UI after refresh"]);
+ ["Changing the mock premium status in `client/src/mocks/` between free and premium changes the layer limit, the export pixel ratio and the AI remaining count after a refresh", "FYP 2 check: changing premium in the database changes the UI after refresh"]);
 
 T("11.7","Build the Premium page","P1",
  "Explain and sell premium (sandbox).",
@@ -530,10 +530,10 @@ T("11.16","Create the payment status endpoint","P1",
 
 T("11.17","Connect the Upgrade button to JazzCash","P1",
  "Send the user to the sandbox checkout.",
- ["11.16"], ["client/src/features/premium/useCheckout.js", "client/src/features/premium/PremiumPage.jsx"],
+ ["11.7"], ["client/src/features/premium/useCheckout.js", "client/src/features/premium/PremiumPage.jsx"],
  "Call initiate, build a hidden form with the returned fields, submit it to `postUrl` (a full page navigation).",
  "Checkout redirect.",
- ["Clicking Upgrade opens the JazzCash sandbox page"]);
+ ["Clicking Upgrade builds the hidden form from the mock initiate response in `client/src/mocks/`: every returned field is in the form, and it targets `postUrl`", "FYP 2 check: clicking Upgrade opens the JazzCash sandbox page"]);
 
 T("11.18","Build the payment result page","P1",
  "Tell the user what happened.",
