@@ -1,0 +1,473 @@
+<title>Toonverse Execution Plan</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@600&display=swap">
+<style>
+/* Layout: sticky progress bar on top, section index on the left, one task column on the right; every task is a card in execution order */
+:root {
+  --bg: #f5f6f8; --surface: #ffffff; --band: #eceff3; --ink: #1b2230; --muted: #5a6373;
+  --line: #d3d8e0; --line-strong: #b9c0cb; --accent: #2b59c3; --accent-soft: #e7edfb;
+  --done: #2f7a4f; --done-bg: #e3f3e9; --doing: #9a5b00; --doing-bg: #fdf0dc;
+  --p0: #b3261e; --p0-bg: #fbe9e7; --p1: #9a5b00; --p1-bg: #fdf0dc; --p2: #2f6f5e; --p2-bg: #e2f2ec; --p3: #5a6373; --p3-bg: #eceff3;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --cond: "IBM Plex Sans Condensed", "IBM Plex Sans", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #11141a; --surface: #181d25; --band: #1e242e; --ink: #e5e8ee; --muted: #9aa3b2;
+  --line: #2c3440; --line-strong: #3d4757; --accent: #7fa2ff; --accent-soft: #1d2740;
+  --done: #6fd19a; --done-bg: #16301f; --doing: #f3b25a; --doing-bg: #35270f;
+  --p0: #ff8a80; --p0-bg: #3a1c1a; --p1: #f3b25a; --p1-bg: #35270f; --p2: #6fd1b2; --p2-bg: #15302a; --p3: #a3acba; --p3-bg: #232a34;
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #11141a; --surface: #181d25; --band: #1e242e; --ink: #e5e8ee; --muted: #9aa3b2;
+  --line: #2c3440; --line-strong: #3d4757; --accent: #7fa2ff; --accent-soft: #1d2740;
+  --done: #6fd19a; --done-bg: #16301f; --doing: #f3b25a; --doing-bg: #35270f;
+  --p0: #ff8a80; --p0-bg: #3a1c1a; --p1: #f3b25a; --p1-bg: #35270f; --p2: #6fd1b2; --p2-bg: #15302a; --p3: #a3acba; --p3-bg: #232a34;
+  color-scheme: dark }
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.55; }
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+code { font-family: var(--mono); font-size: 0.85em; background: var(--band); padding: 0.05em 0.35em; border-radius: 3px; overflow-wrap: anywhere; }
+
+.bar { position: sticky; top: 0; z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line); padding-top: env(safe-area-inset-top, 0px); }
+.bar .in { max-width: 1320px; margin: 0 auto; padding: 10px 16px; display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; }
+.bar .name { font: 600 1rem var(--cond); }
+.meter { flex: 1 1 200px; min-width: 160px; height: 8px; background: var(--band); border-radius: 99px; overflow: hidden; display: flex; }
+.meter .d { background: var(--done); } .meter .g { background: var(--doing); }
+.bar .stat { font: 500 0.82rem var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.btn { font: 500 0.84rem var(--sans); padding: 6px 12px; border-radius: 6px; border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); cursor: pointer; }
+.btn:hover { background: var(--band); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.bar label { font-size: 0.84rem; color: var(--muted); display: flex; gap: 6px; align-items: center; }
+.store { font-size: 0.78rem; color: var(--muted); }
+
+.page { max-width: 1320px; margin: 0 auto; padding-inline: 16px; padding-block: 24px 64px; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 36px; }
+nav.toc { position: sticky; top: 70px; align-self: start; max-height: calc(100vh - 90px); overflow-y: auto; font-size: 0.85rem; }
+nav.toc .k { font: 600 0.7rem var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
+nav.toc ol { list-style: none; margin: 0 0 16px; padding: 0; display: grid; gap: 1px; }
+nav.toc a { display: flex; justify-content: space-between; gap: 6px; color: var(--ink); text-decoration: none; padding: 3px 8px; border-radius: 4px; }
+nav.toc a:hover { background: var(--band); }
+nav.toc .r { font: 400 0.74rem var(--mono); color: var(--muted); white-space: nowrap; }
+main { min-width: 0; display: grid; gap: 52px; }
+@media (max-width: 960px) { .page { grid-template-columns: minmax(0, 1fr); } nav.toc { position: static; max-height: none; } }
+
+header.top { display: grid; gap: 10px; }
+.eyebrow { font: 600 0.72rem var(--sans); letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+h1 { font: 600 2.2rem/1.1 var(--cond); margin: 0; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 76ch; margin: 0; }
+section { display: grid; gap: 16px; scroll-margin-top: 70px; }
+h2 { font: 600 1.5rem/1.2 var(--cond); margin: 0; display: flex; gap: 12px; align-items: baseline; text-wrap: balance; }
+h2 .sn { font: 500 0.9rem var(--mono); color: var(--muted); }
+h3 { font-size: 1rem; font-weight: 600; margin: 0; }
+p { margin: 0; max-width: 80ch; }
+.muted { color: var(--muted); }
+
+.tbl { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+th, td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--line); }
+th { font-weight: 600; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); background: var(--band); white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+td.id { font-family: var(--mono); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+.pill { display: inline-block; font: 600 0.68rem/1 var(--mono); padding: 3px 6px; border-radius: 4px; white-space: nowrap; }
+.pill.P0 { color: var(--p0); background: var(--p0-bg); } .pill.P1 { color: var(--p1); background: var(--p1-bg); }
+.pill.P2 { color: var(--p2); background: var(--p2-bg); } .pill.P3 { color: var(--p3); background: var(--p3-bg); }
+
+/* phase header inside task list */
+.phead { display: grid; gap: 4px; padding: 18px 0 4px; border-bottom: 2px solid var(--ink); scroll-margin-top: 70px; }
+.phead .pn { font: 600 1.35rem/1.2 var(--cond); }
+.phead .pn .n { color: var(--accent); margin-right: 8px; }
+.phead .note { font-size: 0.88rem; color: var(--muted); }
+.tasks { display: grid; gap: 12px; }
+
+/* task card */
+.task { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; scroll-margin-top: 70px; }
+.task.is-done { border-color: var(--done); }
+.task.is-doing { border-color: var(--doing); }
+.task .th { display: grid; grid-template-columns: auto auto minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+.task .gn { font: 600 1.05rem var(--mono); color: var(--accent); font-variant-numeric: tabular-nums; }
+.task .tt { font-weight: 600; }
+.task .tt .lid { font: 500 0.8rem var(--mono); color: var(--muted); margin-right: 6px; }
+.task.is-done .tt { color: var(--muted); }
+.task dl { margin: 0; display: grid; grid-template-columns: 9.5em minmax(0, 1fr); }
+.task dt, .task dd { padding: 7px 14px; border-top: 1px solid var(--line); margin: 0; font-size: 0.9rem; min-width: 0; }
+.task dl > :nth-child(1), .task dl > :nth-child(2) { border-top: 0; }
+.task dt { font: 600 0.68rem/1.9 var(--sans); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); background: var(--band); }
+.task dd ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 2px; }
+.task dd ul.files li { font-family: var(--mono); font-size: 0.8rem; overflow-wrap: anywhere; }
+.task dd ul.dw li::before { content: "✓ "; color: var(--done); font-weight: 600; }
+.task .flow { font-size: 0.84rem; color: var(--muted); }
+.task .flow b { color: var(--ink); font-weight: 600; }
+.task .commit { margin: 0; padding: 8px 14px; border-top: 1px dashed var(--line-strong); font: 500 0.82rem var(--mono); background: var(--accent-soft); border-radius: 0 0 8px 8px; overflow-wrap: anywhere; }
+.task .commit span { color: var(--muted); font-family: var(--sans); font-weight: 600; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; margin-right: 8px; }
+@media (max-width: 640px) { .task dl { grid-template-columns: minmax(0, 1fr); } .task dt { border-top: 1px solid var(--line); } .task dl > :nth-child(2) { border-top: 0; } .task .th { grid-template-columns: auto auto minmax(0, 1fr); } .task .th .pill { grid-column: 3; justify-self: start; } }
+
+/* status button */
+.st { font: 600 0.8rem var(--mono); width: 3.1em; padding: 4px 0; text-align: center; border-radius: 5px; border: 1px solid var(--line-strong); background: var(--surface); color: var(--muted); cursor: pointer; }
+.st[data-s="doing"] { color: var(--doing); background: var(--doing-bg); border-color: var(--doing); }
+.st[data-s="done"] { color: var(--done); background: var(--done-bg); border-color: var(--done); }
+.st:disabled { cursor: default; }
+
+.cp { border: 2px solid var(--done); background: var(--surface); border-radius: 8px; padding: 12px 16px; display: grid; gap: 6px; }
+.cp h3 { font: 600 0.76rem var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--done); }
+.cp .ct { font: 600 1.05rem var(--cond); }
+.cp ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 2px; font-size: 0.9rem; }
+.cp li::before { content: "✓ "; color: var(--done); font-weight: 600; }
+
+.issues { display: grid; gap: 10px; }
+.issue { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--p1); border-radius: 6px; padding: 10px 14px; display: grid; gap: 4px; }
+.issue h3 { font-size: 0.95rem; }
+.issue h3 .iid { font-family: var(--mono); color: var(--p1); margin-right: 8px; }
+.issue p { font-size: 0.9rem; }
+.issue .aff { font-size: 0.82rem; color: var(--muted); }
+
+pre.block { margin: 0; font: 400 0.8rem/1.6 var(--mono); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; overflow-x: auto; white-space: pre; }
+.master { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.master .mrow { display: grid; grid-template-columns: auto 3.4em 4em minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 4px 12px; border-top: 1px solid var(--line); font-size: 0.86rem; }
+.master .mph { padding: 8px 12px; background: var(--band); font: 600 0.74rem var(--sans); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); border-top: 1px solid var(--line); }
+.master .mph:first-child { border-top: 0; }
+.master .gnum { font: 600 0.84rem var(--mono); font-variant-numeric: tabular-nums; }
+.master .lid { font: 400 0.78rem var(--mono); color: var(--muted); }
+.master a { color: var(--ink); text-decoration: none; }
+.master a:hover { text-decoration: underline; }
+.master .mrow.is-done a { color: var(--muted); text-decoration: line-through; }
+.master .st { width: 2.8em; padding: 2px 0; font-size: 0.74rem; }
+.master .mcp { padding: 5px 12px 5px 60px; border-top: 1px solid var(--line); font-size: 0.8rem; color: var(--done); font-weight: 600; }
+.master .mcm { padding: 3px 12px 3px 60px; font: 400 0.76rem var(--mono); color: var(--muted); overflow-wrap: anywhere; }
+
+.chains { display: grid; gap: 10px; }
+.chain { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; display: grid; gap: 6px; }
+.chain h3 { font-size: 0.9rem; }
+.chain .links { display: flex; flex-wrap: wrap; gap: 4px 6px; align-items: center; font-size: 0.84rem; }
+.chain .links a { font-family: var(--mono); font-size: 0.8rem; text-decoration: none; border: 1px solid var(--line-strong); border-radius: 4px; padding: 1px 6px; color: var(--ink); background: var(--band); }
+.chain .links i { color: var(--muted); font-style: normal; }
+.chain p { font-size: 0.86rem; color: var(--muted); }
+
+ol.start { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+ol.start li { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px; display: grid; gap: 4px; }
+ol.start .h { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+ol.start .h b { font: 600 1.1rem var(--mono); color: var(--accent); }
+ol.start .why { font-size: 0.9rem; color: var(--muted); }
+.toolbar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<div class="bar">
+  <div class="in">
+    <span class="name">Toonverse execution plan</span>
+    <div class="meter" aria-hidden="true"><span class="d" id="mDone" style="width:0%"></span><span class="g" id="mDoing" style="width:0%"></span></div>
+    <span class="stat" id="stat">0 / 0 done</span>
+    <button class="btn primary" id="btnNext" type="button">Continue</button>
+    <label for="hideDone"><input type="checkbox" id="hideDone"> Hide completed</label>
+    <span class="store" id="store">Loading progress…</span>
+  </div>
+</div>
+
+<div class="page">
+  <nav class="toc" aria-label="Sections">
+    <p class="k">Sections</p>
+    <ol>
+      <li><a href="#issues">Architecture issues</a></li>
+      <li><a href="#a">A · Phases</a></li>
+      <li><a href="#b">B · Tasks</a></li>
+      <li><a href="#c">C · Checkpoints</a></li>
+      <li><a href="#d">D · Git commits</a></li>
+      <li><a href="#e">E · Master order</a></li>
+      <li><a href="#f">F · Dependency map</a></li>
+      <li><a href="#g">G · Start here</a></li>
+    </ol>
+    <p class="k">Phases in execution order</p>
+    <ol id="tocPhases"></ol>
+  </nav>
+
+  <main>
+    <header class="top">
+      <span class="eyebrow">Execution plan · built on the Toonverse roadmap</span>
+      <h1>Toonverse Execution Plan</h1>
+      <p class="lede">Every task needed to build Toonverse, in the order to do them. Start at Task 001, finish it, check its “Done when” list, commit when a commit box appears, then go to the next number. The architecture and the 17 roadmap phases are unchanged; tasks keep a phase ID (3.4) and get a global number (046).</p>
+      <p class="muted" style="font-size:.88rem">Click a task’s status box to move it from <code>[ ]</code> Not started to <code>[~]</code> In progress to <code>[x]</code> Completed. The authoritative copies live in the repository under <code>docs/</code>: <code>docs/architecture.html</code>, <code>docs/roadmap.html</code>, <code>docs/decisions.md</code>, <code>docs/plan/</code> and <code>docs/git-workflow/</code>. Decisions D1–D15 were confirmed by the team on 2026-10-12 (the D7 price is still pending).</p>
+    </header>
+
+    <section id="issues">
+      <h2><span class="sn">!</span>Architecture issues / decisions required</h2>
+      <p>Breaking the phases into file-level tasks exposed these gaps. None changes the architecture. Each one says what the plan assumes and which tasks change if the team decides differently.</p>
+      <div class="issues">
+        <div class="issue"><h3><span class="iid">I1</span>Panels can only be rendered in the browser</h3><p>D2 stores published panels as PNGs in Cloudinary, and D3 keeps rendering in the browser. Konva runs only in the browser, so the backend can’t render panels itself. The plan has the browser render each panel and upload it through a new endpoint, <code>POST /api/panels/:panelId/render</code>, inside the existing Publishing module.</p><p class="aff">Tasks {10.1}, {10.2}, {10.5}</p></div>
+        <div class="issue"><h3><span class="iid">I2</span>Nowhere to count daily AI use</h3><p>The AI quota (D11) needs a per-user daily counter, but the data model has none. The plan adds an <code>aiUsage { date, count }</code> field to User instead of a new collection. This needs team approval.</p><p class="aff">Tasks {2.2}, {5.10}</p></div>
+        <div class="issue"><h3><span class="iid">I3</span>Cookie auth needs the frontend and API on one site</h3><p>A SameSite=Lax cookie (D4) is not sent with cross-site requests. In production the frontend and API must share a site (for example <code>toonverse.app</code> and <code>api.toonverse.app</code>). Otherwise the cookie must become SameSite=None; Secure, which needs extra CSRF care. Decide with hosting.</p><p class="aff">Tasks {3.3}, {15.1}, {15.6}</p></div>
+        <div class="issue"><h3><span class="iid">I4</span>The JazzCash return doesn’t carry the session</h3><p>JazzCash sends the browser back with a cross-site POST, so the Lax cookie isn’t sent. The return handler finds the payment by <code>pp_TxnRefNo</code> and trusts only the verified hash, never the session.</p><p class="aff">Task {11.14}</p></div>
+        <div class="issue"><h3><span class="iid">I5</span>HD export can’t be enforced on the server</h3><p>Export resolution is a premium limit (D6), but export runs in the browser (D3), so a determined user could bypass it. Layer and AI limits are enforced on the server. The team confirmed (Q2) that this is documented as a known limitation and never described as server-enforced security.</p><p class="aff">Tasks {9.6}, {16.6}</p></div>
+        <div class="issue"><h3><span class="iid">I6</span>Guest Mode has no backend part</h3><p>D1 makes Guest Mode client-only, so the backend Authentication module does nothing for guests. Guests use Discover, Reader view and an unsaved canvas sandbox.</p><p class="aff">Tasks {3.27}, {6.22}</p></div>
+        <div class="issue"><h3><span class="iid">I7</span>Node.js 20.6 or newer is required</h3><p>The plan uses Node’s built-in <code>--env-file</code> and <code>--watch</code> instead of adding dotenv and nodemon.</p><p class="aff">Task {1.2}</p></div>
+        <div class="issue"><h3><span class="iid">I8</span>Episode reordering collides with the unique index</h3><p>The unique <code>{ series, number }</code> index breaks a simple renumbering, so reorder runs in two passes.</p><p class="aff">Task {4.8}</p></div>
+        <div class="issue"><h3><span class="iid">I9</span>Discover has no cover images</h3><p>The architecture defines no series cover, so Discover cards are text only. Using a series’ first published panel as its thumbnail would be a new decision.</p><p class="aff">Task {10.9}</p></div>
+        <div class="issue"><h3><span class="iid">I10</span>Decisions D1–D15 are confirmed</h3><p>The team confirmed D1–D15 on 2026-10-12; tasks 0.2–0.5 now review and commit the prepared decision log. Vite and Mongoose are confirmed; the remaining supporting libraries in roadmap section 02 still need the team’s approval in task 0.5.</p><p class="aff">Tasks {0.2}–{0.5}</p></div>
+        <div class="issue"><h3><span class="iid">I12</span>The premium price is not decided</h3><p>D7 fixes a one-time sandbox payment for 30 days, but the PKR amount is pending. No task may invent a price: task 11.1 asks the team before any payment code uses it.</p><p class="aff">Tasks {0.4}, {11.1}, {11.13}</p></div>
+        <div class="issue"><h3><span class="iid">I13</span>Local recovery is required scope (D10)</h3><p>Option A adds a browser recovery draft to manual save and auto-save. Former backlog task 8.16 moved into Phase 8 as a P0 task, and one new task (8.17) offers restore or discard, because choosing between an old draft and a newer server version is its own screen with its own rules. Drafts are stored per user in IndexedDB so members sharing the laptop never see each other’s drafts.</p><p class="aff">Tasks {8.6}, {8.16}, {8.17}, {8.14}</p></div>
+        <div class="issue"><h3><span class="iid">I11</span>An admin audit trail would add a collection</h3><p>The optional audit trail (P3) needs an AdminAction collection. It stays in the backlog until the team approves it.</p><p class="aff">Task {12.14}</p></div>
+      </div>
+    </section>
+
+    <section id="a">
+      <h2><span class="sn">A</span>Toonverse development phases</h2>
+      <p>The 17 roadmap phases, unchanged. For one continuous order, two phases are split. The canvas spike (6.1–6.3) runs right after setup because it decides the Panel model. AI assistance (5.6–5.18) runs after the MVP, so the MVP never waits for OpenAI. The optional backlog comes last.</p>
+      <div class="tbl"><table id="phaseTable"><thead><tr><th>Order</th><th>Phase</th><th>Part</th><th>Tasks</th><th>Global numbers</th></tr></thead><tbody></tbody></table></div>
+    </section>
+
+    <section id="b">
+      <h2><span class="sn">B</span>Detailed tasks, in execution order</h2>
+      <div class="tasks" id="taskList"></div>
+    </section>
+
+    <section id="c">
+      <h2><span class="sn">C</span>Phase checkpoints</h2>
+      <p>Stop at each checkpoint and confirm every line works before continuing. If something fails, fix it before starting the next task.</p>
+      <div class="tbl"><table id="cpTable"><thead><tr><th>After task</th><th>Checkpoint</th><th>You should now be able to</th></tr></thead><tbody></tbody></table></div>
+    </section>
+
+    <section id="d">
+      <h2><span class="sn">D</span>Git commit points</h2>
+      <p>Commit after the task shown, on that phase’s feature branch. Open a PR into <code>develop</code> at each checkpoint. Tags mark milestones: v0.1.0 at the data layer, v0.2.0 after series and episodes, v0.3.0 after saving, v0.4.0 MVP, v0.5.0 after admin, v0.9.0 RC, v1.0.0 release.</p>
+      <div class="tbl"><table id="commitTable"><thead><tr><th>Tasks covered</th><th>Commit message</th></tr></thead><tbody></tbody></table></div>
+    </section>
+
+    <section id="e">
+      <h2><span class="sn">E</span>Master execution order</h2>
+      <p>Every task with its global number. Status boxes here and in section B are the same, so you can track progress from either.</p>
+      <div class="toolbar"><button class="btn" id="copyMaster" type="button">Copy as text checklist</button><span class="muted" id="copyMsg" style="font-size:.85rem"></span></div>
+      <div class="master" id="master"></div>
+    </section>
+
+    <section id="f">
+      <h2><span class="sn">F</span>Dependency map</h2>
+      <p>The chains where one task produces something later tasks can’t work without. Changing an early link means re-checking every task after it in the chain.</p>
+      <div class="chains" id="chains"></div>
+    </section>
+
+    <section id="g">
+      <h2><span class="sn">G</span>Start here</h2>
+      <p>The first five tasks to do right now, in order.</p>
+      <ol class="start" id="start"></ol>
+    </section>
+  </main>
+</div>
+
+<script>
+const SEQ = [];
+function PH(n, name, note) { SEQ.push({ kind: "ph", n, name, note }); }
+function T(id, title, p, o, pre, files, a, r, d, c) { SEQ.push({ kind: "t", id, title, p, o, pre, files, a, r, d, c }); }
+function CP(title, items) { SEQ.push({ kind: "cp", title, items }); }
+</script>
+<script src="tasks-1.js"></script>
+<script src="tasks-2.js"></script>
+<script src="tasks-3.js"></script>
+<script src="tasks-4.js"></script>
+<script>
+(() => {
+  const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  const fmt = s => esc(s).replace(/`([^`]+)`/g, "<code>$1</code>");
+  const pad = n => String(n).padStart(3, "0");
+
+  // number tasks, link phases
+  const tasks = [], byId = {}, phases = [];
+  let ph = null;
+  SEQ.forEach(x => {
+    if (x.kind === "ph") { ph = { ...x, tasks: [], key: "ph-" + phases.length }; phases.push(ph); x.key = ph.key; }
+    if (x.kind === "t") { x.g = tasks.length + 1; x.gs = pad(x.g); x.phase = ph; tasks.push(x); byId[x.id] = x; ph.tasks.push(x); }
+    if (x.kind === "cp") { x.after = tasks[tasks.length - 1]; }
+  });
+  tasks.forEach((t, i) => { t.next = tasks[i + 1] || null; t.pre.forEach(p => { if (!byId[p]) console.warn("Unknown prerequisite", p, "in", t.id); }); });
+  const ref = id => { const t = byId[id]; return t ? `<a href="#t-${t.gs}">Task ${t.gs}</a> <span class="muted">(${t.id} ${esc(t.title)})</span>` : esc(id); };
+  const shortRef = id => { const t = byId[id]; return t ? `<a href="#t-${t.gs}">${t.gs} · ${t.id}</a>` : esc(id); };
+  const phaseName = p => p.n === 99 ? p.name : `Phase ${p.n} · ${p.name}`;
+
+  // fill {id} tokens in static HTML
+  document.querySelectorAll(".issue .aff").forEach(el => { el.innerHTML = el.innerHTML.replace(/\{([\d.]+)\}/g, (m, id) => shortRef(id)); });
+
+  // A. phase table + toc
+  document.querySelector("#phaseTable tbody").innerHTML = phases.map((p, i) => {
+    const part = (p.note.match(/^Part \d of \d/) || [p.n === 99 ? "Optional" : "Complete"])[0];
+    const r = p.tasks.length ? `${p.tasks[0].gs}–${p.tasks[p.tasks.length - 1].gs}` : "—";
+    return `<tr><td class="id">${i + 1}</td><td><a href="#${p.key}">${esc(phaseName(p))}</a></td><td>${esc(part)}</td><td class="id">${p.tasks.length}</td><td class="id">${r}</td></tr>`;
+  }).join("");
+  document.getElementById("tocPhases").innerHTML = phases.map(p => {
+    const r = `${p.tasks[0].gs}–${p.tasks[p.tasks.length - 1].gs}`;
+    return `<li><a href="#${p.key}"><span>${p.n === 99 ? "Backlog" : p.n + " · " + esc(p.name.split(/[,&]/)[0].trim())}</span><span class="r">${r}</span></a></li>`;
+  }).join("");
+
+  // B. task list
+  const stBtn = t => `<button class="st" type="button" data-g="${t.gs}" data-s="todo" aria-label="Status of task ${t.gs}">[ ]</button>`;
+  const out = [];
+  SEQ.forEach(x => {
+    if (x.kind === "ph") out.push(`<div class="phead" id="${x.key}"><div class="pn"><span class="n">${x.n === 99 ? "+" : x.n}</span>${esc(x.n === 99 ? x.name : "Phase " + x.n + " — " + x.name)}</div>${x.note ? `<div class="note">${fmt(x.note)}</div>` : ""}</div>`);
+    if (x.kind === "cp") out.push(`<div class="cp"><h3>Checkpoint</h3><div class="ct">${esc(x.title)}</div><ul>${x.items.map(i => `<li>${fmt(i)}</li>`).join("")}</ul></div>`);
+    if (x.kind === "t") {
+      const pre = x.pre.length ? `<ul>${x.pre.map(p => `<li>${ref(p)}</li>`).join("")}</ul>` : "None. This is the first task.";
+      let next = "This is the last task. Toonverse and its backlog are complete.";
+      if (x.next) {
+        const uses = x.next.pre.includes(x.id);
+        next = `${ref(x.next.id)}` + (uses ? `<div class="flow">↓ produces <b>${fmt(x.r)}</b> ↓ required by Task ${x.next.gs}</div>` : "");
+      }
+      out.push(`<article class="task" id="t-${x.gs}" data-g="${x.gs}">
+        <div class="th">${stBtn(x)}<span class="gn">${x.gs}</span><span class="tt"><span class="lid">Task ${x.id}</span>${esc(x.title)}</span><span class="pill ${x.p}">${x.p}</span></div>
+        <dl>
+          <dt>Objective</dt><dd>${fmt(x.o)}</dd>
+          <dt>Prerequisites</dt><dd>${pre}</dd>
+          <dt>Files</dt><dd>${x.files.length ? `<ul class="files">${x.files.map(f => `<li>${esc(f)}</li>`).join("")}</ul>` : "<span class='muted'>No files. Manual or Git task.</span>"}</dd>
+          <dt>Action</dt><dd>${fmt(x.a)}</dd>
+          <dt>Expected result</dt><dd>${fmt(x.r)}</dd>
+          <dt>Done when</dt><dd><ul class="dw">${x.d.map(d => `<li>${fmt(d)}</li>`).join("")}</ul></dd>
+          <dt>Next task</dt><dd>${next}</dd>
+        </dl>
+        ${x.c ? `<p class="commit"><span>Git commit</span>${esc(x.c)}</p>` : ""}
+      </article>`);
+    }
+  });
+  document.getElementById("taskList").innerHTML = out.join("");
+
+  // C. checkpoints
+  document.querySelector("#cpTable tbody").innerHTML = SEQ.filter(x => x.kind === "cp").map(c =>
+    `<tr><td class="id"><a href="#t-${c.after.gs}">${c.after.gs}</a> <span class="muted">(${c.after.id})</span></td><td><b>${esc(c.title)}</b></td><td>${c.items.map(i => fmt(i)).join("<br>")}</td></tr>`).join("");
+
+  // D. commits
+  let from = tasks[0];
+  const commits = [];
+  tasks.forEach(t => { if (t.c) { commits.push({ from, to: t, msg: t.c }); from = t.next; } });
+  document.querySelector("#commitTable tbody").innerHTML = commits.map(c =>
+    `<tr><td class="id"><a href="#t-${c.from.gs}">${c.from.gs}</a>–<a href="#t-${c.to.gs}">${c.to.gs}</a> <span class="muted">(${c.from.id}–${c.to.id})</span></td><td><code>${esc(c.msg)}</code></td></tr>`).join("");
+
+  // E. master list
+  const m = [];
+  SEQ.forEach(x => {
+    if (x.kind === "ph") m.push(`<div class="mph">${esc(phaseName(x))}${x.note.match(/^Part \d of \d/) ? " · " + x.note.match(/^Part \d of \d/)[0] : ""}</div>`);
+    if (x.kind === "t") m.push(`<div class="mrow" data-g="${x.gs}">${stBtn(x)}<span class="gnum">${x.gs}</span><span class="lid">${x.id}</span><a href="#t-${x.gs}">${esc(x.title)}</a><span class="pill ${x.p}">${x.p}</span></div>` + (x.c ? `<div class="mcm">→ commit: ${esc(x.c)}</div>` : ""));
+    if (x.kind === "cp") m.push(`<div class="mcp">✓ Checkpoint: ${esc(x.title)}</div>`);
+  });
+  document.getElementById("master").innerHTML = m.join("");
+
+  // F. dependency chains
+  const CHAINS = [
+    ["Panel scene format", ["6.3", "2.6", "6.19", "8.1", "8.6", "9.5", "10.1", "10.5"], "The scene JSON defined in the spike is stored by the Panel model, written by serialization, saved by the save API, rendered for export and uploaded on publish."],
+    ["Authentication and roles", ["2.2", "3.1", "3.4", "3.10", "3.13", "3.15", "11.2", "12.2"], "requireAuth and the role middleware protect every private route; the premium service and the admin router build on them."],
+    ["Ownership", ["4.1", "4.2", "4.5", "5.1", "7.1", "8.1", "13.2"], "Every owner-scoped service uses the ownership helper; the security audit tests them all together."],
+    ["Image storage", ["1.20", "7.15", "7.16", "7.18", "7.19", "7.21", "10.1"], "Cloudinary is configured once, wrapped in the storage service and only reached through Multer-validated backend routes."],
+    ["Fonts and rendering", ["1.13", "7.12", "7.13", "7.24", "9.3", "9.6", "9.7"], "Google Fonts and cross-origin images must be ready before any panel is drawn, exported or published."],
+    ["AI assistance", ["0.10", "5.6", "5.7", "5.8", "5.10", "5.11", "5.15", "11.4"], "The written policy becomes the system prompt; the quota later switches to premium limits."],
+    ["Premium limits", ["0.4", "6.14", "8.2", "11.1", "11.4", "11.6"], "Limits start as fixed defaults in the UI and the scene validator, then move into one premium config read by both sides."],
+    ["Payments", ["2.8", "11.10", "11.11", "11.13", "11.14", "11.17", "11.21", "15.12"], "Payment records, hash signing and the verified return handler must exist before the Upgrade button goes live."],
+    ["Publishing and reading", ["9.5", "10.1", "10.2", "10.6", "10.7", "10.11", "12.5"], "Publishing produces the images and status that Discover, Reader view and admin moderation read."],
+    ["Testing and release", ["1.19", "2.10", "3.8", "14.1", "14.6", "15.7", "16.7"], "Test runners from setup carry every phase’s tests into the E2E suite and the staging check before release."],
+    ["Deployment", ["13.5", "15.1", "15.2", "15.6", "15.9", "15.12", "15.14"], "Headers, hosting and the domain decide cookie behaviour, CSP and the JazzCash return URL."],
+  ];
+  document.getElementById("chains").innerHTML = CHAINS.map(([name, ids, why]) =>
+    `<div class="chain"><h3>${esc(name)}</h3><div class="links">${ids.map(id => byId[id] ? `<a href="#t-${byId[id].gs}" title="${esc(byId[id].title)}">${byId[id].gs} · ${id}</a>` : esc(id)).join("<i>→</i>")}</div><p>${esc(why)}</p></div>`).join("");
+
+  // G. start here
+  const START = [
+    ["0.1", "The repo has only `main` and the `database` branch. Every later task needs `develop` and feature branches to land on."],
+    ["0.2", "Every assumption in this plan points to a decision. The log is where they get written down."],
+    ["0.3", "Guest Mode, drawing storage, export, JWT storage and roles shape the first models and the auth design."],
+    ["0.4", "Premium limits, lifecycle, panel size and auto-save rules turn into numbers used by later tasks."],
+    ["0.5", "Approving the library list now means no install later surprises the team."],
+  ];
+  document.getElementById("start").innerHTML = START.map(([id, why]) => {
+    const t = byId[id];
+    return `<li><div class="h"><b>${t.gs}</b><a href="#t-${t.gs}">${esc(t.title)}</a><span class="muted" style="font-family:var(--mono);font-size:.8rem">Task ${t.id}</span></div><p class="why">${fmt(why)}</p><p style="font-size:.9rem"><b>Result:</b> ${fmt(t.r)}</p></li>`;
+  }).join("");
+
+  // ---------- status tracking ----------
+  const ORDER = ["todo", "doing", "done"];
+  const LABEL = { todo: "[ ]", doing: "[~]", done: "[x]" };
+  const status = {};
+  let db = null, canWrite = true;
+  const LS = "toonverse-plan-status";
+  const loadLocal = () => { try { return JSON.parse(localStorage.getItem(LS) || "{}"); } catch (e) { return {}; } };
+  const saveLocal = () => { try { localStorage.setItem(LS, JSON.stringify(status)); } catch (e) {} };
+
+  function paint() {
+    document.querySelectorAll(".st").forEach(b => {
+      const s = status[b.dataset.g] || "todo";
+      b.dataset.s = s; b.textContent = LABEL[s]; b.disabled = !canWrite;
+      b.title = canWrite ? "Click to change status" : "Read only";
+    });
+    document.querySelectorAll(".task, .mrow").forEach(el => {
+      const s = status[el.dataset.g] || "todo";
+      el.classList.toggle("is-done", s === "done"); el.classList.toggle("is-doing", s === "doing");
+    });
+    const done = tasks.filter(t => status[t.gs] === "done").length;
+    const doing = tasks.filter(t => status[t.gs] === "doing").length;
+    document.getElementById("mDone").style.width = (done / tasks.length * 100) + "%";
+    document.getElementById("mDoing").style.width = (doing / tasks.length * 100) + "%";
+    document.getElementById("stat").textContent = `${done} / ${tasks.length} done`;
+    const nxt = tasks.find(t => status[t.gs] !== "done");
+    const b = document.getElementById("btnNext");
+    b.textContent = nxt ? `Continue: Task ${nxt.gs}` : "All tasks done";
+    b.disabled = !nxt; b.dataset.target = nxt ? nxt.gs : "";
+    applyHide();
+  }
+  function applyHide() {
+    const hide = document.getElementById("hideDone").checked;
+    document.querySelectorAll("#taskList .task").forEach(el => { el.hidden = hide && el.classList.contains("is-done"); });
+  }
+
+  const pending = {};
+  async function setStatus(g, s) {
+    status[g] = s; paint();
+    if (!db) { saveLocal(); return; }
+    if (pending[g]) { pending[g].again = true; return; }
+    pending[g] = { again: false };
+    try {
+      do { pending[g].again = false; await db.doc("status/t" + g).set({ s: status[g] }); } while (pending[g].again);
+    } catch (e) {
+      if (e && e.code === "invalid_argument") { canWrite = false; document.getElementById("store").textContent = "Read only: you can view progress but not change it."; paint(); }
+      else document.getElementById("store").textContent = "Couldn’t save the last change. Check your connection and click again.";
+    } finally { delete pending[g]; }
+  }
+
+  document.addEventListener("click", e => {
+    const b = e.target.closest(".st");
+    if (!b || !canWrite) return;
+    const cur = status[b.dataset.g] || "todo";
+    setStatus(b.dataset.g, ORDER[(ORDER.indexOf(cur) + 1) % 3]);
+  });
+  document.getElementById("hideDone").addEventListener("change", applyHide);
+  document.getElementById("btnNext").addEventListener("click", e => {
+    const g = e.currentTarget.dataset.target; if (!g) return;
+    const el = document.getElementById("t-" + g); el.hidden = false; el.scrollIntoView({ block: "start" });
+  });
+
+  // copy checklist
+  const text = () => ["TOONVERSE — MASTER EXECUTION ORDER", "[ ] Not started · [~] In progress · [x] Completed", ""].concat(
+    SEQ.flatMap(x => x.kind === "ph" ? ["", "## " + phaseName(x)] : x.kind === "t" ? [`${LABEL[status[x.gs] || "todo"]} ${x.gs} — ${x.id} ${x.title} (${x.p})`] : x.kind === "cp" ? [`    ✓ CHECKPOINT: ${x.title}`] : [])
+  ).join("\n");
+  document.getElementById("copyMaster").addEventListener("click", () => {
+    const msg = document.getElementById("copyMsg"), t = text();
+    try { navigator.clipboard.writeText(t).then(() => { msg.textContent = "Copied."; }, () => { msg.textContent = "Copy was blocked by the browser."; }); }
+    catch (e) { msg.textContent = "Copy was blocked by the browser."; }
+  });
+
+  Object.assign(status, loadLocal());
+  paint();
+
+  // shared progress through the artifact database, with browser storage as fallback
+  (async () => {
+    const store = document.getElementById("store");
+    try { db = window.claude && window.claude.use ? await window.claude.use("db") : null; } catch (e) { db = null; }
+    if (!db) { store.textContent = "Progress is saved in this browser only."; return; }
+    try {
+      const user = await window.claude.use("user");
+      const w = user && user.can ? await user.can("data.write") : null;
+      if (w === false) canWrite = false;
+    } catch (e) {}
+    for (const k of Object.keys(status)) delete status[k];
+    paint();
+    store.textContent = canWrite ? "Progress is shared with everyone who can edit this page." : "Read only: you can view progress but not change it.";
+    db.collection("status").onSnapshot(snap => {
+      snap.docs.forEach(d => { const v = d.data(); if (v && ORDER.includes(v.s)) status[d.id.slice(1)] = v.s; });
+      snap.docChanges().forEach(c => { if (c.type === "removed") delete status[c.doc.id.slice(1)]; });
+      paint();
+    }, () => { store.textContent = "Live progress stopped updating. Reload the page."; });
+  })();
+})();
+</script>
