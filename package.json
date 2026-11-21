@@ -4,5 +4,13 @@
   "workspaces": [
     "client",
     "server"
-  ]
+  ],
+  "scripts": {
+    "lint": "npm run lint -w client",
+    "format": "prettier --write client",
+    "format:check": "prettier --check client"
+  },
+  "devDependencies": {
+    "prettier": "^3.10.1"
+  }
 }

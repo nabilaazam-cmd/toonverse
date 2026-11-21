@@ -1,5 +1,5 @@
 /* Tailwind CSS v4: loads Tailwind's base styles and utility classes. */
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /*
   Toonverse theme tokens. Each colour token creates utility classes such as
@@ -14,7 +14,7 @@
   --color-muted: #5a6373;
   --color-danger: #b3261e;
 
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-ui: "Inter", system-ui, sans-serif;
-  --font-lettering: "Comic Neue", "Comic Sans MS", cursive;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-ui: 'Inter', system-ui, sans-serif;
+  --font-lettering: 'Comic Neue', 'Comic Sans MS', cursive;
 }
