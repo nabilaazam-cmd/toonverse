@@ -283,6 +283,14 @@ Each decision has five fields: Question, Decision, Date, Consequences, and Affec
 
 Both support the ESLint 9 line and Prettier 3 (npm registry, 2026-10-27). The team decision was reported to Claude on 2026-10-27.
 
+**Task 029 lint and format setup (approved 2026-11-21).** Implementation choices for task 029 (1.18), approved by the user before implementation:
+- **Where the packages go:** ESLint and its companion packages in the client workspace; Prettier at the repository root. The root `npm run lint` runs the client's `lint` script (`eslint .`).
+- **ESLint rules (`client/eslint.config.js`):** ESLint recommended, React recommended with the automatic JSX runtime, React Hooks recommended, browser globals, React version detection, `react/no-danger: error`, and `eslint-config-prettier` last. `dist/` is not linted.
+- **`react/prop-types` is off.** Toonverse is JavaScript and does not use the `prop-types` library, which is not installed.
+- **Prettier (`.prettierrc`):** `singleQuote: true` and `printWidth: 100`; every other option keeps Prettier's default.
+- **Format scripts:** the root scripts `format` and `format:check` run Prettier on `client/` only, so documentation and planning files are never reformatted.
+- **Existing code:** if `format:check` finds existing files that need formatting, the exact changes are shown and approved before any file is rewritten.
+
 **Deferred**: decided again before their task
 
 | Library | Revisit before |
