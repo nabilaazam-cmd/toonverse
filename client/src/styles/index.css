@@ -1,0 +1,20 @@
+/* Tailwind CSS v4: loads Tailwind's base styles and utility classes. */
+@import "tailwindcss";
+
+/*
+  Toonverse theme tokens. Each colour token creates utility classes such as
+  bg-accent and text-paper; each font token creates font-ui and font-lettering.
+  The fonts are loaded from Google Fonts in index.html; the fallbacks are used until they load.
+  --font-sans is Tailwind's default font, so the whole interface uses Inter.
+*/
+@theme {
+  --color-ink: #1b2230;
+  --color-paper: #ffffff;
+  --color-accent: #2b59c3;
+  --color-muted: #5a6373;
+  --color-danger: #b3261e;
+
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-ui: "Inter", system-ui, sans-serif;
+  --font-lettering: "Comic Neue", "Comic Sans MS", cursive;
+}
