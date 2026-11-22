@@ -78,14 +78,14 @@ Members may contribute outside their area. These areas guide the allocation; the
 | 019 | 1.8 | Set up MongoDB databases for development and testing | Khadija Gulzar | MongoDB setup and connection (Issue #3) | deferred (FYP 2) |  |
 | 020 | 1.9 | Create the database connection module | Khadija Gulzar | MongoDB setup and connection (Issue #3) | deferred (FYP 2) |  |
 | 021 | 1.10 | Verify and debug the server foundation | Nabila Azam | Server foundation check | deferred (FYP 2) |  |
-| 022 | 1.11 | Scaffold the React app | Shumail Mirzaa | React app, Tailwind, fonts, router, home placeholder | planned |  |
-| 023 | 1.12 | Configure Tailwind CSS | Shumail Mirzaa | React app, Tailwind, fonts, router, home placeholder | planned |  |
-| 024 | 1.13 | Add Google Fonts | Shumail Mirzaa | React app, Tailwind, fonts, router, home placeholder | planned |  |
-| 025 | 1.14 | Configure the development proxy | Shumail Mirzaa | React app, Tailwind, fonts, router, home placeholder | planned |  |
-| 026 | 1.15 | Create the API client | Shumail Mirzaa | React app, Tailwind, fonts, router, home placeholder | planned |  |
-| 027 | 1.16 | Add routing and a health check page | Shumail Mirzaa | React app, Tailwind, fonts, router, home placeholder | planned |  |
+| 022 | 1.11 | Scaffold the React app | Shumail Mirzaa | React app, Tailwind, fonts, router, home placeholder | completed | Shumail Mirzaa (commit, push and merge done from the `shumailmizaa-ops` account; PR #25, merge commit caa5c78); Khadija Gulzar (PR review); Nabila Azam (PR review); Claude assisted |
+| 023 | 1.12 | Configure Tailwind CSS | Shumail Mirzaa | React app, Tailwind, fonts, router, home placeholder | completed | Shumail Mirzaa (commit, push and merge done from the `shumailmizaa-ops` account; PR #25, merge commit caa5c78); Khadija Gulzar (PR review); Nabila Azam (PR review); Claude assisted |
+| 024 | 1.13 | Add Google Fonts | Shumail Mirzaa | React app, Tailwind, fonts, router, home placeholder | completed | Shumail Mirzaa (commit, push and merge done from the `shumailmizaa-ops` account; PR #25, merge commit caa5c78); Khadija Gulzar (PR review); Nabila Azam (PR review); Claude assisted |
+| 025 | 1.14 | Configure the development proxy | Shumail Mirzaa | React app, Tailwind, fonts, router, home placeholder | completed | Shumail Mirzaa (commit, push and merge done from the `shumailmizaa-ops` account; PR #25, merge commit caa5c78); Khadija Gulzar (PR review); Nabila Azam (PR review); Claude assisted |
+| 026 | 1.15 | Create the API client | Shumail Mirzaa | React app, Tailwind, fonts, router, home placeholder | completed | Shumail Mirzaa (commit, push and merge done from the `shumailmizaa-ops` account; PR #25, merge commit caa5c78); Khadija Gulzar (PR review); Nabila Azam (PR review); Claude assisted |
+| 027 | 1.16 | Add routing and a health check page | Shumail Mirzaa | React app, Tailwind, fonts, router, home placeholder | completed | Shumail Mirzaa (commit, push and merge done from the `shumailmizaa-ops` account; PR #25, merge commit caa5c78); Khadija Gulzar (PR review); Nabila Azam (PR review); Claude assisted; live API health check deferred to FYP 2 (Issue #21) |
 | 028 | 1.17 | Add CORS and cookie parsing to the server | Nabila Azam | CORS and cookies: server security | deferred (FYP 2) |  |
-| 029 | 1.18 | Configure ESLint and Prettier | Shumail Mirzaa | Linting setup | planned |  |
+| 029 | 1.18 | Configure ESLint and Prettier | Shumail Mirzaa | Linting setup | completed | Shumail Mirzaa (commit, push and merge done from the `shumailmizaa-ops` account; PR #26, merge commit 316f80d); Khadija Gulzar (PR review); Nabila Azam (PR review); Claude assisted |
 | 030 | 1.19 | Set up the test runners | Khadija Gulzar | Test runners and test database | deferred (later in FYP 1) |  |
 | 031 | 1.20 | Create the third-party accounts | Nabila Azam | Third-party accounts and GitHub settings (repository owner) | deferred (FYP 2) |  |
 | 032 | 1.21 | Configure GitHub | Nabila Azam | Third-party accounts and GitHub settings (repository owner) | planned |  |
