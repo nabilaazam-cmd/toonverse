@@ -1,0 +1,15 @@
+Recorded: 2026-11-28 20:52 +0500 on the shared laptop (Windows 11 Pro, AMD Ryzen 5 4500U)
+The byte count was identical in 3 separate runs.
+
+Task 036 (6.3) scene JSON size: measured result (not an estimate)
+Command: node docs/testing/task-036-scene-size/measure-scene-size.mjs
+Node.js: v24.22.3
+Panel: 800 x 1200, seed 6202, 1 layer
+strokes: 2000 (expected 2000) OK
+points: 70706 (expected 70706) OK
+fingerprint: 571242605 (expected 571242605) OK
+all points are whole numbers: yes
+JSON parses back unchanged: yes
+JSON size: 813440 bytes (UTF-8, compact JSON.stringify)
+         = 0.776 MiB (1 MiB = 1,048,576 bytes)
+share of the 2 MiB save request limit (Task 8.2): 38.8%

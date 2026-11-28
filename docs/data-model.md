@@ -150,7 +150,7 @@ One panel of an episode, including its drawing. Fields from plan Task 2.6. Size 
 | `order` | Number | Yes (R) | — | Position in the episode. A new panel goes last (7.1 `createPanel`). Whole number from 0 (R) | 2.6 |
 | `width` | Number | Yes | `800` | Standard width, in pixels | 2.6, D9 |
 | `height` | Number | Yes | — | 200–2400 pixels. Chosen when the panel is created | 2.6, D9 |
-| `scene` | Mixed (object) | Yes (R) | — | The drawing as Konva JSON. A new panel starts with one empty layer. See [Scene](#scene-the-drawing-inside-a-panel) | 2.6, 6.3, D2 |
+| `scene` | Mixed (object) | Yes (R) | — | The drawing, in the Toonverse scene format that Konva draws (not Konva's own `stage.toJSON()` output). A new panel starts with one empty layer. See [Scene](#scene-the-drawing-inside-a-panel) | 2.6, 6.3, D2 |
 | `version` | Number | Yes | `0` | Goes up by 1 on every successful save. A save with an old number gets 409 `VERSION_CONFLICT` | 2.6, 8.1, D10 |
 | `referenceImages` | Array of `{ url, publicId }` | No | `[]` | Images the creator uploaded to trace or copy from. Each item gets its own `_id`, which the API returns as its `id` | 2.6, 7.19, 7.20 |
 | `rendered` | `{ url, publicId, version }` | No | none | The published picture of this panel in Cloudinary. `version` is the scene version it was made from | 2.6, 10.1 |
@@ -169,25 +169,133 @@ The plan lists no timestamps for Panel. The episode's `lastSavedAt` records when
 
 ### Scene: the drawing inside a panel
 
-Task 6.3 freezes the full scene format and adds it to this document. Summary from Tasks 6.3 and 7.7:
+The scene format, frozen by Task 6.3 (format version 1). The field choices below were confirmed by Shumail Mirzaa, Khadija Gulzar and Nabila Azam in Issue #39 (decisions D-1 to D-10); those are marked "#39 D-n" in the Source column. Bubble and text fields are added by Task 7.7.
 
-```
-{ formatVersion, width, height,
-  layers: [ { id, name, visible, locked, opacity, shapes: [ ... ] } ] }
+**What the scene is**
+- The scene is Toonverse's own description of a drawing: plain data about layers and shapes. The editor draws it with React-Konva, and the reducer (6.5), serialization (6.19) and server checks (8.2) all work on it.
+- It is **not** the output of Konva's `stage.toJSON()`. That output is a dump of Konva's internal objects, with class names and every Konva setting; it is larger, tied to Konva's version, and hard to check on the server. "Konva JSON" in D2 means this scene format, drawn with Konva (#39 D-9).
+- Only what is needed to redraw the panel is stored. Temporary editor state is never saved: the active layer, the selected tool, zoom, pan and the stroke being drawn (6.19 removes such fields).
+
+**Top level**
+
+| Field | Type | Rule | Source |
+|---|---|---|---|
+| `formatVersion` | Number | `1` for this format. A later change to the format raises it, and `fromJSON` (6.19) upgrades older scenes (for example pen pressure, 6.25) | 6.3, 6.19, #39 D-1 |
+| `width` | Number | Always equal to the panel's `width` (800). The Panel's value is the true one | 6.3, D9, #39 D-2 |
+| `height` | Number | Always equal to the panel's `height` (200–2400). The Panel's value is the true one | 6.3, D9, #39 D-2 |
+| `layers` | Array of layers | Index 0 is the **bottom** layer; each later layer is drawn above it. The layers panel (6.13) may still list them top to bottom | 6.3, #39 D-5 |
+
+**Layer**
+
+| Field | Type | Rule | Source |
+|---|---|---|---|
+| `id` | String | Made with the browser's built-in `crypto.randomUUID()`; unique within the scene | 6.3, #39 D-4 |
+| `name` | String | Shown in the layers panel, for example "Layer 1" | 6.3 |
+| `visible` | Boolean | Default `true` (R) | 6.3 |
+| `locked` | Boolean | Default `false` (R). A locked layer ignores drawing input (6.9) | 6.3 |
+| `opacity` | Number | 0 to 1. Default `1` (R) | 6.3 |
+| `shapes` | Array of shapes | Drawn in array order: the first shape is at the bottom of its layer | 6.3, #39 D-5 |
+
+**Every shape** has a `type` (one of the four below) and an `id` made with `crypto.randomUUID()`, so shapes can be selected, moved and undone by id (6.13, 7.9) (#39 D-3, D-4).
+
+**`stroke`**
+
+| Field | Type | Rule | Source |
+|---|---|---|---|
+| `type` | `"stroke"` | | 6.3 |
+| `id` | String | `crypto.randomUUID()` | #39 D-3, D-4 |
+| `tool` | `"brush"` or `"eraser"` | An eraser stroke is drawn with `globalCompositeOperation: 'destination-out'` (6.11) | 6.3, 6.11 |
+| `color` | String | `#RRGGBB` (R). Eraser strokes keep this field so every stroke has the same fields; drawing ignores it | 6.3, 6.12, #39 D-6 |
+| `size` | Number | Brush width in pixels, 1–100 (the 6.10 slider) | 6.3, 6.10 |
+| `opacity` | Number | 0 to 1 | 6.3 |
+| `points` | Array of whole numbers | Flat list `[x1, y1, x2, y2, …]` in panel pixels, rounded to whole numbers when saved (6.19) | 6.3, 6.19 |
+
+**`image`** (a reference image placed on a layer, 7.23)
+
+| Field | Type | Rule | Source |
+|---|---|---|---|
+| `type` | `"image"` | | 6.3 |
+| `id` | String | `crypto.randomUUID()` | #39 D-3, D-4 |
+| `referenceId` | String | The `id` of an item in the Panel's `referenceImages` | 6.3 |
+| `url` | String | The image's Cloudinary URL. Kept in the scene so export (9.5) can draw it without a lookup. Deleting a reference image (7.20) must also remove its image shapes | 6.3, #39 D-8 |
+| `x`, `y`, `w`, `h` | Number | Position and size in panel pixels, whole numbers | 6.3, #39 D-7 |
+| `opacity` | Number | 0 to 1 | 6.3 |
+
+**`bubble` and `text`** are allowed shape types, but their fields are defined by Task 7.7, which adds them to this section. The plan's outline for 7.7: a bubble has a variant (oval, box or thought), position and size, a tail, fill, outline and text; a text shape has a position, width, content, font, size, alignment and colour.
+
+**Example** (format version 1; the ids are made-up UUIDs, the image values are illustrative):
+
+```json
+{
+  "formatVersion": 1,
+  "width": 800,
+  "height": 1200,
+  "layers": [
+    {
+      "id": "3f2b8c1e-6a4d-4e7f-9b2a-5c1d8e3f0a71",
+      "name": "Layer 1",
+      "visible": true,
+      "locked": false,
+      "opacity": 1,
+      "shapes": [
+        {
+          "type": "stroke",
+          "id": "a7d4e2b9-1c3f-4a8e-b6d2-9f0e5c7a1b34",
+          "tool": "brush",
+          "color": "#111111",
+          "size": 4,
+          "opacity": 1,
+          "points": [120, 340, 126, 338, 133, 335]
+        },
+        {
+          "type": "stroke",
+          "id": "c91e5f3a-7b2d-4c6e-8a1f-2d4b6e8c0f52",
+          "tool": "eraser",
+          "color": "#000000",
+          "size": 20,
+          "opacity": 1,
+          "points": [128, 337, 131, 336]
+        }
+      ]
+    },
+    {
+      "id": "e5a3c7d1-9f2b-4e6a-8c4d-1b7f3a9e5c08",
+      "name": "Reference",
+      "visible": true,
+      "locked": true,
+      "opacity": 0.5,
+      "shapes": [
+        {
+          "type": "image",
+          "id": "f8b2d6e4-3a1c-4f7b-9e5d-7c2a4b6e8d19",
+          "referenceId": "6650f1c2a9b3e4d5f6a7b8c9",
+          "url": "https://res.cloudinary.com/demo/image/upload/v1/toonverse/reference-1.jpg",
+          "x": 0,
+          "y": 0,
+          "w": 800,
+          "h": 600,
+          "opacity": 0.5
+        }
+      ]
+    }
+  ]
+}
 ```
 
-Shape types:
-- **`stroke`:** tool (brush or eraser), color, size, opacity, points rounded to whole numbers.
-- **`bubble`:** speech bubble. Variant oval, box or thought; position and size; tail; fill; outline; text.
-- **`text`:** position, width, content, font, size, alignment, color.
-- **`image`:** `referenceId` (the id of an item in `referenceImages`), url, position, size, opacity.
+**Measured size of a full panel**
+- The 2,000-stroke panel from the Task 6.2 stress test (seed 6202, 2,000 strokes, 70,706 points, 4 px) was saved in this format as one layer with UUID ids and measured as compact UTF-8 JSON.
+- The measured compact JSON size is 813,440 bytes (0.776 MiB), representing 38.8% of the 2 MiB save request limit.
+- MongoDB's 16 MiB document limit applies to BSON, not JSON. BSON size was not measured against a running MongoDB instance, so no percentage of the MongoDB limit is claimed. The JSON measurement alone must not be presented as an exact BSON-size measurement.
+- Measured with `node docs/testing/task-036-scene-size/measure-scene-size.mjs` (Node.js v24.22.3); the output is saved in `docs/testing/task-036-scene-size/result.txt`. The byte count is the same on every run.
+- Panels with more strokes, longer strokes, bubbles or several layers are larger, so a very dense panel could come closer to the 2 MiB limit.
 
 **Server checks before saving (Task 8.2)**
 - The scene is an object with a `layers` array.
 - The number of layers is no more than the user's limit: 10 free, 20 premium (D6).
 - Only the four shape types above are allowed.
+- The scene's `width` and `height` equal the panel's (#39 D-2).
 - Text is at most 500 characters.
-- The whole request is at most 2 MB, far below MongoDB's 16 MB limit per document.
+- The whole request body (the scene as JSON) is at most 2 MiB. This request limit is separate from MongoDB's 16 MiB limit per stored document, which counts the document's BSON size; the JSON request size does not establish the BSON size.
 
 `scene` is never included in public responses (Task 10.8). Readers see only the rendered images.
 
