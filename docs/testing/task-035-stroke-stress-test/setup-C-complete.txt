@@ -1,0 +1,27 @@
+# Task 035 official measurements - Setup C, complete results box (pasted by Shumail Mirzaa, 2026-11-28)
+Setup C | seed 6202 | stress strokes 2000 | devicePixelRatio 1.5 | window 1272 x 588
+Timer step 0.100 ms, so single timings use 1 decimal(s).
+Redraw = main-thread time to issue the canvas drawing commands (not GPU completion or display),
+timed as batches of 100 draws; "per draw" is a batched average, not one timed draw.
+Lag = input to canvas paint (not display); includes a small getCoalescedEvents() diagnostic cost.
+Setup C layer cache() took 17.1 ms (one-time cost)
+Setup C first draw after caching took 144.2 ms (one-time cost; includes building the hit cache when listening is on)
+Setup C redraw warm-up batch (not counted): 100 draws in 1.0 ms = 0.010 ms per draw (batched average)
+Setup C redraw batch 1: 100 draws in 0.8 ms = 0.008 ms per draw (batched average)
+Setup C redraw batch 2: 100 draws in 0.7 ms = 0.007 ms per draw (batched average)
+Setup C redraw batch 3: 100 draws in 0.7 ms = 0.007 ms per draw (batched average)
+Setup C redraw batch 4: 100 draws in 0.8 ms = 0.008 ms per draw (batched average)
+Setup C redraw batch 5: 100 draws in 0.7 ms = 0.007 ms per draw (batched average)
+Setup C redraw summary of 5 batches, per-draw batched average: average 0.007 ms, min 0.007 ms, max 0.008 ms
+Setup C lag warm-up (not counted): average 5.2 ms, highest 9.1 ms, valid samples 195, never painted 0, closed by: all points painted, moves with merged readings 193 (diagnostic only)
+Setup C lag run 1: average 5.2 ms, highest 14.0 ms, valid samples 116, never painted 0, closed by: all points painted, moves with merged readings 111 (diagnostic only)
+Setup C lag stroke rejected: valid samples 27, never painted 0, closed by: all points painted, moves with merged readings 26 (diagnostic only). At least 60 valid samples are needed; draw it again.
+Setup C lag run 2: average 5.3 ms, highest 17.6 ms, valid samples 91, never painted 0, closed by: all points painted, moves with merged readings 88 (diagnostic only)
+Setup C lag run 3: average 5.1 ms, highest 13.6 ms, valid samples 151, never painted 0, closed by: all points painted, moves with merged readings 149 (diagnostic only)
+Setup C lag run 4: average 5.3 ms, highest 13.6 ms, valid samples 168, never painted 0, closed by: all points painted, moves with merged readings 164 (diagnostic only)
+Setup C lag run 5: average 5.1 ms, highest 15.0 ms, valid samples 185, never painted 0, closed by: all points painted, moves with merged readings 177 (diagnostic only)
+Setup C lag summary of 5 stroke averages: average 5.2 ms, min 5.1 ms, max 5.3 ms
+Setup C lag: 5 runs are already recorded; stroke not counted.
+Setup C lag stroke rejected: valid samples 57, never painted 0, closed by: all points painted, moves with merged readings 50 (diagnostic only). At least 60 valid samples are needed; draw it again.
+Setup C lag stroke rejected: valid samples 29, never painted 0, closed by: all points painted, moves with merged readings 26 (diagnostic only). At least 60 valid samples are needed; draw it again.
+Setup C lag: 5 runs are already recorded; stroke not counted.

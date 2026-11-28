@@ -1,0 +1,43 @@
+# Task 035 official measurements - Setup A, complete results box (pasted by Shumail Mirzaa, 2026-11-28)
+Setup A | seed 6202 | stress strokes 2000 | devicePixelRatio 1.5 | window 1272 x 588
+Timer step 0.100 ms, so single timings use 1 decimal(s).
+Redraw = main-thread time to issue the canvas drawing commands (not GPU completion or display),
+timed as batches of 100 draws; "per draw" is a batched average, not one timed draw.
+Lag = input to canvas paint (not display); includes a small getCoalescedEvents() diagnostic cost.
+Setup A redraw warm-up batch (not counted): 100 draws in 1178.0 ms = 11.780 ms per draw (batched average)
+Setup A redraw batch 1: 100 draws in 1148.4 ms = 11.484 ms per draw (batched average)
+Setup A redraw batch 2: 100 draws in 1141.9 ms = 11.419 ms per draw (batched average)
+Setup A redraw batch 3: 100 draws in 1128.1 ms = 11.281 ms per draw (batched average)
+Setup A redraw batch 4: 100 draws in 1168.9 ms = 11.689 ms per draw (batched average)
+Setup A redraw batch 5: 100 draws in 1139.9 ms = 11.399 ms per draw (batched average)
+Setup A redraw summary of 5 batches, per-draw batched average: average 11.454 ms, min 11.281 ms, max 11.689 ms
+Setup A redraw warm-up batch (not counted): 100 draws in 1101.4 ms = 11.014 ms per draw (batched average)
+Setup A redraw batch 1: 100 draws in 1099.8 ms = 10.998 ms per draw (batched average)
+Setup A redraw batch 2: 100 draws in 1123.6 ms = 11.236 ms per draw (batched average)
+Setup A redraw batch 3: 100 draws in 1155.9 ms = 11.559 ms per draw (batched average)
+Setup A redraw batch 4: 100 draws in 1125.1 ms = 11.251 ms per draw (batched average)
+Setup A redraw batch 5: 100 draws in 1164.2 ms = 11.642 ms per draw (batched average)
+Setup A redraw summary of 5 batches, per-draw batched average: average 11.337 ms, min 10.998 ms, max 11.642 ms
+Setup A lag warm-up (not counted): average 5.4 ms, highest 17.2 ms, valid samples 127, never painted 0, closed by: all points painted, moves with merged readings 123 (diagnostic only)
+Setup A lag run 1: average 5.3 ms, highest 9.4 ms, valid samples 176, never painted 0, closed by: all points painted, moves with merged readings 173 (diagnostic only)
+Setup A lag run 2: average 5.4 ms, highest 8.7 ms, valid samples 80, never painted 0, closed by: all points painted, moves with merged readings 77 (diagnostic only)
+Setup A lag run 3: average 4.9 ms, highest 8.8 ms, valid samples 137, never painted 0, closed by: all points painted, moves with merged readings 132 (diagnostic only)
+Setup A lag run 4: average 5.4 ms, highest 14.3 ms, valid samples 73, never painted 0, closed by: all points painted, moves with merged readings 66 (diagnostic only)
+Setup A lag stroke rejected: valid samples 10, never painted 0, closed by: all points painted, moves with merged readings 8 (diagnostic only). At least 60 valid samples are needed; draw it again.
+Setup A lag stroke rejected: valid samples 51, never painted 0, closed by: all points painted, moves with merged readings 47 (diagnostic only). At least 60 valid samples are needed; draw it again.
+Setup A lag stroke rejected: valid samples 11, never painted 0, closed by: all points painted, moves with merged readings 8 (diagnostic only). At least 60 valid samples are needed; draw it again.
+Setup A lag stroke rejected: valid samples 0, never painted 0, closed by: all points painted, moves with merged readings 0 (diagnostic only). At least 60 valid samples are needed; draw it again.
+Setup A lag stroke rejected: valid samples 0, never painted 0, closed by: all points painted, moves with merged readings 0 (diagnostic only). At least 60 valid samples are needed; draw it again.
+Setup A lag stroke rejected: valid samples 0, never painted 0, closed by: all points painted, moves with merged readings 0 (diagnostic only). At least 60 valid samples are needed; draw it again.
+Setup A lag stroke rejected: valid samples 0, never painted 0, closed by: all points painted, moves with merged readings 0 (diagnostic only). At least 60 valid samples are needed; draw it again.
+Setup A lag run 5: average 5.5 ms, highest 14.9 ms, valid samples 126, never painted 0, closed by: all points painted, moves with merged readings 120 (diagnostic only)
+Setup A lag summary of 5 stroke averages: average 5.3 ms, min 4.9 ms, max 5.5 ms
+Setup A lag: 5 runs are already recorded; stroke not counted.
+Setup A lag: 5 runs are already recorded; stroke not counted.
+Setup A lag: 5 runs are already recorded; stroke not counted.
+Setup A lag: 5 runs are already recorded; stroke not counted.
+Setup A lag: 5 runs are already recorded; stroke not counted.
+Setup A lag: 5 runs are already recorded; stroke not counted.
+Setup A lag: 5 runs are already recorded; stroke not counted.
+Setup A lag stroke rejected: valid samples 51, never painted 0, closed by: all points painted, moves with merged readings 49 (diagnostic only). At least 60 valid samples are needed; draw it again.
+Setup A lag stroke rejected: valid samples 45, never painted 0, closed by: all points painted, moves with merged readings 42 (diagnostic only). At least 60 valid samples are needed; draw it again.

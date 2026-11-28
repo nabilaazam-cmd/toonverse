@@ -1,0 +1,23 @@
+# Task 035 official measurements - Setup D, complete results box (pasted by Shumail Mirzaa, 2026-11-28)
+Setup D | seed 6202 | stress strokes 2000 | devicePixelRatio 1.5 | window 1272 x 588
+Timer step 0.100 ms, so single timings use 1 decimal(s).
+Redraw = main-thread time to issue the canvas drawing commands (not GPU completion or display),
+timed as batches of 100 draws; "per draw" is a batched average, not one timed draw.
+Lag = input to canvas paint (not display); includes a small getCoalescedEvents() diagnostic cost.
+Setup D layer cache() took 11.3 ms (one-time cost)
+Setup D first draw after caching took 1.0 ms (one-time cost; includes building the hit cache when listening is on)
+Setup D redraw warm-up batch (not counted): 100 draws in 0.5 ms = 0.005 ms per draw (batched average)
+Setup D redraw batch 1: 100 draws in 0.7 ms = 0.007 ms per draw (batched average)
+Setup D redraw batch 2: 100 draws in 0.3 ms = 0.003 ms per draw (batched average)
+Setup D redraw batch 3: 100 draws in 0.3 ms = 0.003 ms per draw (batched average)
+Setup D redraw batch 4: 100 draws in 0.4 ms = 0.004 ms per draw (batched average)
+Setup D redraw batch 5: 100 draws in 0.3 ms = 0.003 ms per draw (batched average)
+Setup D redraw summary of 5 batches, per-draw batched average: average 0.004 ms, min 0.003 ms, max 0.007 ms
+Setup D lag warm-up (not counted): average 5.2 ms, highest 11.4 ms, valid samples 107, never painted 0, closed by: all points painted, moves with merged readings 101 (diagnostic only)
+Setup D lag run 1: average 4.9 ms, highest 14.0 ms, valid samples 98, never painted 0, closed by: all points painted, moves with merged readings 93 (diagnostic only)
+Setup D lag run 2: average 5.1 ms, highest 13.1 ms, valid samples 87, never painted 0, closed by: all points painted, moves with merged readings 82 (diagnostic only)
+Setup D lag stroke rejected: valid samples 55, never painted 0, closed by: all points painted, moves with merged readings 50 (diagnostic only). At least 60 valid samples are needed; draw it again.
+Setup D lag run 3: average 5.3 ms, highest 14.3 ms, valid samples 161, never painted 0, closed by: all points painted, moves with merged readings 146 (diagnostic only)
+Setup D lag run 4: average 5.4 ms, highest 14.8 ms, valid samples 111, never painted 0, closed by: all points painted, moves with merged readings 99 (diagnostic only)
+Setup D lag run 5: average 5.1 ms, highest 11.4 ms, valid samples 61, never painted 0, closed by: all points painted, moves with merged readings 58 (diagnostic only)
+Setup D lag summary of 5 stroke averages: average 5.2 ms, min 4.9 ms, max 5.4 ms
