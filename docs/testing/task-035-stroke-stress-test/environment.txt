@@ -1,0 +1,15 @@
+# Task 035 official measurement environment (2026-11-28)
+Operator: Shumail Mirzaa (shumailmizaa-ops), manual input in a visible Edge window
+Final conditions checked: 2026-11-28 17:32:35 (UTC+05:00)
+CPU: AMD Ryzen 5 4500U with Radeon Graphics, 6 cores / 6 threads, 2375 MHz base
+RAM: 15.4 GB usable (Windows report)
+OS: Microsoft Windows 11 Pro, version 10.0.26200, build 26200, 64-bit
+Browser: Microsoft Edge 158.0.4370.45 (Official build) (64-bit); only the test tab open
+Window: 1272 x 588 (page area), devicePixelRatio 1.5, unchanged for all setups
+Timer step: 0.100 ms (performance.now, page not cross-origin isolated)
+Power: plugged in (AC), Windows power plan Balanced
+Closed for the test: Google Chrome, WhatsApp (background permission set to Never; stopped once)
+Still running (unavoidable): VS Code + Claude session, Windows Defender (MsMpEng), Windows Explorer
+Build: production build served by vite preview at http://localhost:4173/dev/canvas-spike
+Konva 10.11.0, react-konva 19.3.2; seed 6202; 2,000 stress strokes (20-50 points, #111111, 4 px)
+Setup order: A -> C -> B -> D (cache turned on last), then a redo of the Setup A lag test

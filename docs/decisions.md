@@ -47,6 +47,45 @@ Each decision has five fields: Question, Decision, Date, Consequences, and Affec
   - **Device download:** 9.5 (render), 9.6 (PNG download), 9.7 (PDF download), 9.9 (export menu)
   - **Recovery drafts:** 8.16
 
+### D2 – Measured canvas performance (Task 6.2)
+This records measurements only. It does not change the D2 decision above. The scope was approved by all three members in Issue #36; measurement details were refined and approved during the task (Khadija Gulzar).
+
+- **Question:** Does the canvas stay fast with a full panel of 2,000 strokes, and how much do `listening(false)` and layer caching help?
+- **Measured on:** 2026-11-28, by Shumail Mirzaa, by hand in a visible browser window, on the `/dev/canvas-spike` page (production build served by `vite preview`).
+- **Test setup:**
+  - 2,000 generated strokes from a fixed seed (6202), 20–50 points each, colour `#111111`, 4 px, round caps and joins, on their own **stress layer**. Hand-drawn strokes are on a separate **drawing layer**.
+  - Four setups: **A** no optimisation, **B** `listening(false)` on the stress layer, **C** layer cache on the stress layer, **D** both. Measured in the order A, C, B, D, with the cache turned on last.
+  - **Redraw:** one warm-up batch (not counted), then 5 batches of 100 consecutive `stressLayer.draw()` calls. "Per draw" is the batch time divided by 100 (a batched average).
+  - **Drawing lag:** time from each pointer move to the canvas paint that first shows its point. One warm-up stroke (not counted), then 5 hand-drawn strokes. The method was to clear the drawing before every stroke. A stroke needs at least 60 valid samples or it is rejected and drawn again. A stroke closes at the first paint that shows all of its points, with a 10-frame safety net.
+- **Environment:** AMD Ryzen 5 4500U with Radeon Graphics (6 cores), 15.4 GB RAM, Windows 11 Pro (build 26200), Microsoft Edge 158.0.4370.45 (64-bit), window 1272 × 588 at device pixel ratio 1.5, timer step 0.1 ms, plugged in (Balanced power plan). Chrome and WhatsApp were closed; VS Code, Claude, Windows Defender and Windows Explorer were running. Konva 10.11.0, react-konva 19.3.2.
+- **Results:**
+
+  | Setup | Redraw per draw: average (min–max of 5 batches) | Drawing lag: average of 5 strokes (min–max) | One-time cost when the cache is turned on |
+  |---|---|---|---|
+  | **A** – none | 11.454 ms (11.281–11.689) | 5.2 ms (5.0–5.3) | – |
+  | **B** – `listening(false)` | 5.982 ms (5.551–6.290) | 5.2 ms (5.0–5.6) | – |
+  | **C** – layer cache | 0.007 ms (0.007–0.008) | 5.2 ms (5.1–5.3) | `cache()` 17.1 ms, then first draw 144.2 ms (builds the hit cache) |
+  | **D** – both | 0.004 ms (0.003–0.007) | 5.2 ms (4.9–5.4) | `cache()` 11.3 ms, then first draw 1.0 ms (no hit cache) |
+
+  - Redraw batches, per draw: A 11.484, 11.419, 11.281, 11.689, 11.399 ms · B 6.290, 5.551, 6.204, 5.650, 6.217 ms · C 0.008, 0.007, 0.007, 0.008, 0.007 ms · D 0.007, 0.003, 0.003, 0.004, 0.003 ms.
+  - Lag strokes (average / highest): A 5.0/14.8, 5.3/10.6, 5.2/13.8, 5.3/15.9, 5.1/16.2 ms · B 5.1/9.8, 5.1/14.0, 5.6/15.0, 5.5/15.8, 5.0/10.6 ms · C 5.2/14.0, 5.3/17.6, 5.1/13.6, 5.3/13.6, 5.1/15.0 ms · D 4.9/14.0, 5.1/13.1, 5.3/14.3, 5.4/14.8, 5.1/11.4 ms.
+  - Every counted stroke had 60–185 valid samples, 0 never-painted samples, and was closed by "all points painted". Rejected strokes (fewer than 60 samples): A 3, B 1, C 3, D 1.
+- **What this shows:**
+  - `listening(false)` roughly halves the redraw time (11.5 ms → 6.0 ms). This is consistent with Konva skipping the hidden hit canvas.
+  - Layer caching reduced the measured main-thread redraw time to under 0.01 ms per draw. Graphics-card completion and display were not measured. Building the cache cost about 161 ms with listening on and about 12 ms with it off. When a cached layer changes, the cache has to be rebuilt; this is expected Konva behaviour and was not measured in this experiment.
+  - Drawing lag stays at about 5 ms in every setup, because only the drawing layer is repainted while drawing. This supports caching inactive layers with `listening(false)` (Task 6.20).
+- **Limits of these numbers:**
+  - The lag results cover only the case where the 2,000 strokes are on an **inactive** layer. Drawing on a layer that itself holds many strokes was not tested.
+  - Redraw time is the main-thread time to issue the canvas drawing commands. It does not include graphics-card work or showing the frame on screen. Drawing lag is input to canvas paint, not to the screen.
+  - The cached batches took only 0.3–0.8 ms, a few steps of the 0.1 ms timer. They show that caching works, but the exact difference between C and D is not reliable.
+  - Lag includes a small cost from a diagnostic call (`getCoalescedEvents()`). Hand-drawn strokes varied in length and pace.
+  - The numbers are for this laptop and browser only.
+- **Run notes:**
+  - Setup A's redraw was measured twice. The first run is used above; the second gave 11.337 ms (10.998–11.642), which agrees.
+  - Setup A's first lag test did not follow the clearing step: the drawing was not cleared before every stroke. It gave 5.3 ms (4.9–5.5), with 9 rejected strokes. Setup A's lag was then measured again, and that repeat is the result used above.
+  - Whether the drawing was cleared before every stroke in setups B, C and D and in the Setup A repeat was not separately confirmed.
+- **Affected tasks:** 6.3 (the same 2,000-stroke panel), 6.20 (performance tuning re-runs this test)
+
 ## D3 – Export
 - **Question:** Where do PNG and PDF exports happen?
 - **Decision:** In the browser (PNG through Konva, PDF through jsPDF). There is no server-side rendering.

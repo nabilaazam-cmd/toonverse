@@ -1,0 +1,23 @@
+# Task 035 official measurements - Setup B, complete results box (pasted by Shumail Mirzaa, 2026-11-28)
+Setup B | seed 6202 | stress strokes 2000 | devicePixelRatio 1.5 | window 1272 x 588
+Timer step 0.100 ms, so single timings use 1 decimal(s).
+Redraw = main-thread time to issue the canvas drawing commands (not GPU completion or display),
+timed as batches of 100 draws; "per draw" is a batched average, not one timed draw.
+Lag = input to canvas paint (not display); includes a small getCoalescedEvents() diagnostic cost.
+Setup B redraw warm-up batch (not counted): 100 draws in 590.1 ms = 5.901 ms per draw (batched average)
+Setup B redraw batch 1: 100 draws in 629.0 ms = 6.290 ms per draw (batched average)
+Setup B redraw batch 2: 100 draws in 555.1 ms = 5.551 ms per draw (batched average)
+Setup B redraw batch 3: 100 draws in 620.4 ms = 6.204 ms per draw (batched average)
+Setup B redraw batch 4: 100 draws in 565.0 ms = 5.650 ms per draw (batched average)
+Setup B redraw batch 5: 100 draws in 621.7 ms = 6.217 ms per draw (batched average)
+Setup B redraw summary of 5 batches, per-draw batched average: average 5.982 ms, min 5.551 ms, max 6.290 ms
+Setup B lag warm-up (not counted): average 5.4 ms, highest 16.2 ms, valid samples 246, never painted 0, closed by: all points painted, moves with merged readings 232 (diagnostic only)
+Setup B lag run 1: average 5.1 ms, highest 9.8 ms, valid samples 148, never painted 0, closed by: all points painted, moves with merged readings 143 (diagnostic only)
+Setup B lag run 2: average 5.1 ms, highest 14.0 ms, valid samples 100, never painted 0, closed by: all points painted, moves with merged readings 98 (diagnostic only)
+Setup B lag run 3: average 5.6 ms, highest 15.0 ms, valid samples 101, never painted 0, closed by: all points painted, moves with merged readings 94 (diagnostic only)
+Setup B lag run 4: average 5.5 ms, highest 15.8 ms, valid samples 104, never painted 0, closed by: all points painted, moves with merged readings 98 (diagnostic only)
+Setup B lag run 5: average 5.0 ms, highest 10.6 ms, valid samples 61, never painted 0, closed by: all points painted, moves with merged readings 59 (diagnostic only)
+Setup B lag summary of 5 stroke averages: average 5.2 ms, min 5.0 ms, max 5.6 ms
+Setup B lag stroke rejected: valid samples 48, never painted 0, closed by: all points painted, moves with merged readings 47 (diagnostic only). At least 60 valid samples are needed; draw it again.
+
+# Shumail's note on Setup A procedure: "Setup A i which i first enter the generate 2000 stoke then draw the line and then measure redraw and the clear my drawing"

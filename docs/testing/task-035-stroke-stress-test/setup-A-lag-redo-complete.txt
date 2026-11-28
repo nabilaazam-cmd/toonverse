@@ -1,0 +1,15 @@
+# Task 035 official measurements - Setup A lag REDO, complete results box (pasted by Shumail Mirzaa, 2026-11-28)
+# Redo reason: in the first Setup A lag test the drawing was not cleared before every stroke.
+Setup A | seed 6202 | stress strokes 2000 | devicePixelRatio 1.5 | window 1272 x 588
+Timer step 0.100 ms, so single timings use 1 decimal(s).
+Setup A lag warm-up (not counted): average 5.3 ms, highest 17.1 ms, valid samples 180, never painted 0, closed by: all points painted, moves with merged readings 170 (diagnostic only)
+Setup A lag run 1: average 5.0 ms, highest 14.8 ms, valid samples 149, never painted 0, closed by: all points painted, moves with merged readings 138 (diagnostic only)
+Setup A lag run 2: average 5.3 ms, highest 10.6 ms, valid samples 88, never painted 0, closed by: all points painted, moves with merged readings 86 (diagnostic only)
+Setup A lag run 3: average 5.2 ms, highest 13.8 ms, valid samples 60, never painted 0, closed by: all points painted, moves with merged readings 56 (diagnostic only)
+Setup A lag run 4: average 5.3 ms, highest 15.9 ms, valid samples 93, never painted 0, closed by: all points painted, moves with merged readings 88 (diagnostic only)
+Setup A lag stroke rejected: valid samples 0, never painted 0, closed by: all points painted, moves with merged readings 0 (diagnostic only). At least 60 valid samples are needed; draw it again.
+Setup A lag stroke rejected: valid samples 0, never painted 0, closed by: all points painted, moves with merged readings 0 (diagnostic only). At least 60 valid samples are needed; draw it again.
+Setup A lag stroke rejected: valid samples 0, never painted 0, closed by: all points painted, moves with merged readings 0 (diagnostic only). At least 60 valid samples are needed; draw it again.
+Setup A lag run 5: average 5.1 ms, highest 16.2 ms, valid samples 171, never painted 0, closed by: all points painted, moves with merged readings 161 (diagnostic only)
+Setup A lag summary of 5 stroke averages: average 5.2 ms, min 5.0 ms, max 5.3 ms
+Setup A lag: 5 runs are already recorded; stroke not counted.
